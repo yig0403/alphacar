@@ -31,11 +31,6 @@ CREATE TABLE member (
 alter table member modify (ad default 'n');
 alter table member modify (del default 'n');
 
-insert into member values ('admin', '12345678', '관리자', '강남','010-0000-0000','yig8085@gmail.com',
-								'1993-04-03','m','n',sysdate,'1','y');
-								
-insert into member values ('ex1', '12345678', '예시용', '강남','010-0000-0000','yig0403@gmail.com',
-								'1993-04-03','m','n',sysdate,'1','n');
 
 CREATE TABLE car (
 	carNo	VARCHAR2(10)	NOT NULL,
@@ -127,6 +122,7 @@ CREATE TABLE notice (
 	noContent	VARCHAR2(1000)	NULL,
 	regdate	DATE	NULL
 );
+alter table notice add del char(1);
 
 CREATE TABLE story (
 	stNo	NUMBER	NOT NULL,
