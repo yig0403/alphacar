@@ -66,15 +66,20 @@ public class MemberController {
 		model.addAttribute("result", result);
 		return "/member/login";
 	}
-	@RequestMapping("main.do")
+	@RequestMapping("main1.do")
 	public String main(Model model, HttpSession session) {
 		String id = (String)session.getAttribute("id");		
 		if (id != null && !id.equals("")) {
 			Member member = ms.select(id);
 			model.addAttribute("member", member);
 		}
+		return "/member/main1";
+	}
+	@RequestMapping("main.do")
+	public String main() {
 		return "/member/main";
 	}
+	
 		
 	@RequestMapping(value = "idChk.do", produces = "text/html;charset=utf-8")
 	@ResponseBody   // jsp로 가지말고 바로 본문을 전달

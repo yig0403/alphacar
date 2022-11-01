@@ -1,26 +1,170 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header.html::header"></span>
-<head><meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript">
-	function del() {
-		var cf = confirm("정말로 삭제하시겠습니까?");
-		if (cf) location.href = "delete.do";
-		else alert("탈퇴가 취소 되었습니다");
-	}
-</script></head><body>
-<div class="container" align="center">
-	<h2 class="text-primary">[[${member.name }]]님 환영 !!</h2>
-<table class="table table-striped">
-	<tr><td><a href="view.do" class="btn btn-success">조회</a></td></tr>
-	<tr><td><a href="view2.do" class="btn btn-primary">조회(사진여러장)</a></td></tr>
-	<tr><td><a href="updateForm.do" class="btn btn-warning">수정</a></td></tr>
-	<tr><td><a onclick="del()" class="btn btn-danger">탈퇴</a></td></tr>
-	<tr><td><a href="logout.do" class="btn btn-info">로그 아웃</a></td></tr>
-	<div th:if="${member.ad}=='y'">
-		<tr><td><a href="/admin/adminMain.do" class="btn">관리자 페이지</a></td></tr>
-	</div>
-</table>
-</div>
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="On Top of the World, financial success">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="nicepage.css" media="screen">
+<link rel="stylesheet" href="로그인페이지.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "PROJECT",
+		"logo": "images/logo.png?rand=0c46",
+		"sameAs": []
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="main">
+    <meta property="og:type" content="website">
+  </head>
+<body class="u-body u-xl-mode" data-lang="en">
+<section class="u-align-center u-clearfix u-image u-shading u-section-1" src="" data-image-width="2250" data-image-height="1500" id="sec-46a6">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-text u-text-default u-title u-text-1"> 당신의 출발을 함께 합니다</h1>
+        <p class="u-large-text u-text u-text-variant u-text-2"> 전국 어디서나 가능한 렌터카 대여 알파카</p>
+      </div>
+    </section>
+    <section class="u-black u-clearfix u-section-2" id="sec-144b">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-align-center u-text u-text-default u-text-1">Stress-Free Ride To Life&nbsp;</h2>
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="images/2736918-0fea603a.png" alt=""></span>
+                <h3 class="u-text u-text-default u-text-2">다양한 차량</h3>
+                <p class="u-text u-text-default u-text-3">알파카가 이끄는 당신히 원하는 다양하고 새로운 이동의 기준</p>
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-list-item u-repeater-item">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2"><span class="u-file-icon u-icon u-text-white u-icon-2"><img src="images/708739-efe91a28.png" alt=""></span>
+                <h3 class="u-text u-text-default u-text-4">스토리</h3>
+                <p class="u-text u-text-default u-text-5">알파카와 함께한 당신의 이야기</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-black u-clearfix u-section-3" id="sec-7591">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout" style="">
+            <div class="u-layout-row" style="">
+              <div class="u-align-left u-container-style u-image u-layout-cell u-left-cell u-size-30 u-size-xs-60 u-image-1" src="" data-image-width="1000" data-image-height="1500">
+                <div class="u-container-layout u-valign-middle u-container-layout-1" src=""></div>
+              </div>
+              <div class="u-align-left u-container-style u-custom-color-1 u-layout-cell u-right-cell u-size-30 u-size-xs-60 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <h2 class="u-text u-text-default u-text-1">알파카와의 스토리</h2>
+                  <p class="u-text u-text-2">Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis suscipit ultrices.</p>
+                  <a href="" class="u-border-2 u-border-white u-btn u-btn-rectangle u-button-style u-none u-btn-1">스토리 상세보기</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-black u-clearfix u-section-4" id="sec-408d">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1">
+          <div class="u-gallery-inner u-gallery-inner-1">
+            <div class="u-effect-fade u-gallery-item">
+              <div class="u-back-slide" data-image-width="700" data-image-height="458">
+                <img class="u-back-image u-expanded" src="images/Untitled-1.jpg">
+              </div>
+              <div class="u-over-slide u-shading u-over-slide-1">
+                <h3 class="u-gallery-heading"></h3>
+                <p class="u-gallery-text"></p>
+              </div>
+            </div>
+            <div class="u-effect-fade u-gallery-item">
+              <div class="u-back-slide" data-image-width="700" data-image-height="458">
+                <img class="u-back-image u-expanded" src="images/sad.jpg">
+              </div>
+              <div class="u-over-slide u-shading u-over-slide-2">
+                <h3 class="u-gallery-heading"></h3>
+                <p class="u-gallery-text"></p>
+              </div>
+            </div>
+            <div class="u-effect-fade u-gallery-item">
+              <div class="u-back-slide" data-image-width="700" data-image-height="458">
+                <img class="u-back-image u-expanded" src="images/sa.jpg">
+              </div>
+              <div class="u-over-slide u-shading u-over-slide-3">
+                <h3 class="u-gallery-heading"></h3>
+                <p class="u-gallery-text"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-black u-clearfix u-section-5" id="carousel_1505">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-text u-text-1">알파카와 함께하는 방법</h2>
+        <div class="u-accordion u-expanded-width u-faq u-spacing-20 u-accordion-1">
+          <div class="u-accordion-item">
+            <a class="active u-accordion-link u-active-grey-5 u-border-1 u-border-active-palette-5-dark-2 u-border-hover-palette-5-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-2 u-button-style u-grey-5 u-text-body-color u-accordion-link-1" id="link-accordion-6327" aria-controls="accordion-6327" aria-selected="true">
+              <span class="u-accordion-link-text">What's included in the quoted daily rate?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-custom-color-1 u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-2c6d"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-2c6d" style=""><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-active u-accordion-pane u-container-style u-accordion-pane-1" id="accordion-6327" aria-labelledby="link-accordion-6327">
+              <div class="u-container-layout u-container-layout-1">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-grey-5 u-border-1 u-border-active-palette-5-dark-2 u-border-hover-palette-5-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-2 u-button-style u-grey-5 u-text-body-color u-accordion-link-2" id="link-accordion-4aab" aria-controls="accordion-4aab" aria-selected="false">
+              <span class="u-accordion-link-text">What is the rental's mileage plan?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-custom-color-1 u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-937a"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-937a" style=""><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-container-style u-accordion-pane-2" id="accordion-4aab" aria-labelledby="link-accordion-4aab">
+              <div class="u-container-layout u-container-layout-2">
+                <div class="u-clearfix u-rich-text u-text">
+                  <p>Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item">
+            <a class="u-accordion-link u-active-grey-5 u-border-1 u-border-active-palette-5-dark-2 u-border-hover-palette-5-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-2 u-button-style u-grey-5 u-text-body-color u-accordion-link-3" id="link-accordion-eb1f" aria-controls="accordion-eb1f" aria-selected="false">
+              <span class="u-accordion-link-text">What are your extra insurance options?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-custom-color-1 u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-4086"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-4086" style=""><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-container-style u-accordion-pane-3" id="accordion-eb1f" aria-labelledby="link-accordion-eb1f">
+              <div class="u-container-layout u-container-layout-3">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-accordion-item u-expanded-width">
+            <a class="u-accordion-link u-active-grey-5 u-border-1 u-border-active-palette-5-dark-2 u-border-hover-palette-5-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-palette-5-dark-2 u-button-style u-grey-5 u-text-body-color u-accordion-link-4" id="link-accordion-eb1f" aria-controls="accordion-eb1f" aria-selected="false">
+              <span class="u-accordion-link-text">Do I need to return the rental with a full tank?</span><span class="u-accordion-link-icon u-icon u-icon-circle u-text-custom-color-1 u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 16 16" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-df61"></use></svg><svg class="u-svg-content" viewBox="0 0 16 16" x="0px" y="0px" id="svg-df61" style=""><path d="M8,10.7L1.6,5.3c-0.4-0.4-1-0.4-1.3,0c-0.4,0.4-0.4,0.9,0,1.3l7.2,6.1c0.1,0.1,0.4,0.2,0.6,0.2s0.4-0.1,0.6-0.2l7.1-6
+	c0.4-0.4,0.4-0.9,0-1.3c-0.4-0.4-1-0.4-1.3,0L8,10.7z"></path></svg></span>
+            </a>
+            <div class="u-accordion-pane u-container-style u-accordion-pane-4" id="accordion-eb1f" aria-labelledby="link-accordion-eb1f">
+              <div class="u-container-layout u-container-layout-4">
+                <div class="fr-view u-clearfix u-rich-text u-text">
+                  <p>Answer. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id suscipit ex. Suspendisse rhoncus laoreet purus quis elementum. Phasellus sed efficitur dolor, et ultricies sapien. Quisque fringilla sit amet dolor commodo efficitur. Aliquam et sem odio. In ullamcorper nisi nunc, et molestie ipsum iaculis sit amet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 </body>
 </html>
