@@ -1,0 +1,78 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span></head><body>
+	<div class="container" align="right">
+	<a href="carInsertForm.do?num=0&pageNum=1" class="btn btn-success">게시글 입력</a>		
+	</div>
+	<div class="container" align="center">
+		<h2 class="primary">렌트카 목록</h2>
+		<table class="table table-striped">
+			<tr class="danger">
+				<th>차 번호</th>
+				<th>차 이름</th>
+				<th>제조사</th>
+				<th>등급</th>
+				<th>지역</th>
+				<th>기본요금(하루)</th>
+				<th>사진</th>
+			</tr>
+		<tr class="warning" th:if="${#lists.size(list)}==0"><td colspan="5">차량이 없습니다</td></tr>
+	    <tr th:if="${#lists.size(list)}>0" th:each="car:${list}"><td>[[${car.carNo }]]</td>
+		<th colspan="4" class="warning" th:if="${car.del}=='y'">삭제된 글입니다</th>	
+		<th:block th:if="${car.del}=='n'">
+			<td>
+				<a th:href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}" class="btn btn-primary btn-sm">
+					[[${car.carName }]]</a>
+			</td>
+			<td>[[${car.carKind}]]</td><td>[[${car.carRank}]]</td><td>[[${car.fee}]]</td>
+			<td>[[${car.carRegion}]]</td><td>[[${car.filename}]]</td>
+		</tr>		
+		</table>
+		
+<div align="center">
+	<ul class="pagination">
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li><a th:href="@{carList.do(pageNum=1)}">
+				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
+			<li><a th:href="@{carList.do(pageNum=${pb.startPage-1 })}">
+				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active"><a th:href="@{carList.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li><a th:href="@{carList.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li><a th:href="@{carList.do(pageNum=${pb.endPage+1})}">
+				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
+			<li><a th:href="@{carList.do(pageNum=${pb.totalPage})}">
+				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
+		</th:block>		
+	</ul>
+
+<form action="carList.do">
+	<input type="hidden" name="pageNum" value="1">
+	<select name="search">
+        <option value="carName">차량이름</option>
+		<option value="carKind">제조사</option>
+		<option value="carRegion">지역</option> 
+		<c:forTokens var="sh" items="carName,carKind,carRegion,subcon" delims="," varStatus="i">
+			<c:if test="${sh==car.search }">
+				<option value="${sh }" selected="selected">${title[i.index] }</option>
+			</c:if>
+			<c:if test="${sh!=car.search }">
+				<option value="${sh }">${title[i.index] }</option>
+			</c:if>			
+		</c:forTokens>
+	</select>
+	<input type="text" name="keyword" value="${car.keyword }">
+	<input type="submit" value="확인">
+</form>		
+</div>
+</div>
+</body>
+</html>

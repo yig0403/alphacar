@@ -123,6 +123,7 @@ CREATE TABLE notice (
 	regdate	DATE	NULL
 );
 alter table notice add del char(1);
+select * from notice;
 
 CREATE TABLE story (
 	stNo	NUMBER	NOT NULL,

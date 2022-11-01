@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container" align="center">
+	<h2>공지 수정</h2>
+<form action="/notice/noticeUpdate.do"method="post">
+	<input type="hidden" name="noNo" th:value="${notice.noNo }">
+<table class="table table-hover">
+	<tr><th>공지번호</th><td>[[${notice.noNo }]]</tr>
+	<tr><th>부서명</th><td><input type="text" name="noTitle" required="required"
+		class="form-control" th:value="${notice.noTitle }"></td></tr>
+	<tr><th>근무지</th><td><input type="text" name="noContent" required="required"
+		class="form-control" th:value="${notice.noContent }"></td></tr>	
+	<tr><td colspan="2" align="center"><input type="submit" value="수정"
+		class="btn btn-info"></td></tr>
+</table>
+<a href="/notice/noticeList.do" class="btn btn-primary">목록</a>
+</form>
+</div>
+</body>
+</html>

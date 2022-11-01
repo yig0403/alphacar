@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("삭제되었습니다");
+		location.href="noticeList.do";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("삭제 실패하였습니다");
+		history.back();
+	</script>
+</span>
+</body>
+</html>

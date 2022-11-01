@@ -1,0 +1,44 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	$(function() {
+		$('#carDisp').load("carList.do", "pageNum=[[${pageNum}]]");
+	});
+	
+	// 그림 보여주기
+	function preview(file) {
+		var reader = new FileReader();
+		reader.onload = (function(f) {
+			return function(e) {
+				var div = '<div class="thumb"><div class="close">X</div><img src="'+
+					e.target.result+'"/></div>';
+				$('#thumbnails').append(div);
+			};
+		})(file);
+		reader.readAsDataURL(file);
+		// readAsDataURL: 컨텐츠의 특정 Blob이나 File에서 읽어노는 역할 수행
+	}
+	</script></head><body>
+<div class="container" align="center">
+	<h2 class="text-primary">차량 상세내용</h2>
+<table class="table table-hover">
+	<tr class="info"><th>차량번호</th><td>[[${car.carNo}]]</td></tr>
+	<tr class="info"><th>차량이름</th><td>[[${car.carName}]]</td></tr>
+	<tr class="info"><td>제조사</td><td>[[${car.carKind}]]</td></tr>
+	<tr class="info"><td>등급</td><td>[[${car.carRank}]]</td></tr>
+	<tr class="info"><td>위치</td><td><pre>[[${car.carRegion}]]</pre></td></tr>
+	<tr class="info"><td>기본요금(하루)</td><td><pre>[[${car.fee}]]</pre></td></tr>
+	<tr class="info"><td>차량사진</td><td><pre>[[${car.filename}]]</pre></td></tr>
+	<tr  class="default"><td colspan="2" align="center">
+		<a th:href="@{carList.do(pageNum=${pageNum})}" class="btn btn-success">차량 목록</a>
+		<a th:href="@{carUpdateForm.do(carNo=${car.carNo},pageNum=${pageNum})}" 
+			class="btn btn-warning">수정</a>
+		<a th:href="@{carDeleteForm.do(carNo=${car.carNo},pageNum=${pageNum})}" 
+			class="btn btn-danger">삭제</a>
+		</td>
+</table>
+	<div id="carDisp"></div>
+</div>
+</body>
+</html>
