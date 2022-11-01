@@ -25,4 +25,5 @@ public class Member {
 	// upload용
 	private MultipartFile file;
 	
+	
 }
