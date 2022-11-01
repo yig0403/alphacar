@@ -43,12 +43,12 @@ public class CarController {
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-		return "carList";
+		return "/car/carList";
 	}
 	
 	@RequestMapping("carInsertForm.do")
 	public String carInsertForm() {
-		return "carInsertForm";
+		return "/car/carInsertForm";
 	}
 	
 	@RequestMapping("carInsert.do")
@@ -69,7 +69,7 @@ public class CarController {
 			result = cs.insert(car);
 		} else result = -1;  // 이미 있으니 입력하지마
 		model.addAttribute("result", result);
-		return "carInsert";
+		return "/car/carInsert";
 	}
 	
 	@RequestMapping(value = "carNoChk.do", produces = "text/html;charset=utf-8")
@@ -89,7 +89,7 @@ public class CarController {
 		Car car = cs.select(carNo);
 		model.addAttribute("car", car);
 		model.addAttribute("pageNum", pageNum);
-		return "carView";
+		return "/car/carView";
 	}
 	
 	@RequestMapping("carUpdateForm.do")
@@ -97,7 +97,7 @@ public class CarController {
 		Car car = cs.select(carNo);
 		model.addAttribute("car", car);
 		model.addAttribute("pageNum", pageNum);
-		return "carUpdateForm";
+		return "/car/carUpdateForm";
 	}
 	@RequestMapping("carUpdate.do")
 	public String carUpdate(Car car,String pageNum, Model model) throws IOException {
@@ -115,7 +115,7 @@ public class CarController {
 		result = cs.update(car);
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum", pageNum);
-		return "carUpdate";
+		return "/car/carUpdate";
 	}
 	@RequestMapping("carDelete.do")
 	public String carDelete(Car car,String pageNum ,Model model) {
@@ -126,14 +126,14 @@ public class CarController {
 		}else result = -1;
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum,", pageNum);
-		return "carDelete";
+		return "/car/carDelete";
 	}
 	
 	@RequestMapping("carDeleteForm.do")
 	public String deleteForm(String carNo, String pageNum,  Model model) {
 		model.addAttribute("carNo", carNo);
 		model.addAttribute("pageNum", pageNum);
-		return "carDeleteForm";
+		return "/car/carDeleteForm";
 	}
 
 
