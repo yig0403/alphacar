@@ -9,7 +9,7 @@ public class SessionChk implements HandlerInterceptor {
 			throws Exception {
 		HttpSession session = request.getSession();
 		if (session == null || session.getAttribute("id") ==  null) {
-			response.sendRedirect("/resource/templates/maember/loginForm.do");
+			response.sendRedirect("/loginForm.do");
 			return false;
 		}
 		return true;
