@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function del(noNo) {
+		var cf = confirm("정말로 삭제 하시겠습니까?");
+		if (cf) location.href="noticeDelete.do?noNo="+noNo;
+		else alert("삭제가 취소 되었습니다");
+	}
+</script>
+</head>
+<body>
+ <div class="container">
+ 	<h3>공지사항 상세</h3>
+ 	<table class="table table-bordered">
+ 		<tr><th>공지번호</th><td>[[${notice.noNo}]]</td></tr>
+ 		<tr><th>공지일</th><td>[[${notice.regdate}]]</td></tr>
+ 		<tr><th>제목</th><td>[[${notice.noTitle}]]</td></tr>
+ 		<tr><th>내용</th><td><span>[[${notice.noContent}]]</span></td></tr>
+ 		<tr><td colspan="2"><a class="btn" th:href="@{/notice/noticeList.do}">목록</a></td></tr> 	
+ 		<tr th:if="${member.ad}=='y'"><td colspan="2">
+ 			<td><a class="btn" th:href="@{/notice/noticeUpdateForm.do(noNo=${notice.noNo})}">수정</a></td>
+ 			<td class="btn" th:onclick="del([[${notice.noNo}]])">삭제</td>
+ 		</tr>
+ 	</table>
+ </div>
+</body>
+</html>
