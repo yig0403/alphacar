@@ -1,21 +1,21 @@
 <!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
 <title>Insert title here</title></head><body>
 <span th:if="${result} > 0">
 	<script type="text/javascript">
-		alert("입력성공");
-		location.href="carList.do";
+		alert("삭제 되었습니다");
+		location.href="carList.do?pageNum=[[${pageNum}]]";
 	</script>
 </span>
 <span th:if="${result} == 0">
 	<script type="text/javascript">
-		alert("입력실패 ");
+		alert("삭제 실패");
 		history.go(-1);
 	</script>
 </span>
 <span th:if="${result} == -1">
 	<script type="text/javascript">
-		alert("이미 등록된 차량번호입니다.");
+		alert("권한이 없습니다.");
 		history.go(-1);
 	</script>
 </span>

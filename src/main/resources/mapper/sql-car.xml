@@ -1,18 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ch.alphaCar.dao.CarDao">
-    <select id="list" parameterType="car"  resultType="car">
-		select * from car (select a.*, rowNum rn from (select * from car order by carNo)a) where rn between #{startRow} and #{endRow}		
-	</select>
+<mapper namespace="com.ch.alphaCar.mapper.CarDao">
+   <insert id="insert" parameterType="car">
+		insert into car values(#{carNo},#{carName},#{carRank},#{carKind},#{carType},#{carYear},#{fee},#{carColor},
+		#{carRegion},'n',#{filename},'n',#{id})
+	</insert>
+	
 	<select id="select" parameterType="string" resultType="car">
 		select * from car where carNo=#{carNo}
 	</select>
 	
-	<insert id="insert" parameterType="car">
-		insert into car values(#{carNo},#{carName},#{carRank},#{carKind},#{carType},#{carYear},#{fee},#{carColor},
-		#{carRegion},'n',#{filename},'n',#{id})
-	</insert>
+	<select id="list" parameterType="car"  resultType="car">
+		<!-- select * from board2 order by num desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from car 
+			<where>
+			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
+				<if test="keyword!=null and keyword!=''">  
+				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
+					<if test="search=='subcon'">
+						carName like '%'||#{keyword}||'%' or
+						carKind like '%'||#{keyword}||'%' or
+						carRegion like '%'||#{keyword}||'%'
+					</if>
+					<if test="search!='subcon'">
+						${search} like '%'||#{keyword}||'%'
+					</if>					
+				</if>
+			</where>
+			order by carNo)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
 	
 	<update id="update" parameterType="car">
 		update car set carNo=#{carNo},carName=#{carName},carRank=#{carRank},carKind=#{carKind},carType=#{carType},
@@ -27,10 +46,6 @@
 	<update id="delete" parameterType="string">
 		update car set del='y' where carNo=#{carNo}
 	</update>
-	
-	<select id="getMaxNum" resultType="integer">
-		select nvl(max(num), 0) + 1 from car
-	</select>
 	
 	<select id="getTotal" parameterType="car" resultType="integer">
 		select count(*) from car

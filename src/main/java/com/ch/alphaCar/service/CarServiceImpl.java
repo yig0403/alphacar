@@ -20,10 +20,6 @@ public class CarServiceImpl implements CarService {
 		return cd.list(car);
 	}
 
-	public int getMaxNum() {
-		return cd.getMaxNum();
-	}
-
 	public Car select(String carNo) {
 		return cd.select(carNo);
 	}

@@ -10,8 +10,6 @@ public interface CarService {
 
 	List<Car> list(Car car);
 
-	int getMaxNum();
-
 	Car select(String carNo);
 
 	int insert(Car car);

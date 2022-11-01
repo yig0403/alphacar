@@ -12,9 +12,7 @@ public interface CarDao {
 	int getTotal(Car car);
 
 	List<Car> list(Car car);
-
-	int getMaxNum();
-
+	
 	Car select(String carNo);
 
 	int insert(Car car);

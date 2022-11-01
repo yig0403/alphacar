@@ -10,34 +10,30 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.service.CarService;
-import com.ch.alphaCar.service.MemberService;
 import com.ch.alphaCar.service.PagingBean;
+
 
 @Controller
 public class CarController {
 	@Autowired
 	private CarService cs;
     
-	@Autowired
-	private MemberService ms;
-	
 	@RequestMapping("carList.do")
-	public String list(Car car, @PathVariable String pageNum, Model model) {
+	public String list(Car car, String pageNum, Model model) {
 		int rowPerPage = 9; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = cs.getTotal(car);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
 		car.setStartRow(startRow);
 		car.setEndRow(endRow);
-		int num = total - startRow + 1;
 		List<Car> list = cs.list(car);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"차량사진","차량이름","등급","제조사"};
@@ -50,7 +46,6 @@ public class CarController {
 		return "carList";
 	}
 	
-	
 	@RequestMapping("carInsertForm.do")
 	public String carInsertForm() {
 		return "carInsertForm";
@@ -58,14 +53,11 @@ public class CarController {
 	
 	@RequestMapping("carInsert.do")
 	public String carInsert(Car car, String pageNum, Model model, HttpSession session) throws IOException {
-		int number = cs.getMaxNum(); 
 		int result = 0;
 		// member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크
 		Car car2 = cs.select(car.getCarNo());
-		
 		String id = (String) session.getAttribute("id");
 		car.setId(id);
-		
 		if (car2 == null) {
 			String filename = car.getFile().getOriginalFilename();
 			// 파일명을 변경하고 싶으면 UUID 또는 long으로 날자 데이터
@@ -137,5 +129,12 @@ public class CarController {
 		return "carDelete";
 	}
 	
+	@RequestMapping("carDeleteForm.do")
+	public String deleteForm(String carNo, String pageNum,  Model model) {
+		model.addAttribute("carNo", carNo);
+		model.addAttribute("pageNum", pageNum);
+		return "carDeleteForm";
+	}
+
 
 }
