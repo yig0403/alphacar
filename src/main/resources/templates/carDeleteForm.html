@@ -1,0 +1,15 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<div class="container" align="center">
+	<h2 class="text-primary">게시글 삭제</h2>
+<form action="carDelete.do" method="post">
+	<input type="hidden" name="carNo" th:value="${carNo}">
+	<input type="hidden" name="pageNum" th:value="${pageNum }">
+	<input type="submit" value="확인" class="btn btn-danger">
+</form>
+
+
+</div>
+</body>
+</html>
