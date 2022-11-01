@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" align="center">
+		<h2 class="primary">게시글 목록</h2>
+		<table class="table table-striped">
+			<tr class="danger">
+				<th>차 번호</th>
+				<th>차 이름</th>
+				<th>제조사</th>
+				<th>등급</th>
+				<th>지역</th>
+				<th>사진</th>
+			</tr>
+			<c:if test="${empty list}">
+				<tr class="warning">
+					<td colspan="5">게시글이 없습니다</td>
+				</tr>
+			</c:if>
+			<c:if test="${not empty list}">
+				<c:forEach var="car" items="${list }">
+					<tr>
+						<td>${num}<c:set var="num" value="${num-1}"></c:set></td>
+						<c:if test="${board.del=='y' }">
+							<th colspan="4" class="warning">삭제된 글입니다</th>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</c:if>
+		</table>
+	</div>
+</body>
+</html>
