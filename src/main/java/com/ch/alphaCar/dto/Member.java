@@ -24,6 +24,6 @@ public class Member {
 	private String ad;
 	// upload용
 	private MultipartFile file; //opop
-	private int startRow; // asd asdasdasd asdasd
+	
 	
 }
