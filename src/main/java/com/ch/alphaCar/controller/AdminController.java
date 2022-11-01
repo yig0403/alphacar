@@ -15,4 +15,9 @@ public class AdminController {
 	public String adminMain() {
 		return "admin/adminMain";
 	}
+	
+	@RequestMapping("/admin/serviceCenter.do")
+	public String serviceCenter() {
+		return "sc/serviceCenter";
+	}
 }
