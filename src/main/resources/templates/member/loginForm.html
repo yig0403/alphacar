@@ -5,10 +5,10 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <title>로그인페이지</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="로그인페이지.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/로그인페이지.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -30,22 +30,23 @@
         <div class="u-container-style u-group u-white u-group-1">
           <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-icon-1"><img th:src="@{/upload/logo.png}" alt=""></span>
             <div class="u-form u-form-1">
-              <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
+              <form action="login.do" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
                 <div class="u-form-group u-form-name u-label-none">
                   <label for="name-6797" class="u-label">Name</label>
-                  <input type="text" placeholder="ID" id="name-6797" name="text" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                  <input type="text" placeholder="ID" id="name-6797" name="id" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
                 </div>
                 <div class="u-form-email u-form-group u-label-none">
                   <label for="email-6797" class="u-label">Email</label>
-                  <input type="email" placeholder="password" id="email-6797" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
+                  <input type="password" placeholder="password" id="email-6797" name="password" class="u-border-1 u-border-grey-30 u-input u-input-rectangle" required="">
                 </div>
-                <div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
+            	<div class="u-form-send-message u-form-send-success">Thank you! Your message has been sent.</div>
                 <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
                 <input type="hidden" value="" name="recaptchaResponse">
                 <input type="hidden" name="formServices" value="e22f0dadfbd4a043fe9f7b1412a6a96f">
+                <input type="submit" class="u-btn u-button-style u-grey-90 u-btn-1" value="로그인"></a>
               </form>
             </div>
-            <a href="main.do" class="u-btn u-button-style u-grey-90 u-btn-1">로그인</a>
+            
             <div class="u-border-3 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
             <a href="https://nicepage.com/css-templates" class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-custom-color-2 u-text-palette-2-light-1 u-btn-2">비밀번호를 잊으셨나요?</a>
           </div>
