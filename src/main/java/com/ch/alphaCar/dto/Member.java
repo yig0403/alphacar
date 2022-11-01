@@ -23,6 +23,6 @@ public class Member {
 	private String mfileName;
 	private String ad;
 	// upload용
-	private MultipartFile file; //opop
+	private MultipartFile file;
 	
 }
