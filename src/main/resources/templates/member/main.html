@@ -1,0 +1,26 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<head><meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function del() {
+		var cf = confirm("정말로 삭제하시겠습니까?");
+		if (cf) location.href = "delete.do";
+		else alert("탈퇴가 취소 되었습니다");
+	}
+</script></head><body>
+<div class="container" align="center">
+	<h2 class="text-primary">[[${member.name }]]님 환영 !!</h2>
+<table class="table table-striped">
+	<tr><td><a href="view.do" class="btn btn-success">조회</a></td></tr>
+	<tr><td><a href="view2.do" class="btn btn-primary">조회(사진여러장)</a></td></tr>
+	<tr><td><a href="updateForm.do" class="btn btn-warning">수정</a></td></tr>
+	<tr><td><a onclick="del()" class="btn btn-danger">탈퇴</a></td></tr>
+	<tr><td><a href="logout.do" class="btn btn-info">로그 아웃</a></td></tr>
+	<div th:if="${member.ad}=='y'">
+		<tr><td><a href="/admin/adminMain.do" class="btn">관리자 페이지</a></td></tr>
+	</div>
+</table>
+</div>
+</body>
+</html>
