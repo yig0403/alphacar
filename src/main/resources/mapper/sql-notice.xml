@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.NoticeDao">
+	<resultMap type="notice" id="noticeResult">
+		<result property="noNo" column="noNo"/>
+		<result property="noTitle" column="noTitle"/>
+		<result property="noContent" column="noContent"/>
+		<result property="regdate" column="regdate"/>
+		<result property="del" column="del"/>
+		<result property="id" column="id"/>
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+	<select id="list" resultMap="noticeResult">
+		select * from notice where del='n' order by regdate 
+	</select>
+	<select id="select" parameterType="integer" resultType="notice">
+		select * from notice where noNo=#{noNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update notice set del='y' where noNo=#{noNo}
+	</update>
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(noNo),0) + 1 from notice 
+	</select>
+	<insert id="insert" parameterType="notice">
+		insert into notice values (#{noNo},#{id},#{noTitle},#{noContent},sysdate,'n')
+	</insert>
+	<update id="update" parameterType="notice">
+		update notice set noTitle=#{noTitle}, noContent=#{noContent} where noNo=#{noNo}
+	</update>
+</mapper>
