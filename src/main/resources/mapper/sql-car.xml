@@ -38,7 +38,7 @@
 		carYear=#{carYear},fee=#{fee},carColor=#{carColor},carRegion=#{carRegion},'n'
 		<!-- 파일이 있으면 변경하고 없으면 기존 파일명을 그대로 사용 -->
 		<if test="filename != null">
-			,filename=#{filename} 
+			,filename=#{filename,jdbcType=VARCHAR2} 
 		</if>
 		,'n' where carNo=#{carNo}
 	</update>
