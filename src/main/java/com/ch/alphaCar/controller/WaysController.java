@@ -30,7 +30,7 @@ public class WaysController {
 		}
 		List<Ways> waysList = ws.list();
 		model.addAttribute("waysList",waysList);
-		return "sc/ways";
+		return "ways/ways";
 	}
 	
 	@RequestMapping("/ways/waysInsertForm.do")
