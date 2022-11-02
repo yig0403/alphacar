@@ -1,33 +1,374 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header.html::header"></span></head><body>
-	<div class="container" align="right">
-	<a href="carInsertForm.do?num=0&pageNum=1" class="btn btn-success">게시글 입력</a>		
-	</div>
-	<div class="container" align="center">
-		<h2 class="primary">렌트카 목록</h2>
-		<table class="table table-striped">
-			<tr class="danger">
-				<th>차 번호</th>
-				<th>차 이름</th>
-				<th>제조사</th>
-				<th>등급</th>
-				<th>지역</th>
-				<th>기본요금(하루)</th>
-				<th>사진</th>
-			</tr>
-		<tr class="warning" th:if="${#lists.size(list)}==0"><td colspan="5">차량이 없습니다</td></tr>
-	    <tr th:if="${#lists.size(list)}>0" th:each="car:${list}"><td>[[${car.carNo }]]</td>
-		<th colspan="4" class="warning" th:if="${car.del}=='y'">삭제된 글입니다</th>	
-		<th:block th:if="${car.del}=='n'">
-			<td>
-				<a th:href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}" class="btn btn-primary btn-sm">
-					[[${car.carName }]]</a>
-			</td>
-			<td>[[${car.carKind}]]</td><td>[[${car.carRank}]]</td><td>[[${car.fee}]]</td>
-			<td>[[${car.carRegion}]]</td><td>[[${car.filename}]]</td>
-		</tr>		
-		</table>
-		
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="On Top of the World, financial success">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/carList.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="carList">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+     <section class="u-align-center u-clearfix u-section-1" id="sec-f6d6">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-border-3 u-border-grey-dark-1 u-line u-line-vertical u-line-1"></div>
+           <h2 class="u-text u-text-default u-text-1">렌트 차량 목록</h2>
+
+       <form action="#" method="get" class="u-border-1 u-border-grey-30 u-search u-search-left u-white u-search-1">
+          <button class="u-search-button" type="submit">
+            <span class="u-search-icon u-spacing-10">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 56.966 56.966"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c920"></use></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-c920" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" class="u-svg-content"><path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"></path></svg>
+            </span>
+          </button>
+          <input class="u-search-input" type="search" name="search" value="" placeholder="Search">
+        </form>
+        
+        <p class="u-text u-text-custom-color-1 u-text-2">인기 차량 베스트6</p>
+        
+		<!-- 차량 등급 검색 -->
+		<div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-1">
+           <div class="u-container-layout u-container-layout-1">
+              <h4 class="u-text u-text-3">차량등급</h4>
+                 <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-2"></div>
+                 <div class="u-expanded-width u-form u-form-1">
+                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-5 u-form-vertical u-inner-form" source="email" name="form" style="padding: 5px;">
+                      <div class="u-form-checkbox u-form-group u-label-top u-form-group-1">
+                          <input type="checkbox" id="checkbox-eb14" name="checkbox-2" value="On" checked="checked">
+                             <label for="checkbox-eb14" class="u-label">전체선택</label>
+                </div>
+          <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-2">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-c7f4" type="checkbox" value="경차" name="checkbox-3[]">
+                      <label class="u-label" for="field-c7f4">경차</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-a446" type="checkbox" value="소형" name="checkbox-3[]">
+                      <label class="u-label" for="field-a446">소형</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-4fc3" type="checkbox" value="중형" name="checkbox-3[]">
+                      <label class="u-label" for="field-4fc3">중형</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-c495" type="checkbox" value="준대형" name="checkbox-3[]">
+                      <label class="u-label" for="field-c495">준대형</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-6aab" type="checkbox" value="대형" name="checkbox-3[]">
+                      <label class="u-label" for="field-6aab">대형</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-5dc1" type="checkbox" value="SUV/RV" name="checkbox-3[]">
+                      <label class="u-label" for="field-5dc1">SUV/RV</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-6886" type="checkbox" value="수입차" name="checkbox-3[]">
+                      <label class="u-label" for="field-6886">수입차</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-f07e" type="checkbox" value="전기차" name="checkbox-3[]">
+                      <label class="u-label" for="field-f07e">전기차</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-align-center u-form-group u-form-submit u-label-top">
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-btn-1">선택<br>
+                  </a>
+                </div>
+                
+                <input type="hidden" value="" name="recaptchaResponse">
+                <input type="hidden" name="formServices" value="251a5a3a031b47d7fbe57f8384d06a3f">
+              </form>
+            </div>
+          </div>
+        </div>       
+		<!--인기차량 베스트6 슬라이드 -->
+			<div class="u-layout-horizontal u-products u-products-1">	
+			   <div class="u-repeater u-repeater-1">
+			   
+			     <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1">
+				   <div class="u-container-layout u-similar-container u-container-layout-2">
+				      <img alt="" class="u-image u-image-default u-product-control u-image-1" src="/resources/static/carUpload/K8.PNG" data-image-width="323" data-image-height="204">
+                         <h4 class="u-product-control u-text u-text-4">				
+ 				            <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}">${car.carName}</a>
+ 				         </h4> 
+ 				               <div class="u-product-control u-product-desc u-text u-text-5">
+ 				                <div>${car.carNo}</div>
+ 				                <div>${car.carKind}</div>
+ 				                <div>${car.carRank}</div>
+ 				                <div>${car.carRegion}</div> 			              
+			                    <div class="u-product-control u-product-price u-product-price-1">
+			                      <div class="u-price-wrapper u-spacing-10">
+                                     <div class="u-hide-price u-old-price"></div>
+                                <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;">[[${car.fee}]]
+                                       </div>
+                                    </div>
+                                 </div>
+                             <a href="reservation.do" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-2">예약하기</a>
+                          </div>
+                      </div>
+                      </div></div></div>
+                      
+                      
+   <!-- 제조사 /  선택 -->            
+     <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-2">
+        <div class="u-container-layout u-container-layout-8">
+            <h4 class="u-text u-text-16">제조사/차종</h4>
+            <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-3"></div>
+            <div class="u-expanded-width u-form u-form-2">
+              <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-5 u-form-vertical u-inner-form" source="email" name="form" style="padding: 5px;">
+                <div class="u-form-checkbox u-form-group u-label-top u-form-group-4">
+                  <input type="checkbox" id="checkbox-eb14" name="checkbox-2" value="On" checked="checked">
+                  <label for="checkbox-eb14" class="u-label">전체선택</label>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-5">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-6433" type="checkbox" value="현대" name="checkbox-3[]">
+                      <label class="u-label" for="field-6433">현대</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-f534" type="checkbox" value="기아" name="checkbox-3[]">
+                      <label class="u-label" for="field-f534">기아</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-dd95" type="checkbox" value="쉐보레" name="checkbox-3[]">
+                      <label class="u-label" for="field-dd95">쉐보레</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-1cbd" type="checkbox" value="쌍용" name="checkbox-3[]">
+                      <label class="u-label" for="field-1cbd">쌍용</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-28c0" type="checkbox" value="르노" name="checkbox-3[]">
+                      <label class="u-label" for="field-28c0">르노</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-0eda" type="checkbox" value="테슬라" name="checkbox-3[]">
+                      <label class="u-label" for="field-0eda">테슬라</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-7046" type="checkbox" value="포르쉐" name="checkbox-3[]">
+                      <label class="u-label" for="field-7046">포르쉐</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-4997" type="checkbox" value="페라리" name="checkbox-3[]">
+                      <label class="u-label" for="field-4997">페라리</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-6a64" type="checkbox" value="아우디" name="checkbox-3[]">
+                      <label class="u-label" for="field-6a64">아우디</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-50d1" type="checkbox" value="BMW" name="checkbox-3[]">
+                      <label class="u-label" for="field-50d1">BMW</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-e5a4" type="checkbox" value="벤츠" name="checkbox-3[]">
+                      <label class="u-label" for="field-e5a4">벤츠</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-2876" type="checkbox" value="마이바흐" name="checkbox-3[]">
+                      <label class="u-label" for="field-2876">마이바흐</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-align-center u-form-group u-form-submit u-label-top">
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-btn-8">선택<br>
+                  </a>                  
+               </div>
+          </form>
+     </div>      
+     </div> 
+  </div>
+  
+   <h4 class="u-text u-text-17">전체 목록</h4>
+        <div class="u-products u-products-2">
+          <div class="u-repeater u-repeater-2">
+          <div class="u-align-center u-container-style u-products-item u-repeater-item u-white u-repeater-item-7">
+              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
+                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-7" src="images/0f56ae5f-35d9-905c-0c25-3aea00f284ee.PNG" data-image-width="320" data-image-height="204"><!--/product_image--><!--product_title-->
+                <h3 class="u-product-control u-text u-text-18">
+                  <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}">${car.carName}</a>
+                </h3>
+                <div class="u-product-control u-product-desc u-text u-text-5">
+                                <div>${car.carNo}</div>
+ 				                <div>${car.carKind}</div>
+ 				                <div>${car.carRank}</div>
+ 				                <div>${car.carRegion}</div>
+                <div class="u-product-control u-product-price u-product-price-1">
+			    <div class="u-price-wrapper u-spacing-10">
+                <div class="u-hide-price u-old-price"></div>
+                <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;">[[${car.fee}]]
+             </div>
+            </div>
+         </div>
+      <a href="reservation.do" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-2">예약하기</a>
+    </div>
+    </div>
+    </div>
+    </div></div>
+        
+  
+  <!-- 지역검색 -->
+   <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-3">
+          <div class="u-container-layout u-container-layout-12">
+            <h4 class="u-text u-text-default u-text-21">지역</h4>
+            <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-4"></div>
+            <a href="#sec-33a0" class="u-border-2 u-border-black u-btn u-button-style u-dialog-link u-palette-1-base u-btn-12">검색<br>
+            </a>
+          </div>
+        </div>
+        
+   <!-- 연식검색 -->    
+        <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-4">
+          <div class="u-container-layout u-container-layout-13">
+            <h4 class="u-text u-text-22">연식<br>
+            </h4>
+            <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-5"></div>
+            <div class="u-expanded-width u-form u-form-3">
+              <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-5 u-form-vertical u-inner-form" source="email" name="form" style="padding: 5px;">
+                <div class="u-form-checkbox u-form-group u-label-top u-form-group-7">
+                  <input type="checkbox" id="checkbox-eb14" name="checkbox-2" value="On" checked="checked">
+                  <label for="checkbox-eb14" class="u-label">전체선택</label>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-8">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-690b" type="checkbox" value="2020~2022" name="checkbox-3[]">
+                      <label class="u-label" for="field-690b">2020~2022</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-66e1" type="checkbox" value="2015~2019" name="checkbox-3[]">
+                      <label class="u-label" for="field-66e1">2015~2019</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-0fda" type="checkbox" value="2010~2014" name="checkbox-3[]">
+                      <label class="u-label" for="field-0fda">2010~2014</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-50c1" type="checkbox" value="2005~2009" name="checkbox-3[]">
+                      <label class="u-label" for="field-50c1">2005~2009</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-align-center u-form-group u-form-submit u-label-top">
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-btn-13">선택<br>
+                  </a>
+                </div>
+               </form>
+            </div>
+          </div>
+        </div>
+   <!-- 목록 -->     
+        
+    <div class="u-products u-products-3">
+          <div class="u-repeater u-repeater-3"><!--product_item-->
+            <div class="u-align-center u-container-style u-products-item u-repeater-item u-white u-repeater-item-10">
+              <div class="u-container-layout u-similar-container u-container-layout-14"><!--product_image-->
+                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-10" src="images/b126bdff-73b1-3517-c470-259aff035fd2.PNG" data-image-width="318" data-image-height="198"><!--/product_image--><!--product_title-->
+                <h3 class="u-product-control u-text u-text-23">
+                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 1 Title<!--/product_title_content--></a>
+                </h3><!--/product_title--><!--product_price-->
+                <div class="u-product-control u-product-price u-product-price-10">
+                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
+                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
+                    <div class="u-price u-text-palette-2-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
+                  </div>
+                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"​예약하기"}--><!--/options_json-->
+                <a href="" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-14"><!--product_button_content--> 예약하기<!--/product_button_content--></a><!--/product_button-->
+              </div>
+            </div>
+            </div></div>
+  <!-- 기본하루요금 검색-->
+  <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-5">
+          <div class="u-container-layout u-container-layout-17">
+            <h4 class="u-text u-text-26">요금</h4>
+            <div class="u-border-1 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-6"></div>
+            <div class="u-expanded-width u-form u-form-4">
+              <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-5 u-form-vertical u-inner-form" source="email" name="form" style="padding: 5px;">
+                <div class="u-form-checkbox u-form-group u-label-top u-form-group-10">
+                  <input type="checkbox" id="checkbox-eb14" name="checkbox-2" value="On" checked="checked">
+                  <label for="checkbox-eb14" class="u-label">전체선택</label>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-11">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-1dbb" type="checkbox" value="1 ~ 3만원" name="checkbox-3[]">
+                      <label class="u-label" for="field-1dbb">1 ~ 3만원</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-15fb" type="checkbox" value="4 ~ 6만원" name="checkbox-3[]">
+                      <label class="u-label" for="field-15fb">4 ~ 6만원</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-12">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-ddc7" type="checkbox" value="7 ~ 10만원" name="checkbox[]">
+                      <label class="u-label" for="field-ddc7">7 ~ 10만원</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-9cce" type="checkbox" value="11 ~ 20만원" name="checkbox[]">
+                      <label class="u-label" for="field-9cce">11 ~ 20만원</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-13">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-b0e6" type="checkbox" value="21 ~ 30만원" name="checkbox-4[]">
+                      <label class="u-label" for="field-b0e6">21 ~ 30만원</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-8d57" type="checkbox" value="31 ~ 40만원" name="checkbox-4[]">
+                      <label class="u-label" for="field-8d57">31 ~ 40만원</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-form-checkbox-group u-form-group u-form-input-layout-horizontal u-label-top u-form-group-14">
+                  <div class="u-form-checkbox-group-wrapper">
+                    <div class="u-input-row">
+                      <input id="field-e5d5" type="checkbox" value="41 ~ 70만원" name="checkbox-1[]">
+                      <label class="u-label" for="field-e5d5">41 ~ 70만원</label>
+                    </div>
+                    <div class="u-input-row">
+                      <input id="field-b083" type="checkbox" value="71 ~ 100만원" name="checkbox-1[]">
+                      <label class="u-label" for="field-b083">71 ~ 100만원</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="u-align-center u-form-group u-form-submit u-label-top">
+                  <input type="submit" value="submit" class="u-form-control-hidden">
+                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-btn-17">선택</a>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  
+  
+  
 <div align="center">
 	<ul class="pagination">
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
@@ -53,7 +394,8 @@
 				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
 		</th:block>		
 	</ul>
-
+</div>
+<div align="center">
 <form action="carList.do">
 	<input type="hidden" name="pageNum" value="1">
 	<select name="search">
@@ -71,8 +413,12 @@
 	</select>
 	<input type="text" name="keyword" value="${car.keyword }">
 	<input type="submit" value="확인">
-</form>		
+   </form>	
 </div>
+	
+	
+
+</section>
 </div>
 </body>
 </html>

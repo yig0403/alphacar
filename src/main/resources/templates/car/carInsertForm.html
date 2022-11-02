@@ -1,14 +1,24 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-	/* drag & drop */
-	.drag-over { background: yellow; }
-	.thumb  { width: 100px; padding: 2px; float: left; }
-	.thumb > img { width: 100%; }
-	.thumb > .close { position: absolute; background: red; cursor: pointer; }
-	#drop { border: 1px solid black; width: 300px; height: 200px; padding: 3px; }
-</style>
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="On Top of the World, financial success">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/carInsert.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+<script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="차량등록">
+    <meta property="og:type" content="website">
 <script type="text/javascript">
 function carNoChk() {
 	if (!frm.carNo.value) {
@@ -63,13 +73,14 @@ function preview(file) {
 }
 </script>
 </head>
-<body>
-<div class="container" align="center">
-	<h2 class="text-primary">차량 등록</h2>
+ <body class="u-body u-xl-mode" data-lang="en">
+  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+    <section class="u-clearfix u-section-1" id="sec-e2ad">
+        <div class="u-clearfix u-sheet u-sheet-1">
+           <h2 class="u-text u-text-default u-text-1">차량 등록하기</h2>
+              <div class="u-align-center u-form u-form-1">
 	 <form action="carInsert.do" method="post" enctype="multipart/form-data" name="frm">
-	
 	<div class="u-align-center u-form u-form-1">
-	
 	<div class="u-form-group u-label-left u-form-group-1">
 	 <label for="text-48d0" class="u-label u-spacing-5 u-label-1">차량 번호</label>
 	 <input type="text" name="carNo" required="required" autofocus="autofocus"
@@ -164,6 +175,7 @@ function preview(file) {
     </div>
 		</div>
 </form>
+</div></div></section>
 </div>
 </body>
 </html>
