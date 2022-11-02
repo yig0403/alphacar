@@ -1,5 +1,5 @@
  .u-section-1 {
-  background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("images/pexels-photo-3136673.jpeg");
+  background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("/upload/pexels-photo-3136673.jpeg");
   background-position: 50% 50%;
 }
 
@@ -162,7 +162,7 @@
 
 .u-section-3 .u-image-1 {
   min-height: 590px;
-  background-image: url("images/pexels-photo-1231643.jpeg");
+  background-image: url("/upload/pexels-photo-1231643.jpeg");
   background-position: 50% 50%;
 }
 

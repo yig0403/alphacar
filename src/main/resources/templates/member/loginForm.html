@@ -1,5 +1,6 @@
 <!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
-<span th:insert="header.html::header"></span><head>
+<span th:insert="header.html::header"></span>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -48,16 +49,17 @@
               </form>
             </div>
             <div class="u-align-center u-border-3 u-border-grey-30 u-line u-line-horizontal u-line-1"></div>
-            <a href="searchForm.html" class="u-align-center u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-none u-text-palette-2-light-1 u-btn-2">아이디 또는비밀번호를 잊으셨나요?</a>
+            <a href="searchForm.do" class="u-align-center u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-none u-text-palette-2-light-1 u-btn-2">아이디 또는비밀번호를 잊으셨나요?</a>
           </div>
         </div>
         <div class="u-container-style u-group u-white u-group-2">
           <div class="u-container-layout u-valign-middle u-container-layout-2">
-            <a href="joinForm.html" class="u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-none u-text-palette-2-light-1 u-btn-3">가입하기</a>
+            <a href="joinForm.do" class="u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-none u-text-palette-2-light-1 u-btn-3">가입하기</a>
             <p class="u-align-center u-text u-text-default u-text-1">계정이 없으신가요?</p>
           </div>
         </div>
       </div>
     </section>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>
