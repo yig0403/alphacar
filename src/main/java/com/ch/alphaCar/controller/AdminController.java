@@ -20,4 +20,8 @@ public class AdminController {
 	public String serviceCenter() {
 		return "sc/serviceCenter";
 	}
+	@RequestMapping("/admin/ways.do")
+	public String ways() {
+		return "sc/ways";
+	}
 }
