@@ -12,9 +12,9 @@
 	<input type="hidden" name="noNo" th:value="${notice.noNo }">
 <table class="table table-hover">
 	<tr><th>공지번호</th><td>[[${notice.noNo }]]</tr>
-	<tr><th>부서명</th><td><input type="text" name="noTitle" required="required"
+	<tr><th>공지제목</th><td><input type="text" name="noTitle" required="required"
 		class="form-control" th:value="${notice.noTitle }"></td></tr>
-	<tr><th>근무지</th><td><input type="text" name="noContent" required="required"
+	<tr><th>공지내용</th><td><input type="text" name="noContent" required="required"
 		class="form-control" th:value="${notice.noContent }"></td></tr>	
 	<tr><td colspan="2" align="center"><input type="submit" value="수정"
 		class="btn btn-info"></td></tr>

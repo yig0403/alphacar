@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -8,7 +8,7 @@
 <body>
 <div class="container">
 	<h2>공지사항 목록</h2>
-	<table>
+	<table class="table table-hover">
 		<tr><th>공지번호</th><th>공지제목</th><th>작성일</th>
 		<tr th:if="${#lists.size(noticeList)} == 0"><td colspan="3">공지사항이 없습니다</td></tr>
 		<tr th:if="${#lists.size(noticeList)} > 0" th:each="notice:${noticeList}">
