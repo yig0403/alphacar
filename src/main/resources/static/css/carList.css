@@ -399,11 +399,13 @@
 }
 
 .u-section-1 .u-products-2 {
+  display: inline-blocks;
   width: 845px;
   margin: 8px 9px 0 auto;
 }
 
 .u-section-1 .u-repeater-2 {
+  display:flex;
   grid-template-columns: calc(33.3333% - 20px) calc(33.3333% - 20px) calc(33.3333% - 20px);
   grid-gap: 30px 30px;
   min-height: 373px;
@@ -1318,4 +1320,5 @@
     width: 340px;
     margin-top: -1055px;
   }
+  
 }

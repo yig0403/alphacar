@@ -71,10 +71,7 @@ function preview(file) {
 	<div class="u-align-center u-form u-form-1">
 	
 	<div class="u-form-group u-label-left u-form-group-1">
-	 <label for="text-48d0" class="u-label u-spacing-5 u-label-1">차량 번호</label>
-	 <input type="text" name="carNo" required="required" autofocus="autofocus"
-    class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" th:value="${car.carNo }" >
-    <input type="button" class="btn btn-warning btn-sm" onclick="carNoChk()" value="중복체크">
+	 <label for="text-48d0" class="u-label u-spacing-5 u-label-1">차량 번호:</label>
     <div id ="carNoChk1" class="err"></div>
     </div>
     
@@ -154,6 +151,11 @@ function preview(file) {
      <input type="text" name="carRegion" required="required" class="form-control" th:value="${car.carRegion }">
      </div>
      
+     <div>
+     <label for="file">차량사진</label>
+     <input type="file" id="thumbnails" name="file" class="form-control" th:value="${car.filename}">
+     </div>
+ 
     <div>
     <input type="submit" value="수정" class="btn btn-success" name="수정">
     </div>
