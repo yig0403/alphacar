@@ -80,7 +80,7 @@ function preview(file) {
            <h2 class="u-text u-text-default u-text-1">차량 등록하기</h2>
               <div class="u-align-center u-form u-form-1">
 	 <form action="carInsert.do" method="post" enctype="multipart/form-data" name="frm">
-	<div class="u-align-center u-form u-form-1">
+	<div class="u-align-left u-form u-form-1">
 	<div class="u-form-group u-label-left u-form-group-1">
 	 <label for="text-48d0" class="u-label u-spacing-5 u-label-1">차량 번호</label>
 	 <input type="text" name="carNo" required="required" autofocus="autofocus"
@@ -94,11 +94,11 @@ function preview(file) {
      <input type="text" name="carName" required="required" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
      </div>
 	 
-   <div>
+ <div>
+   <div class ="select select-wrapper">
 	  <label for="select">차량 등급</label>
-	    <div class ="select select-wrapper">
 	    <select id="select" name="carRank" required="required">
-	       <option value="경차">경차</option>
+	              <option value="경차">경차</option>    
                   <option value="소형">소형</option>
                   <option value="중형">중형</option>
                   <option value="준대형">준대형</option>
@@ -112,8 +112,8 @@ function preview(file) {
 	 </div>
     
     <div>
+     <div class ="select select-wrapper">
 	  <label for="select-1">제조사/차종</label>
-	    <div class ="select select-wrapper">
 	    <select id="select-1" name="carKind" required="required">
 	       <option value="현대">현대</option>
                   <option value="기아">기아</option>
@@ -131,9 +131,9 @@ function preview(file) {
           </div>
 	 </div>
 	
-	 <div>
+	<div>
+	 <div class ="select select-wrapper">
 	  <label for="select-2">연료</label>
-	    <div class ="select select-wrapper">
 	    <select id="select-2" name="carType" required="required">
 	       <option value="디젤">디젤</option>
                   <option value="가솔린">가솔린</option>
@@ -170,10 +170,10 @@ function preview(file) {
      <input type="file" id="thumbnails" name="file">
      </div>
      
-    <div>
+    <div align = "center">
     <input type="submit" value="등록" class="btn btn-success" name="등록">
     </div>
-		</div>
+  </div>
 </form>
 </div></div></section>
 </div>

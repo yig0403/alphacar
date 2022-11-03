@@ -11,7 +11,6 @@
     <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
     <script type="application/ld+json">{
 		"@context": "http://schema.org",
 		"@type": "Organization",
@@ -100,20 +99,19 @@
           </div>
         </div>       
 		<!--인기차량 베스트6 슬라이드 -->
-			<div class="u-layout-horizontal u-products u-products-1">	
+			<div class="u-layout-horizontal u-products u-products-1" th:if="${#lists.size(list)} > 0" th:each="car:${list}">	
 			   <div class="u-repeater u-repeater-1">
-			   
 			     <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1">
 				   <div class="u-container-layout u-similar-container u-container-layout-2">
-				      <img alt="" class="u-image u-image-default u-product-control u-image-1" src="/resources/static/carUpload/K8.PNG" data-image-width="323" data-image-height="204">
+				      <img alt="" class="u-image u-image-default u-product-control u-image-1" src="/carUpload/K8.PNG" data-image-width="323" data-image-height="204">
                          <h4 class="u-product-control u-text u-text-4">				
- 				            <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}">${car.carName}</a>
+ 				            <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo})}">[[${car.carName}]]</a>
  				         </h4> 
  				               <div class="u-product-control u-product-desc u-text u-text-5">
- 				                <div>${car.carNo}</div>
- 				                <div>${car.carKind}</div>
- 				                <div>${car.carRank}</div>
- 				                <div>${car.carRegion}</div> 			              
+ 				                <div>[[${car.carName}]]</div>
+ 				                <div>[[${car.carKind}]]</div>
+ 				                <div>[[${car.carRank}]]</div>
+ 				                <div>[[${car.carRegion}]]</div> 			              
 			                    <div class="u-product-control u-product-price u-product-price-1">
 			                      <div class="u-price-wrapper u-spacing-10">
                                      <div class="u-hide-price u-old-price"></div>
@@ -200,34 +198,35 @@
      </div> 
   </div>
   
+ 
    <h4 class="u-text u-text-17">전체 목록</h4>
-        <div class="u-products u-products-2">
-          <div class="u-repeater u-repeater-2">
-          <div class="u-align-center u-container-style u-products-item u-repeater-item u-white u-repeater-item-7">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-9">
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-7" src="images/0f56ae5f-35d9-905c-0c25-3aea00f284ee.PNG" data-image-width="320" data-image-height="204"><!--/product_image--><!--product_title-->
-                <h3 class="u-product-control u-text u-text-18">
-                  <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}">${car.carName}</a>
-                </h3>
-                <div class="u-product-control u-product-desc u-text u-text-5">
-                                <div>${car.carNo}</div>
- 				                <div>${car.carKind}</div>
- 				                <div>${car.carRank}</div>
- 				                <div>${car.carRegion}</div>
-                <div class="u-product-control u-product-price u-product-price-1">
-			    <div class="u-price-wrapper u-spacing-10">
-                <div class="u-hide-price u-old-price"></div>
-                <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;">[[${car.fee}]]
-             </div>
+          <div class="u-products u-products-2" th:if="${#lists.size(list)} > 0" th:each="car:${list}">	
+	          <div class="u-repeater u-repeater-2">
+			   <div class="u-align-left u-container-style u-products-item u-repeater-item u-white u-repeater-item-1">
+				   <div class="u-container-layout u-similar-container u-container-layout-2">
+				      <img alt="" class="u-image u-image-default u-product-control u-image-1" src="/carUpload/K8.PNG" data-image-width="323" data-image-height="204">
+                         <h4 class="u-product-control u-text u-text-4">				
+ 				            <a class="u-product-title-link" href="@{carView.do(carNo=${car.carNo})}">[[${car.carNo}]]</a>
+ 				         </h4> 
+ 				               <div class="u-product-control u-product-desc u-text u-text-5">
+ 				                <div>차량 이름 : [[${car.carName}]]</div>
+ 				                <div>차량 회사 : [[${car.carKind}]]</div>
+ 				                <div>차량 등급 : [[${car.carRank}]]</div>
+ 				                <div>차량 위치 : [[${car.carRegion}]]</div> 			              
+			                    <div class="u-product-control u-product-price u-product-price-1">
+			                      <div class="u-price-wrapper u-spacing-10">
+                                     <div class="u-hide-price u-old-price"></div>
+                                <div class="u-price u-text-palette-1-base" style="font-size: 1.5rem; font-weight: 700;">[[${car.fee}]]원
+                                       </div>
+                                    </div>
+                                 </div>
+                             <a href="reservation.do" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-2">예약하기</a>
+                          </div>
+                      </div>
+                 </div>
             </div>
-         </div>
-      <a href="reservation.do" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-2">예약하기</a>
-    </div>
-    </div>
-    </div>
-    </div></div>
-        
-  
+     </div>
+
   <!-- 지역검색 -->
    <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-3">
           <div class="u-container-layout u-container-layout-12">
@@ -279,26 +278,7 @@
             </div>
           </div>
         </div>
-   <!-- 목록 -->     
-        
-    <div class="u-products u-products-3">
-          <div class="u-repeater u-repeater-3"><!--product_item-->
-            <div class="u-align-center u-container-style u-products-item u-repeater-item u-white u-repeater-item-10">
-              <div class="u-container-layout u-similar-container u-container-layout-14"><!--product_image-->
-                <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-10" src="images/b126bdff-73b1-3517-c470-259aff035fd2.PNG" data-image-width="318" data-image-height="198"><!--/product_image--><!--product_title-->
-                <h3 class="u-product-control u-text u-text-23">
-                  <a class="u-product-title-link" href="#"><!--product_title_content-->Product 1 Title<!--/product_title_content--></a>
-                </h3><!--/product_title--><!--product_price-->
-                <div class="u-product-control u-product-price u-product-price-10">
-                  <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                    <div class="u-hide-price u-old-price"><!--product_old_price_content-->$12<!--/product_old_price_content--></div><!--/product_old_price--><!--product_regular_price-->
-                    <div class="u-price u-text-palette-2-base" style="font-size: 1.5rem; font-weight: 700;"><!--product_regular_price_content-->$9.95<!--/product_regular_price_content--></div><!--/product_regular_price-->
-                  </div>
-                </div><!--/product_price--><!--product_button--><!--options_json--><!--{"clickType":"add-to-cart","content":"​예약하기"}--><!--/options_json-->
-                <a href="" class="u-btn u-btn-rectangle u-button-style u-product-control u-btn-14"><!--product_button_content--> 예약하기<!--/product_button_content--></a><!--/product_button-->
-              </div>
-            </div>
-            </div></div>
+  
   <!-- 기본하루요금 검색-->
   <div class="u-container-style u-group u-palette-5-light-2 u-radius-10 u-shape-round u-group-5">
           <div class="u-container-layout u-container-layout-17">
@@ -421,4 +401,5 @@
 </section>
 </div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

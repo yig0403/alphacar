@@ -94,11 +94,13 @@
 }
 
 .u-section-1 .u-repeater-item-1 {
+  float:right;
   background-image: none;
   box-shadow: 0 0 12px 0 rgba(128,128,128,0.55);
 }
 
 .u-section-1 .u-container-layout-2 {
+  float:right;
   padding: 13px 0 27px;
 }
 
