@@ -49,19 +49,6 @@
 	</update>
 	
 	<select id="getTotal" parameterType="car" resultType="integer">
-		select count(*) from car
-		<where>
-			<!-- keyword에 값이 있으면 검색  그 경우에는 where가 필요 -->
-				<if test="keyword!=null and keyword!=''">  
-				<!-- #은 값 $는 변수를 의미 #은 작은 따움표 예) 'writer' $면 writer 작은 따움표 없음 -->
-					<if test="search=='subcon'">
-						carName like '%'||#{keyword}||'%' or
-						carRegion like '%'||#{keyword}||'%'
-					</if>
-					<if test="search!='subcon'">
-						${search} like '%'||#{keyword}||'%'
-					</if>	
-				</if>
-		</where>
+		select count(*) from car where del='n'
 	</select>
 </mapper>

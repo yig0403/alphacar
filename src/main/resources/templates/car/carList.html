@@ -377,28 +377,26 @@
 	</ul>
 </div>
 <div align="center">
-<form action="carList.do">
+<form action="carList.do" method="get" >
 	<input type="hidden" name="pageNum" value="1">
 	<select name="search">
-        <option value="carName">차량이름</option>
-		<option value="carKind">제조사</option>
-		<option value="carRegion">지역</option> 
+        <option value="[[${carName}]]">차량이름</option>
+		<option value="[[${carKind}]]">제조사</option>
+		<option value="[[${carRegion}]]">지역</option> 
 		<c:forTokens var="sh" items="carName,carKind,carRegion,subcon" delims="," varStatus="i">
-			<c:if test="${sh==car.search }">
-				<option value="${sh }" selected="selected">${title[i.index] }</option>
-			</c:if>
-			<c:if test="${sh!=car.search }">
-				<option value="${sh }">${title[i.index] }</option>
-			</c:if>			
+			<th:if test="[[${sh==car.search }]]">
+				<option value="[[${sh }]]" selected="selected">전체검색</option>
+			</th:if>
+			<th:if test="${sh!=car.search }">
+				<option value="[[${sh }]]">검색어를 입력해주세요</option>
+			</th:if>			
 		</c:forTokens>
 	</select>
-	<input type="text" name="keyword" value="${car.keyword }">
-	<input type="submit" value="확인">
+	<input type="text" name="keyword" placeholder="검색어를 입력해주세요">
+	<input type="submit" value="검색">
    </form>	
 </div>
 	
-	
-
 </section>
 </div>
 </body>
