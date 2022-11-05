@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
 <span th:insert="header.html::header"></span>
 <head>
 <meta charset="UTF-8">
@@ -21,11 +22,12 @@
  		<tr><th>제목</th><td>[[${notice.noTitle}]]</td></tr>
  		<tr><th>내용</th><td><span>[[${notice.noContent}]]</span></td></tr>
  		<tr><td colspan="2"><a class="btn" th:href="@{/notice/noticeList.do}">목록</a></td></tr> 	
- 		<tr th:if="${member.ad}=='y'"><td colspan="2">
+ 		<tr th:if="${member.ad}=='y'">
  			<td><a class="btn" th:href="@{/notice/noticeUpdateForm.do(noNo=${notice.noNo})}">수정</a></td>
- 			<td class="btn" th:onclick="del([[${notice.noNo}]])">삭제</td>
+ 			<td><a class="btn" th:onclick="del([[${notice.noNo}]])">삭제</a></td>
  		</tr>
  	</table>
  </div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

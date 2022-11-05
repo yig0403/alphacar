@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.WaysDao">
+	<resultMap type="ways" id="waysResult">
+		<result property="waysTitle" column="waysTitle"/>
+		<result property="id" column="id"/>
+		<result property="waysContents" column="waysContents"/>
+		<result property="del" column="del"/>
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+	<insert id="insert" parameterType="ways">
+		insert into ways values (#{waysTitle},#{id},#{waysContents},'n')
+	</insert>
+	<select id="list" resultMap="waysResult">
+		select * from ways where del='n'
+	</select>
+</mapper>

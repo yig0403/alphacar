@@ -23,13 +23,16 @@
 <div class="container" align="center">
 	<h2 class="text-primary">차량 상세내용</h2>
 <table class="table table-hover">
-	<tr class="info"><th>차량번호</th><td>[[${car.carNo}]]</td></tr>
-	<tr class="info"><th>차량이름</th><td>[[${car.carName}]]</td></tr>
-	<tr class="info"><td>제조사</td><td>[[${car.carKind}]]</td></tr>
-	<tr class="info"><td>등급</td><td>[[${car.carRank}]]</td></tr>
-	<tr class="info"><td>위치</td><td><pre>[[${car.carRegion}]]</pre></td></tr>
-	<tr class="info"><td>기본요금(하루)</td><td><pre>[[${car.fee}]]</pre></td></tr>
-	<tr class="info"><td>차량사진</td><td><pre>[[${car.filename}]]</pre></td></tr>
+    <tr class="info">
+    <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{/carUpload/}+${car.filename}" data-image-width="400" data-image-height="300">
+	</tr>
+	<tr class="info"><td>차량번호</td><th>[[${car.carNo}]]</th></tr>
+	<tr class="info"><td>차량이름</td><th>[[${car.carName}]]</th></tr>
+	<tr class="info"><td>제조사</td><th>[[${car.carKind}]]</th></tr>
+	<tr class="info"><td>등급</td><th>[[${car.carRank}]]</th></tr>
+	<tr class="info"><td>위치</td><th>[[${car.carRegion}]]</th></tr>
+	<tr class="info"><td>기본요금(하루)</td><th>[[${car.fee}]]원</th></tr>
+
 	<tr  class="default"><td colspan="2" align="center">
 		<a th:href="@{carList.do(pageNum=${pageNum})}" class="btn btn-success">차량 목록</a>
 		<a th:href="@{carUpdateForm.do(carNo=${car.carNo},pageNum=${pageNum})}" 

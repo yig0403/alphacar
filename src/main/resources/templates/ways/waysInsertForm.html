@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>alphaCarRent</title>
+</head>
+<body>
+<div class="container" align="center">
+	<h2>공지사항 작성</h2>
+<form action="/ways/waysInsert.do" method="post">
+<table class="table table-hover">
+	<tr><th>이용방법</th><td><input type="text" name="waysTitle" required="required"
+		class="form-control"></td></tr>
+	<tr><th>내용</th><td><input type="text" name="waysContents" required="required"
+		class="form-control"></td></tr>	
+	<tr><td colspan="2" align="center"><input type="submit" class="btn" value="작성"></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>

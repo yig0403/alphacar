@@ -27,7 +27,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/notice/noticeList.do")
-	public String noticeList(Notice notice, String pageNum, Model model) {		
+	public String noticeList(Notice notice, Model model) {		
 		List<Notice> noticeList = ns.list();
 		model.addAttribute("noticeList",noticeList);		
 		return "notice/noticeList";
@@ -37,9 +37,12 @@ public class NoticeController {
 	public String noticeSelect(int noNo,  Model model, HttpSession session) {
 		Notice notice = ns.select(noNo);		
 		String id = (String)session.getAttribute("id");	
-		Member member = ms.select(id);
+		if (id != null || !id.equals("")) {
+			Member member = ms.select(id);
+			model.addAttribute("member",member);
+		}		
 		model.addAttribute("notice",notice);
-		model.addAttribute("member",member);
+		
 		return "notice/noticeSelect";
 	}
 	@RequestMapping("/notice/noticeDelete.do")

@@ -37,7 +37,6 @@ public class CarController {
 		List<Car> list = cs.list(car);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"차량사진","차량이름","등급","제조사"};
-        
 		model.addAttribute("title",title);
 		model.addAttribute("car",car);
 		model.addAttribute("num", num);

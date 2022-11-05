@@ -161,6 +161,8 @@ CREATE TABLE ways (
 	waysContents	VARCHAR2(1000)	NULL,
 	del	CHAR(1)	NULL
 );
+alter table ways modify (ad default 'n');
+select*from ways;
 
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	id

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
 <span th:insert="header.html::header"></span>
 <head>
 <meta charset="UTF-8">
@@ -17,10 +18,11 @@
 	<tr><th>공지내용</th><td><input type="text" name="noContent" required="required"
 		class="form-control" th:value="${notice.noContent }"></td></tr>	
 	<tr><td colspan="2" align="center"><input type="submit" value="수정"
-		class="btn btn-info"></td></tr>
+		class="btn btn-dark"></td></tr>
 </table>
-<a href="/notice/noticeList.do" class="btn btn-primary">목록</a>
+<a href="/notice/noticeList.do" class="btn btn-dark">목록</a>
 </form>
 </div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

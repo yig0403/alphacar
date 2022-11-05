@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>alphaCar</title>
+</head>
+<body>
+	<div class="container-fluid" style="min-height: calc(100vh - 136px);">		
+		<h3 align="center">이용방법</h3>
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" th:each="ways, stat:${waysList}">				
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" th:href="'#collapse' + ${stat.count}" aria-expanded="false">
+							[[${ways.waysTitle}]] 
+						</a>
+					</div>
+					<div th:id="'collapse' + ${stat.count}" class="panel-collapse collapse" role="tabpanel">
+						<div class="panel-body">[[${ways.waysContents}]]</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div th:if="${member.ad}=='y'">
+		<div>
+			<a href="/ways/waysInsertForm.do" class="btn btn-info">이용방법 작성</a>
+		</div>
+	</div>
+</body>
+<div th:insert="footer.html::footer"></div>
+</html>
