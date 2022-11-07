@@ -3,13 +3,12 @@
 <title>Insert title here</title></head><body>
 <span th:if="${result} > 0">
 	<script type="text/javascript">
-		alert("로그인 성공");
 		location.href="main.do";
 	</script>
 </span>
 <span th:if="${result} == 0">
 	<script type="text/javascript">
-		alert("암호가 다릅니다. 꺼져주세요");
+		alert("암호가 다릅니다.");
 		history.back();
 	</script>
 </span>
