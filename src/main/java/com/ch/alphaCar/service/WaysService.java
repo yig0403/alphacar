@@ -10,4 +10,10 @@ public interface WaysService {
 
 	List<Ways> list();
 
+	Ways select(String waysTitle);
+
+	int update(Ways ways);
+
+	int delete(String waysTitle);
+
 }

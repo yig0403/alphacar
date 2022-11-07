@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	<h3 align="center">목록</h3>
+	<table class="table table-hover">
+		<tr><th>이용방법제목</th><th>이용방법내용</th>
+		<tr th:if="${#lists.size(waysList)} == 0"><td colspan="2">이용방법이 없습니다</td></tr>
+		<tr th:if="${#lists.size(waysList)} > 0" th:each="ways:${waysList}">
+			<td>[[${ways.waysTitle}]]</td>
+			<td>
+				<a th:href="@{/ways/waysSelect.do(waysTitle=${ways.waysTitle})}">
+				[[${ways.waysContents}]]
+				</a>
+			</td>
+		<tr><td colspan="2"><a th:href="@{/ways/ways.do}">목록으로</a></td></tr>
+	</table>
+</div>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>
