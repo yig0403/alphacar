@@ -3,19 +3,20 @@
 <title>Insert title here</title></head><body>
 <span th:if="${result} > 0">
 	<script type="text/javascript">
-		location.href="main.do";
+		alert("예약성공");
+		location.href="reservationHistory.do";
 	</script>
 </span>
 <span th:if="${result} == 0">
 	<script type="text/javascript">
-		alert("암호가 다릅니다.");
-		history.back();
+		alert("예약실패 ");
+		history.go(-1);
 	</script>
 </span>
 <span th:if="${result} == -1">
 	<script type="text/javascript">
-		alert("없는 아이디 입니다. 회원 가입하세요");
-		history.back();
+		alert("이미 예약된 차량번호입니다.");
+		history.go(-1);
 	</script>
 </span>
 </body>

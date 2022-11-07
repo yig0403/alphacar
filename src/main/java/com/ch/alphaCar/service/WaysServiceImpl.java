@@ -13,12 +13,19 @@ public class WaysServiceImpl implements WaysService {
 	@Autowired
 	private WaysDao wd;
 
-	@Override
 	public int insert(Ways ways) {
 		return wd.insert(ways);
 	}
-	@Override
 	public List<Ways> list() {
 		return wd.list();
+	}
+	public Ways select(String waysTitle) {
+		return wd.select(waysTitle);
+	}
+	public int update(Ways ways) {
+		return wd.update(ways);
+	}
+	public int delete(String waysTitle) {
+		return wd.delete(waysTitle);
 	}
 }
