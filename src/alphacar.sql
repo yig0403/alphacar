@@ -104,6 +104,7 @@ CREATE TABLE question (
 	qRe_step	NUMBER	NULL,
 	qfileName	VARCHAR2(50)	NULL
 );
+alter table question add del char(1);
 
 CREATE TABLE questionreply (
 	qrNo	NUMBER	NOT NULL,
