@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.FaqDao">
+	<resultMap type="faq" id="faqResult">
+		<result property="faqTitle" column="faqTitle"/>
+		<result property="id" column="id"/>
+		<result property="faqContents" column="faqContents"/>
+		<result property="del" column="del"/>
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+	<select id="list" resultMap="faqResult">
+		select * from faq where del='n'
+	</select>
+	<insert id="insert" parameterType="faq">
+		insert into faq values (#{faqTitle},#{id},#{faqContents},'n')
+	</insert>
+	<select id="select" parameterType="String" resultType="faq">
+		select * from faq where faqTitle=#{faqTitle}
+	</select>
+	<update id="update" parameterType="faq">
+		update faq set faqContents=#{faqContents} where faqTitle=#{faqTitle}
+	</update>
+	<update id="delete" parameterType="String">
+		update faq set del='y' where faqTitle=#{faqTitle}
+	</update>
+</mapper>

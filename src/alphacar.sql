@@ -149,7 +149,7 @@ CREATE TABLE storyreply (
 );
 
 CREATE TABLE faq (
-	faqTitle	VARCHAR2(20)	NOT NULL,
+	faqTitle	VARCHAR2(100)	NOT NULL,
 	id	VARCHAR2(20)	NOT NULL,
 	faqContents	VARCHAR2(1000)	NULL,
 	del	CHAR(1)	NULL

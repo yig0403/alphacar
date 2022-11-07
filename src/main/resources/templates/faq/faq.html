@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>alphaCar</title>
+</head>
+<body>
+	<div class="container-fluid" style="min-height: calc(100vh - 136px);">		
+		<h3 align="center">자주묻는 질문</h3>
+		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" th:each="faq, stat:${faqList}">				
+				<div class="panel panel-warning">
+					<div class="panel-heading" role="tab">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" th:href="'#collapse2' + ${stat.count}" aria-expanded="false">
+							[[${faq.faqTitle}]]
+						</a>
+					</div>
+					<div th:id="'collapse2' + ${stat.count}" class="panel-collapse collapse" role="tabpanel">
+						<div class="panel-body">[[${faq.faqContents}]]</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div th:if="${member.ad}=='y'">
+		<div>
+			<a href="/faq/faqInsertForm.do" class="btn btn-info">질문 작성</a>
+			<a href="/faq/faqManagement.do" class="btn btn-info">질문 관리</a>
+		</div>
+	</div>
+</body>
+<div th:insert="footer.html::footer"></div>
+</html>
