@@ -75,7 +75,7 @@ public class MemberController {
 		}
 		return "/member/main1";
 	}
-	@RequestMapping("main.do")
+	@RequestMapping({"/member/main.do","main.do"})
 	public String main() {
 		return "/member/main";
 	}
