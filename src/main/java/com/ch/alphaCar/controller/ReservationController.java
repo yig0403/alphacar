@@ -31,17 +31,17 @@ public class ReservationController {
 	private MemberService ms;
 	
 	@RequestMapping("reservationHistory")
-	public String reservationHistory(Reservation reservation, String PageNum, Model model, HttpSession session) {
+	public String reservationHistory(Reservation reservation, String pageNum, Model model, HttpSession session) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = cs.getTotal(reservation);		
+		int total = rs.getTotal(reservation);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
 		reservation.setStartRow(startRow);
 		reservation.setEndRow(endRow);
-		List<Reservation> list = cs.list(reservation);
+		List<Reservation> list = rs.list(reservation);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
 		String[] title = {"차량이름","제조사","예약날짜","렌트날짜","반납날짜"};
 		model.addAttribute("title",title);
@@ -51,17 +51,31 @@ public class ReservationController {
 		model.addAttribute("pb", pb);
 	    return "/reservation/reservationHistory";	
 	}
-	@RequestMapping("reservationInsertForm.do")
+	@RequestMapping("reservationView.do")
 	public String reservationInsertForm() {
-		return "/reservation/reservationInsertForm";
+		return "/reservation/reservationView";
 	}
 	
+	
+	@RequestMapping("reservationSearch.do")
+	
+	
+	
 	@RequestMapping("reservationInsert.do")
-	public String reservationInsert(Car car,Reservation reservation, String pageNum, Model model, HttpSession session) throws IOException {
+	public String reservationInsert(Car car,Reservation reservation, Model model, HttpSession session) throws IOException {
 		int result = 0;
-		// member는 화면 입력한 데이터, member2 Db에 있는 데이터 중복여부 체크
+		String id = (String) session.getAttribute("id");
+		reservation.setId(id);
+		String carNo = (String) session.getAttribute("carNo");
 		Car car2 = cs.select(car.getCarNo());
-		
+		if( car.car2(carRes).equals('n')) {
+			
+			
+			result = rs.insert(reservation);
+		}
+		else result =-1;
+		model.addAttribute("result",result);
+		return "/reservation/reservationInsert.do";
 	}
 	
 }

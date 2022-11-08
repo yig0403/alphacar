@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="keywords" content="On Top of the World, financial success">
     <meta name="description" content="">
-    <title>메인페이지</title>
-    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="/css/carInsert.css" media="screen">
-    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="bootstrap-datepicker.kr.min.js"></script>
+    <title>reservationSearch</title>
+        <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/reservationView.css" media="screen">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 <script type="application/ld+json">{
@@ -20,17 +20,17 @@
     <meta name="theme-color" content="#ffd600">
     <meta property="og:title" content="차량등록">
     <meta property="og:type" content="website">
-<script type="text/javascript">
-function nextYear(){
-	
-}
-</script>
+
 </head>
  <body>
    <div class="container" align="center">
 	   <h2 class="text-primary">예약하기</h2>
           <form action="reservation.do" method="post" name="frm">
-          
+           
+          <div>
+	         <label for="text">이름</label>
+	         <input type ="text" name="name" id="name">
+	      </div>  
          
           <div class="u-form-group u-label-left u-form-group-1">
 	         <label for="carNo">차량 번호</label>
@@ -64,17 +64,17 @@ function nextYear(){
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="startDate">대여 날짜</label>
-	          <input type="text" name="startDate" required="required" th:value="${reservation.startDate }">
+	          <input type="date" name="startDate" required="required" th:value="${reservation.startDate }">
           </div>
           
            <div class="u-form-group u-label-left u-form-group-1">
               <label for="endDate">반납 날짜</label>
-	          <input type="text" name="endDate" required="required" th:value="${reservation.endDate }">
+	          <input type="date" name="endDate" required="required" th:value="${reservation.endDate }">
           </div>
           
            <div class="u-form-group u-label-left u-form-group-1">
-              <label for="endDate">요금</label>
-	          <input type="number" name="fee" required="required" th:value="${car.fee}*{reservation.endDate-reservation.startDate}">
+              <label for="fee">요금</label>
+	          <input type="number" name="fee" required="required" th:value="${reservation.amount}">
           </div>
           
           <div>

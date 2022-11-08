@@ -25,7 +25,7 @@ public class CarController {
     
 	@RequestMapping("carList.do")
 	public String list(Car car, String pageNum, Model model) {
-		int rowPerPage = 9; // 한 화면에 보여주는 갯수
+		int rowPerPage = 16; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = cs.getTotal(car);		

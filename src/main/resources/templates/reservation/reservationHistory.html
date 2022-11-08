@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span></head><body>
+<div class="container" align="center">
+	<h2 class="primary">렌트 이용내역</h2>
+      <table class="table table-striped">
+        <tr class="danger">
+           <th>차량번호</th>
+           <th>차량이름</th>
+           <th>장소</th>
+           <th>대여날짜</th>         
+           <th>반납날짜</th>
+      </tr>
+      	<tr class="warning" th:if="${#lists.size(list)}==0">
+      	   <td colspan="5">렌트이용 내역이 없습니다</td>
+      	</tr>
+      	<tr th:if="${#lists.size(list)}>0" th:each="reserve:${list}">
+      	   <td>[[${reserve.rsNo }]]</td>  
+      	<th colspan="4" class="warning" th:if="${reserve.del}=='y'">삭제된 내역입니다</th>
+		<th:block th:if="${reserve.del}=='n'">
+		<td>[[${car.carNo }]]</td>
+		<td>[[${car.carName}]]</td>
+		<td>[[${car.carRegion}]]</td>
+		<td>[[${reserve.StartDate}]]</td>
+		<td>[[${car.endDate}]]</td>
+		</th:block>
+		</tr>
+</table>
+</div>
 </body>
 </html>

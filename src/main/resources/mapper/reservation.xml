@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.ReservationDao">
+
+	<select id="select" parameterType="string" resultType="reservation">
+		select * from reservation where id=#{id} order by rsNo
+	</select>
+	
+	<select id="list" parameterType="reservation"  resultType="reservation">
+		<!-- select * from board2 order by num desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from reservation 
+			<where>
+				del='n'
+			</where>
+			order by rsNo)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
+	
+	
+	<update id="delete" parameterType="string">
+		update reservation set del='y' where rsNo=#{rsNo}
+	</update>
+	
+	<select id="getTotal" parameterType="reservation" resultType="integer">
+		select count(*) from reservation where del='n'
+	</select>
+</mapper>

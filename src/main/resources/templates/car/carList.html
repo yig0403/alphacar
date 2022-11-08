@@ -140,8 +140,8 @@
 </div>
         </div>
    </div>
-      <div class="u-container-style u-layout-cell u-size-44 u-block-1dee-6" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
-         <div class="u-container-layout u-block-1dee-7">
+   
+         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
              <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
                  <div class="u-container-layout u-block-1dee-53">
                      <img class="u-image u-image-round u-radius-10 u-block-1dee-54"  th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="318" data-image-height="200">
@@ -164,7 +164,7 @@
             </div>
           </div>    
         </div>
-     </div> 
+ 
     <div align="center">
 	<ul class="pagination">
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
