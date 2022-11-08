@@ -30,4 +30,6 @@ public class ReservationServiceImpl implements ReservationService{
 	public int delete(int rsNo) {
 		return rd.delete(rsNo);
 	}
+
+	
 }

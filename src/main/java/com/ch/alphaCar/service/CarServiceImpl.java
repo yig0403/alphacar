@@ -37,4 +37,8 @@ public class CarServiceImpl implements CarService {
 		return cd.delete(carNo);
 	}
 
+	public List<Car> listR(Car car) {
+		return cd.listR(car);
+	}
+
 }

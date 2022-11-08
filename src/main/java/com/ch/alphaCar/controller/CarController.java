@@ -45,6 +45,29 @@ public class CarController {
 		return "/car/carList";
 	}
 	
+	
+	@RequestMapping("carListR.do")
+	public String listR(Car car, String pageNum, Model model) {
+		int rowPerPage = 16; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = cs.getTotal(car);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		car.setStartRow(startRow);
+		car.setEndRow(endRow);
+		List<Car> list = cs.listR(car);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"차량사진","차량이름","등급","제조사"};
+		model.addAttribute("title",title);
+		model.addAttribute("car",car);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("pb", pb);
+		return "/car/carListR";
+	}
+	
 	@RequestMapping("carInsertForm.do")
 	public String carInsertForm() {
 		return "/car/carInsertForm";

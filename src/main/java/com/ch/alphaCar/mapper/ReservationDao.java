@@ -17,4 +17,6 @@ public interface ReservationDao {
 
 	int delete(int rsNo);
 
+	List<Reservation> listSearch(Reservation reservation);
+
 }

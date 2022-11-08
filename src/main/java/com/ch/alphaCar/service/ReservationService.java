@@ -14,4 +14,6 @@ public interface ReservationService {
 
 	int delete(int rsNo);
 
+
+
 }

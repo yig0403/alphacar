@@ -141,7 +141,7 @@
         </div>
    </div>
    
-         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
+         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(listSearch)} > 0" th:each="car:${listSearch}">
              <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
                  <div class="u-container-layout u-block-1dee-53">
                      <img class="u-image u-image-round u-radius-10 u-block-1dee-54"  th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="318" data-image-height="200">
@@ -154,7 +154,7 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{/reservation/reservationView.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{reservationView.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
                               </div>
                          </div>
                       </div>

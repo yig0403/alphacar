@@ -18,4 +18,6 @@ public interface CarService {
 
 	int delete(String carNo);
 
+	List<Car> listR(Car car);
+
 }

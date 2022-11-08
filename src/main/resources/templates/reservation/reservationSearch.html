@@ -8,10 +8,10 @@
     <meta name="keywords" content="차량 예약 가능 검색">
     <meta name="description" content="">
     <title>reservation</title>
-    <link rel="stylesheet" href="nicepage.css" media="screen">
-<link rel="stylesheet" href="reservation.css" media="screen">
-    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
-    <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/reservationSearch.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
     
@@ -167,7 +167,8 @@
                       <div class="u-form-group u-form-select u-form-group-10">
                         <label for="startTimeHour" class="u-label u-label-8"></label>
                         <div class="u-form-select-wrapper">
-                          <select id="startTimeHour" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <select id="startTimeHour" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                            <option value="선택">선택</option>
                             <option value="00">00</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -198,7 +199,8 @@
                       <div class="u-form-group u-form-select u-form-group-11">
                         <label for="startTimeMin" class="u-label u-label-9"></label>
                         <div class="u-form-select-wrapper">
-                          <select id="startTimeMin" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <select id="startTimeMin" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                            <option value="선택">선택</option>
                             <option value="00">00</option>
                             <option value="10">10</option>
                             <option value="20">20</option>
@@ -217,7 +219,8 @@
                       <div class="u-form-group u-form-select u-form-group-13">
                         <label for="endTimeHour" class="u-label u-label-10"></label>
                         <div class="u-form-select-wrapper">
-                          <select id="endTimeHour" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <select id="endTimeHour" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                            <option value="선택">선택</option>
                             <option value="00">00</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -248,7 +251,8 @@
                       <div class="u-form-group u-form-select u-form-group-14">
                         <label for="endTimeMin" class="u-label u-label-11"></label>
                         <div class="u-form-select-wrapper">
-                          <select id="endTimeMin" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <select id="endTimeMin" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                            <option value="선택">선택</option>
                             <option value="00">00</option>
                             <option value="10">10</option>
                             <option value="20">20</option>
@@ -268,6 +272,7 @@
                         <label for="carRank" class="u-label u-label-12">차량 등급</label>
                         <div class="u-form-select-wrapper">
                           <select id="carRank" name="carRank" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
                             <option value="경차">경차</option>
                             <option value="소형">소형</option>
                             <option value="중형">중형</option>
@@ -284,6 +289,7 @@
                         <label for="carKind" class="u-label u-label-13">차종 / 제조사</label>
                         <div class="u-form-select-wrapper">
                           <select id="carKind" name="carKind" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
                             <option value="현대">현대</option>
                             <option value="기아">기아</option>
                             <option value="쌍용">쌍용</option>
@@ -294,13 +300,11 @@
                     </form>
                   </div>
                 </div>
-                
-            <div class="u-align-center u-form-group u-form-submit">
-               <a href="@{/car/reservationList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
+              </div>
+                 <div class="u-align-center u-form-group u-form-submit">
+               <a th:href="@{reservationList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
                <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
-                
-              </div>
             </div>
           </div>
         </div>
@@ -316,16 +320,37 @@
               <input type="text" placeholder="전체 검색" id="search" name="search" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
-              <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">검색</a>
+              <a th:href="@{reservationList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">검색</a>
               <input type="submit" value="submit" class="u-form-control-hidden">
             </div>
           </form>
-        </div><span class="u-file-icon u-icon u-icon-1"><img src="images/741407.png" alt=""></span><span class="u-file-icon u-icon u-icon-2"><img src="images/2359659.png" alt=""></span><span class="u-file-icon u-icon u-icon-3"><img src="images/1250680.png" alt=""></span><span class="u-icon u-icon-4"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8f02"></use></svg><svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-8f02" style="enable-background:new 0 0 52 52;"><path style="fill:currentColor;" d="M38.853,5.324L38.853,5.324c-7.098-7.098-18.607-7.098-25.706,0h0
+        </div>
+        <span class="u-file-icon u-icon u-icon-1">
+        <img src="carUpload/2.png" alt="">
+        </span>
+        
+        <span class="u-file-icon u-icon u-icon-2">
+        <img src="carUpload/1.png" alt="">
+        </span>
+        
+        <span class="u-file-icon u-icon u-icon-3">
+        <img src="carUpload/3.png" alt="">
+        </span>
+        
+        <span class="u-icon u-icon-4">
+        <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style="">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8f02"></use></svg>
+        
+        <svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-8f02" style="enable-background:new 0 0 52 52;">
+        <path style="fill:currentColor;" d="M38.853,5.324L38.853,5.324c-7.098-7.098-18.607-7.098-25.706,0h0
 	C6.751,11.72,6.031,23.763,11.459,31L26,52l14.541-21C45.969,23.763,45.249,11.72,38.853,5.324z M26.177,24c-3.314,0-6-2.686-6-6
-	s2.686-6,6-6s6,2.686,6,6S29.491,24,26.177,24z"></path></svg></span>
-        <a th:href="@{/car/carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">전체목록 보기</a>
-        <a href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-3">예약확인 / 이용내역</a>
-        <a href="https://nicepage.com/website-design" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-4">신차보기<br>
+	s2.686-6,6-6s6,2.686,6,6S29.491,24,26.177,24z"></path></svg>
+	
+	    </span>
+	    
+        <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">전체목록 보기</a>
+        <a th:href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-3">예약확인 / 이용내역</a>
+        <a th:href="@{carListR.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-4">신차보기<br>
         </a>
         <a href="https://nicepage.com/website-design" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-5">지점위치보기<br>
         </a>
@@ -333,4 +358,5 @@
     </section>    
   
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

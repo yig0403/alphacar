@@ -1,8 +1,5 @@
 package com.ch.alphaCar.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.dto.Reservation;
@@ -31,9 +28,17 @@ public class ReservationController {
 	@Autowired 
 	private MemberService ms;
 	
-	@RequestMapping("reservationList.do")
+	@RequestMapping("reservationSearch.do")
+	public String reservationSearch(Reservation reservation, String pageNum, Model model, HttpSession session) {	
+		return "/reservation/reservationSearch";
+	}
+	
+	
+	@RequestMapping("reservationHistory.do")
 	public String reservationHistory(Reservation reservation, String pageNum, Model model, HttpSession session) {
-		int rowPerPage = 16; // 한 화면에 보여주는 갯수
+		String id = (String) session.getAttribute("id");
+		reservation.setId(id);
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = rs.getTotal(reservation);		
@@ -49,7 +54,7 @@ public class ReservationController {
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-	    return "/reservation/reservationList";	
+	    return "/reservation/reservationHistory";	
 	}
 	@RequestMapping("reservationView.do")
 	public String reservationView(int rsNo,String carNo,String pageNum,Model model, HttpSession session ) {
@@ -61,10 +66,6 @@ public class ReservationController {
 		model.addAttribute("pageNum",pageNum);
 		return "/reservation/reservationView";
 	}
-	
-	
-
-	
 	
 	@RequestMapping("reservationCancel.do")
 	public String reservationCancel(Reservation reservation,String pageNum ,Model model) {

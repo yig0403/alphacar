@@ -21,4 +21,6 @@ public interface CarDao {
 
 	int delete(String carNo);
 
+	List<Car> listR(Car car);
+
 }

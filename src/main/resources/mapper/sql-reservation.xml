@@ -10,17 +10,26 @@
 	<select id="list" parameterType="reservation"  resultType="reservation">
 		<!-- select * from board2 order by num desc -->
 		select * from (select a.*, rowNum rn from (
-			select * from car 
+			select * from reservation 
 			<where>
-				carRes='n' and carRegion=#{carRegion} and carKind=#{carKind} and carType={carType}
+				id=#{id}
 			</where>
 			order by carNo)a)
 				where rn between #{startRow} and #{endRow}
 	</select>
 	
-	<update id="reserve" parameterType="string">
-	  update car set carRes='y' where carNo=#{carNo} between startDate=#{startDate} and endDate=#{endDate}
-	</update>
+	
+	<select id="listSearch" parameterType="reservation"  resultType="reservation">
+		<!-- select * from board2 order by num desc -->
+		select * from (select a.*, rowNum rn from (
+			select * from car
+			<where>
+				carRes='n'
+			</where>
+			order by carNo)a)
+				where rn between #{startRow} and #{endRow}
+	</select>
+	
 	
 	<update id="delete" parameterType="string">
 		update car set carRes='n' where carNo=#{carNo}

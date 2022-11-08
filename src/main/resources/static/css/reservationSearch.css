@@ -12,7 +12,7 @@
 }
 
 .u-section-1 .u-layout-cell-1 {
-  min-height: 842px;
+  max-height: 750px;
 }
 
 .u-section-1 .u-container-layout-1 {
@@ -65,7 +65,7 @@
 }
 
 .u-section-1 .u-layout-cell-2 {
-  min-height: 842px;
+  max-height: 750px;
 }
 
 .u-section-1 .u-container-layout-2 {
@@ -149,7 +149,7 @@
 }
 
 .u-section-1 .u-layout-cell-3 {
-  min-height: 842px;
+  max-height: 750px;
 }
 
 .u-section-1 .u-container-layout-3 {
@@ -261,6 +261,8 @@
 }
 
 .u-section-1 .u-btn-5 {
+  margin-left: 470px;
+  width: 200px;	
   letter-spacing: 1px;
   border-style: none;
   font-weight: 700;
