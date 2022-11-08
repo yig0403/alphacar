@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.QuestionDao">
+	<resultMap type="question" id="questionResult">
+		<result property="qNo" column="qNo"/>
+		<result property="id" column="id"/>
+		<result property="qTitle" column="qTitle"/>
+		<result property="qContent" column="qContent"/>
+		<result property="regdate" column="regdate"/>
+		<result property="qRef" column="qRef"/>
+		<result property="qRe_level" column="qRe_level"/>
+		<result property="qRe_step" column="qRe_step"/>
+		<result property="qfileName" column="qfileName"/>
+		<result property="del" column="del"/>
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+</mapper>
