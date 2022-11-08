@@ -10,20 +10,23 @@
 	<select id="list" parameterType="reservation"  resultType="reservation">
 		<!-- select * from board2 order by num desc -->
 		select * from (select a.*, rowNum rn from (
-			select * from reservation 
+			select * from car 
 			<where>
-				del='n'
+				carRes='n' and carRegion=#{carRegion} and carKind=#{carKind} and carType={carType}
 			</where>
-			order by rsNo)a)
+			order by carNo)a)
 				where rn between #{startRow} and #{endRow}
 	</select>
 	
+	<update id="reserve" parameterType="string">
+	  update car set carRes='y' where carNo=#{carNo} between startDate=#{startDate} and endDate=#{endDate}
+	</update>
 	
 	<update id="delete" parameterType="string">
-		update reservation set del='y' where rsNo=#{rsNo}
+		update car set carRes='n' where carNo=#{carNo}
 	</update>
 	
 	<select id="getTotal" parameterType="reservation" resultType="integer">
-		select count(*) from reservation where del='n'
+		select count(*) from reservation where id=#{id} and del='n'
 	</select>
 </mapper>

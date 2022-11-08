@@ -21,4 +21,13 @@ public class ReservationServiceImpl implements ReservationService{
 	public int getTotal(Reservation reservation) {
 		return rd.getTotal(reservation);
 	}
+
+
+	public Reservation select(int rsNo) {
+		return rd.select(rsNo);
+	}
+
+	public int delete(int rsNo) {
+		return rd.delete(rsNo);
+	}
 }

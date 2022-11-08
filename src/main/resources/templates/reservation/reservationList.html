@@ -154,7 +154,7 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{/reservation/reservationSearch.do}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{/reservation/reservationView.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
                               </div>
                          </div>
                       </div>
@@ -191,26 +191,7 @@
 		</th:block>		
 	</ul>
 </div>
-    <div align="center">
-        <form action="carList.do" method="get" >
-	        <input type="hidden" name="pageNum" value="1">
-	        <select name="search">
-            <option value="[[${carName}]]">차량이름</option>
-		    <option value="[[${carKind}]]">제조사</option>
-		    <option value="[[${carRegion}]]">지역</option> 
-		    <c:forTokens var="sh" items="carName,carKind,carRegion,subcon" delims="," varStatus="i">
-			<th:if test="[[${sh==car.search }]]">
-				<option value="[[${sh }]]" selected="selected">전체검색</option>
-			</th:if>
-			<th:if test="${sh!=car.search }">
-				<option value="[[${sh }]]">검색어를 입력해주세요</option>
-			</th:if>			
-		    </c:forTokens>
-	</select>
-	<input type="text" name="keyword" placeholder="검색어를 입력해주세요">
-	<input type="submit" value="검색">
-   </form>	
-</div>
+  
 	        
    </section>
 </body>

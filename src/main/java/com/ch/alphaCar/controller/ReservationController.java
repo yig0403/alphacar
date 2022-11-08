@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.dto.Reservation;
@@ -30,9 +31,9 @@ public class ReservationController {
 	@Autowired 
 	private MemberService ms;
 	
-	@RequestMapping("reservationHistory")
+	@RequestMapping("reservationList.do")
 	public String reservationHistory(Reservation reservation, String pageNum, Model model, HttpSession session) {
-		int rowPerPage = 10; // 한 화면에 보여주는 갯수
+		int rowPerPage = 16; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = rs.getTotal(reservation);		
@@ -43,41 +44,48 @@ public class ReservationController {
 		reservation.setEndRow(endRow);
 		List<Reservation> list = rs.list(reservation);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"차량이름","제조사","예약날짜","렌트날짜","반납날짜"};
-		model.addAttribute("title",title);
+
 		model.addAttribute("reservation",reservation);
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-	    return "/reservation/reservationHistory";	
+	    return "/reservation/reservationList";	
 	}
 	@RequestMapping("reservationView.do")
-	public String reservationInsertForm() {
+	public String reservationView(int rsNo,String carNo,String pageNum,Model model, HttpSession session ) {
+		String id = (String)session.getAttribute("id");
+		Car car = cs.select(carNo);
+		Reservation reservation=rs.select(rsNo);
+		model.addAttribute("car",car);
+		model.addAttribute("reservation",reservation);
+		model.addAttribute("pageNum",pageNum);
 		return "/reservation/reservationView";
 	}
 	
 	
-	@RequestMapping("reservationSearch.do")
+
 	
 	
-	
-	@RequestMapping("reservationInsert.do")
-	public String reservationInsert(Car car,Reservation reservation, Model model, HttpSession session) throws IOException {
+	@RequestMapping("reservationCancel.do")
+	public String reservationCancel(Reservation reservation,String pageNum ,Model model) {
 		int result = 0;
-		String id = (String) session.getAttribute("id");
-		reservation.setId(id);
-		String carNo = (String) session.getAttribute("carNo");
-		Car car2 = cs.select(car.getCarNo());
-		if( car.car2(carRes).equals('n')) {
-			
-			
-			result = rs.insert(reservation);
-		}
-		else result =-1;
-		model.addAttribute("result",result);
-		return "/reservation/reservationInsert.do";
+		Reservation reservation2 = rs.select(reservation.getRsNo());
+		if(reservation2 != null) {
+		result = rs.delete(reservation.getRsNo());
+		}else result = -1;
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum,", pageNum);
+		return "/reservation/reservationCancel";
 	}
 	
+	@RequestMapping("reservationCancelForm.do")
+	public String reservationCancelForm(String rsNo, String pageNum,  Model model) {
+		model.addAttribute("rsNo", rsNo);
+		model.addAttribute("pageNum", pageNum);
+		return "/reservation/reservationCancelForm";
+	}
+	
+
 }
 
 

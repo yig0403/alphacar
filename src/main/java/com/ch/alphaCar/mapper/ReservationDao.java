@@ -13,4 +13,8 @@ public interface ReservationDao {
 
 	int getTotal(Reservation reservation);
 
+	Reservation select(int rsNo);
+
+	int delete(int rsNo);
+
 }
