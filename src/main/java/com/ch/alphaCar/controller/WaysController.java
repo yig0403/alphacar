@@ -47,4 +47,37 @@ public class WaysController {
 		
 		return "ways/waysInsert";
 	}
+	@RequestMapping("/ways/waysUpdateForm.do")
+	private String waysUpdateForm(String waysTitle, Model model) {
+		Ways ways = ws.select(waysTitle);
+		model.addAttribute("ways", ways);
+		return "ways/waysUpdatefrom";
+	}
+	@RequestMapping("/ways/waysUpdate.do")
+	private String waysUpdate(Model model, Ways ways) {
+		int result = ws.update(ways);
+		model.addAttribute("result", result);
+		return "ways/waysUpdate";
+	}
+	@RequestMapping("/ways/waysDelete.do")
+	private String waysDelete(String waysTitle, Model model) {
+		Ways ways = ws.select(waysTitle);
+		int result = ws.delete(waysTitle);
+		model.addAttribute("result",result);
+		model.addAttribute("ways",ways);
+		return "ways/waysDelete";
+	}
+	
+	@RequestMapping("/ways/waysManagement.do")
+	private String waysManagement(Model model, Ways ways) {
+		List<Ways> waysList = ws.list();
+		model.addAttribute("waysList",waysList);
+		return "/ways/waysManagement";
+	}
+	@RequestMapping("/ways/waysSelect.do")
+	private String waysSelect(Model model, String waysTitle ) {
+		Ways ways = ws.select(waysTitle);
+		model.addAttribute("ways",ways);
+		return "ways/waysSelect";
+	}
 }

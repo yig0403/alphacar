@@ -20,4 +20,13 @@
 	<select id="list" resultMap="waysResult">
 		select * from ways where del='n'
 	</select>
+	<select id="select" parameterType="String" resultType="ways">
+		select * from ways where waysTitle=#{waysTitle}
+	</select>
+	<update id="update" parameterType="ways">
+		update ways set waysContents=#{waysContents} where waysTitle=#{waysTitle}
+	</update>
+	<update id="delete" parameterType="String">
+		update ways set del='y' where waysTitle=#{waysTitle}
+	</update>
 </mapper>
