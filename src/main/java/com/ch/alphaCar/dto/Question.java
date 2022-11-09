@@ -24,5 +24,7 @@ public class Question {
 	private int endRow;
 // 업로드
 	private MultipartFile file;
+	// member 테이블 조인
+	private Member member;
 	
 }

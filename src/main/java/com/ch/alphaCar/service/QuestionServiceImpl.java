@@ -1,5 +1,7 @@
 package com.ch.alphaCar.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,13 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionDao qd;
 
-	@Override
 	public int getTotal(Question question) {
-		// TODO Auto-generated method stub
-		return 0;
+		return qd.getTotal(question);
+	}
+	public List<Question> list(Question question) {
+		return qd.list(question);
+	}
+	public Question select(int qNO) {
+		return qd.select(qNO);
 	}
 }

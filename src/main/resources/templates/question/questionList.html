@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header2.html::header"></span>
 <span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
-
+</head><body>
+<div class="container" align="center">
+	<h2 class="primary">문의 내역</h2>
+<table class="table table-striped">
+	<tr class="danger"><th>문의번호</th><th>작성자</th><th>제목</th><th>작성일</th></tr>
+	<tr class="warning" th:if="${#lists.size(list)}==0"><td colspan="5">문의내역이 없습니다</td></tr>
+	<tr th:if="${#lists.size(list)}>0" th:each="question:${list}"><td>[[${question.qNo }]]</td>
+		<th colspan="4" class="warning" th:if="${question.del}=='y'">삭제된 글입니다</th>
+		<th:block th:if="${question.del}=='n'">
+			<td>
+				<!-- 답변글은 re_level 0보다 크고 1 level마다 10px씩 들여 쓰기 -->
+				<th:block th:if="${question.re_level} > 0">
+					<img alt="" th:src="" height="5"
+						th:width="${board.re_level * 10}">
+					<img alt="" th:src="">
+				</th:block>
+				<a th:href="" class="btn btn-primary btn-sm">
+					[[${question.qtitle }]]</a>
+			</td>
+			<td>[[${question.id }]]</td>
+			<td>[[${question.reg_date}]]</td>
+		</th:block></tr>
+</table>
+<div align="center">
+	<ul class="pagination">
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li><a th:href="@{list.do(pageNum=1)}">
+				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
+			<li><a th:href="@{list.do(pageNum=${pb.startPage-1 })}">
+				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active"><a th:href="@{list.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li><a th:href="@{list.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>		
+		</th:block>
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li><a th:href="@{list.do(pageNum=${pb.endPage+1})}">
+				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
+			<li><a th:href="@{list.do(pageNum=${pb.totalPage})}">
+				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
+		</th:block>		
+	</ul>
+</div>
+<a href="questionInsertForm.do?qNo=0&pageNum=1" class="btn btn-success">문의하기</a>
+</div>
 </body>
 </html>

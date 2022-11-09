@@ -20,4 +20,16 @@
 		<result property="id" column="id"/>	
 	</resultMap>
 	
+	<select id="getTotal" parameterType="question" resultType="integer">
+		select count(*) from question where del='n'
+	</select>
+	
+	<select id="list" parameterType="map"  resultType="question">
+		select * from (select a.*, rowNum rn from (
+			select * from question order by qRef desc, qRe_step)a)
+				where rn between #{startRow} and #{startRow}
+	</select>
+	<select id="select" parameterType="integer" resultType="question">
+		select * from question where qNo=#{qNo}	
+	</select>
 </mapper>
