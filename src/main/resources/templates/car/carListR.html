@@ -29,7 +29,6 @@
            
 <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-block-1dee-3">
      <div class="u-layout">  
-         <div class="u-layout-row">
               <div class="u-container-style u-layout-cell u-shape-rectangle u-size-16 u-block-1dee-4">
                     <div class="u-container-layout u-valign-top u-block-1dee-5">
                          <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-10">
@@ -139,8 +138,8 @@
     </form>
 </div>
         </div>
-   </div>
-   
+ 
+       <div class="u-layout-row"> 
          <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
              <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
                  <div class="u-container-layout u-block-1dee-53">
@@ -160,7 +159,7 @@
                       </div>
                    </div>
                 </div> 
-                
+              </div>
             </div>
           </div>    
         </div>

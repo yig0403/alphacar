@@ -165,50 +165,9 @@
                   <div class="u-form u-gradient u-form-3">
                     <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" name="form-1" style="padding: 10px;">
                       <div class="u-form-group u-form-select u-form-group-10">
-                        <label for="startTimeHour" class="u-label u-label-8"></label>
-                        <div class="u-form-select-wrapper">
-                          <select id="startTimeHour" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                            <option value="선택">선택</option>
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                          </select>
-                         </div>
-                      </div>
-                      <div class="u-form-group u-form-select u-form-group-11">
-                        <label for="startTimeMin" class="u-label u-label-9"></label>
-                        <div class="u-form-select-wrapper">
-                          <select id="startTimeMin" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                            <option value="선택">선택</option>
-                            <option value="00">00</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                          </select>
-                        </div>
+                        <label for="startTime" class="u-label u-label-8"></label>
+                         <input type="time" id="startTime" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
+                         min="00:00:00" max="23:59:59">
                       </div>
                     </form>
                   </div>
@@ -217,50 +176,9 @@
                   <div class="u-form u-gradient u-form-4">
                     <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" name="form-1" style="padding: 10px;">
                       <div class="u-form-group u-form-select u-form-group-13">
-                        <label for="endTimeHour" class="u-label u-label-10"></label>
-                        <div class="u-form-select-wrapper">
-                          <select id="endTimeHour" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                            <option value="선택">선택</option>
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                          </select>
-                          </div>
-                      </div>
-                      <div class="u-form-group u-form-select u-form-group-14">
-                        <label for="endTimeMin" class="u-label u-label-11"></label>
-                        <div class="u-form-select-wrapper">
-                          <select id="endTimeMin" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
-                            <option value="선택">선택</option>
-                            <option value="00">00</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                          </select>
-                         </div>
+                        <label for="endTime" class="u-label u-label-10"></label>
+                         <input type="time" id="endTime" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
+                         min="00:00:00" max="23:59:59">
                       </div>
                     </form>
                   </div>
@@ -288,7 +206,7 @@
                       <div class="u-form-group u-form-select u-form-group-17">
                         <label for="carKind" class="u-label u-label-13">차종 / 제조사</label>
                         <div class="u-form-select-wrapper">
-                          <select id="carKind" name="carKind" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                          <select id="listSearch" name="carKind" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
                             <option value="선택안함">선택안함</option>
                             <option value="현대">현대</option>
                             <option value="기아">기아</option>
@@ -302,8 +220,8 @@
                 </div>
               </div>
                  <div class="u-align-center u-form-group u-form-submit">
-               <a th:href="@{reservationList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
-               <input type="submit" value="submit" class="u-form-control-hidden">
+                 <input type="submit" value="submit" class="u-form-control-hidden" name="listSearch">
+                <a th:href="@{reservationList.do}"  class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
             </div>
             </div>
           </div>
