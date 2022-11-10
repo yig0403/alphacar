@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.alphaCar.dto.Faq;
 import com.ch.alphaCar.dto.Member;
-import com.ch.alphaCar.dto.Ways;
 import com.ch.alphaCar.service.FaqService;
 import com.ch.alphaCar.service.MemberService;
 
@@ -22,7 +21,7 @@ public class FaqController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping("/faq/faq.do")
+	@RequestMapping("faq.do")
 	public String ways(Model model, HttpSession session, Faq faq) {
 		String id = (String)session.getAttribute("id");
 		if (id != null && !id.equals("")) {
@@ -31,52 +30,52 @@ public class FaqController {
 		}
 		List<Faq> faqList = fs.list();
 		model.addAttribute("faqList",faqList);
-		return "faq/faq";
+		return "/faq/faq";
 	}
-	@RequestMapping("/faq/faqInsertForm.do")
+	@RequestMapping("faqInsertForm.do")
 	private String faqInsertForm() {
-		return "faq/faqInsertForm";
+		return "/faq/faqInsertForm";
 	}
-	@RequestMapping("/faq/faqInsert.do")
+	@RequestMapping("faqInsert.do")
 	private String faqInser(Model model, Faq faq, HttpSession session ) {
 		int result=0;
 		String id = (String)session.getAttribute("id");	
 		faq.setId(id);
 		result = fs.insert(faq);
 		model.addAttribute("result",result);
-		return "faq/faqInsert";
+		return "/faq/faqInsert";
 	}
-	@RequestMapping("/faq/faqManagement.do")
+	@RequestMapping("faqManagement.do")
 	private String faqManagement(Model model, Faq faq) {
 		List<Faq> faqList = fs.list();
 		model.addAttribute("faqList",faqList);
 		return "/faq/faqManagement";
 	}
-	@RequestMapping("/faq/faqSelect.do")
+	@RequestMapping("faqSelect.do")
 	private String waysSelect(Model model, String faqTitle) {
 		Faq faq = fs.select(faqTitle);
 		model.addAttribute("faq",faq);
-		return "faq/faqSelect";
+		return "/faq/faqSelect";
 	}
-	@RequestMapping("/faq/faqUpdateForm.do")
+	@RequestMapping("faqUpdateForm.do")
 	private String faqUpdateForm(String faqTitle, Model model) {
 		Faq faq = fs.select(faqTitle);
 		model.addAttribute("faq", faq);
-		return "faq/faqUpdatefrom";
+		return "/faq/faqUpdatefrom";
 	}
 	
-	@RequestMapping("/faq/faqUpdate.do")
+	@RequestMapping("faqUpdate.do")
 	private String faqUpdate(Model model, Faq faq) {
 		int result = fs.update(faq);
 		model.addAttribute("result", result);
-		return "faq/faqUpdate";
+		return "/faq/faqUpdate";
 	}
-	@RequestMapping("/faq/faqDelete.do")
+	@RequestMapping("faqDelete.do")
 	private String faqDelete(String faqTitle, Model model) {
 		Faq faq = fs.select(faqTitle);
 		int result = fs.delete(faqTitle);
 		model.addAttribute("result",result);
 		model.addAttribute("faq",faq);
-		return "faq/faqDelete";
+		return "/faq/faqDelete";
 	}
 }
