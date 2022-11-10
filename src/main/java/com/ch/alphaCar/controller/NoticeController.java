@@ -21,19 +21,19 @@ public class NoticeController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping("/notice/noticeMain.do")
+	@RequestMapping("noticeMain.do")
 	public String noticeMain() {		
-		return "notice/noticeMain";
+		return "/notice/noticeMain";
 	}
 	
-	@RequestMapping("/notice/noticeList.do")
+	@RequestMapping("noticeList.do")
 	public String noticeList(Notice notice, Model model) {		
 		List<Notice> noticeList = ns.list();
 		model.addAttribute("noticeList",noticeList);		
-		return "notice/noticeList";
+		return "/notice/noticeList";
 	}
 	
-	@RequestMapping("/notice/noticeSelect.do")
+	@RequestMapping("noticeSelect.do")
 	public String noticeSelect(int noNo,  Model model, HttpSession session) {
 		Notice notice = ns.select(noNo);		
 		String id = (String)session.getAttribute("id");	
@@ -43,21 +43,21 @@ public class NoticeController {
 		}		
 		model.addAttribute("notice",notice);
 		
-		return "notice/noticeSelect";
+		return "/notice/noticeSelect";
 	}
-	@RequestMapping("/notice/noticeDelete.do")
+	@RequestMapping("noticeDelete.do")
 	public String noticeDelete(int noNo, Model model) {
 		Notice notice = ns.select(noNo);
 		int result = ns.delete(noNo);
 		model.addAttribute("result", result);
 		model.addAttribute("notice", notice);
-		return "notice/noticeDelete";
+		return "/notice/noticeDelete";
 	}
-	@RequestMapping("/notice/noticeInsertForm.do")
+	@RequestMapping("noticeInsertForm.do")
 	public String noticeInsertForm(Model model) {		
-		return "notice/noticeInsertForm";
+		return "/notice/noticeInsertForm";
 	}
-	@RequestMapping("/notice/noticeInsert.do")
+	@RequestMapping("noticeInsert.do")
 	public String noticeInsert(Notice notice, Model model, HttpSession session ) {
 		int result=0;
 		int number = ns.getMaxNum();
@@ -67,19 +67,19 @@ public class NoticeController {
 		result = ns.insert(notice);
 		model.addAttribute("result",result);
 		
-		return "notice/noticeInsert";
+		return "/notice/noticeInsert";
 	}
-	@RequestMapping("/notice/noticeUpdateForm.do")
+	@RequestMapping("noticeUpdateForm.do")
 	public String noticeUpdateForm(int noNo, Model model) {
 		Notice notice = ns.select(noNo);
 		model.addAttribute("notice", notice);		
-		return "notice/noticeUpdateForm";
+		return "/notice/noticeUpdateForm";
 	}
-	@RequestMapping("/notice/noticeUpdate.do")
+	@RequestMapping("noticeUpdate.do")
 	public String noticeUpdate(Model model, Notice notice) {
 		int result = ns.update(notice);
 		model.addAttribute("result",result);
-		return "notice/noticeUpdate";
+		return "/notice/noticeUpdate";
 	}
 	
 }

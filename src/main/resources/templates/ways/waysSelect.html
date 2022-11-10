@@ -20,9 +20,9 @@
  		<tr><th>이용방법 제목</th><td>[[${ways.waysTitle}]]</td></tr>
  		<tr><th>이용방법 내용</th><td>[[${ways.waysContents}]]</td></tr>
  		<tr><th>삭제여부</th><td>[[${ways.del}]]</td></tr> 
- 		<tr><td colspan="2"><a class="btn" th:href="@{/ways/waysUpdateForm.do(waysTitle=${ways.waysTitle})}">수정</a></td></tr>
+ 		<tr><td colspan="2"><a class="btn" th:href="@{waysUpdateForm.do(waysTitle=${ways.waysTitle})}">수정</a></td></tr>
  		<tr><td colspan="2"><a class="btn" th:onclick="del([[${ways.waysTitle}]])">삭제</a></td>	</tr>
- 		<tr><td colspan="2"><a class="btn" th:href="@{/ways/waysManagement.do}">목록</a></td></tr>
+ 		<tr><td colspan="2"><a class="btn" th:href="@{waysManagement.do}">목록</a></td></tr>
  	</table>
  </div>
 </body>

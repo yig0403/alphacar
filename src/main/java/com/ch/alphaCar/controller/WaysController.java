@@ -21,7 +21,7 @@ public class WaysController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping("/ways/ways.do")
+	@RequestMapping("ways.do")
 	public String ways(Model model, HttpSession session, Ways ways) {
 		String id = (String)session.getAttribute("id");
 		if (id != null && !id.equals("")) {
@@ -30,14 +30,14 @@ public class WaysController {
 		}
 		List<Ways> waysList = ws.list();
 		model.addAttribute("waysList",waysList);
-		return "ways/ways";
+		return "/ways/ways";
 	}
 	
-	@RequestMapping("/ways/waysInsertForm.do")
+	@RequestMapping("waysInsertForm.do")
 	private String waysInsertForm(Model model) {
-		return "ways/waysInsertForm";
+		return "/ways/waysInsertForm";
 	}
-	@RequestMapping("/ways/waysInsert.do")
+	@RequestMapping("waysInsert.do")
 	private String waysInsert(Ways ways, Model model, HttpSession session) {
 		int result=0;
 		String id = (String)session.getAttribute("id");	
@@ -45,39 +45,39 @@ public class WaysController {
 		result = ws.insert(ways);
 		model.addAttribute("result",result);
 		
-		return "ways/waysInsert";
+		return "/ways/waysInsert";
 	}
-	@RequestMapping("/ways/waysUpdateForm.do")
+	@RequestMapping("waysUpdateForm.do")
 	private String waysUpdateForm(String waysTitle, Model model) {
 		Ways ways = ws.select(waysTitle);
 		model.addAttribute("ways", ways);
-		return "ways/waysUpdatefrom";
+		return "/ways/waysUpdatefrom";
 	}
-	@RequestMapping("/ways/waysUpdate.do")
+	@RequestMapping("waysUpdate.do")
 	private String waysUpdate(Model model, Ways ways) {
 		int result = ws.update(ways);
 		model.addAttribute("result", result);
-		return "ways/waysUpdate";
+		return "/ways/waysUpdate";
 	}
-	@RequestMapping("/ways/waysDelete.do")
+	@RequestMapping("waysDelete.do")
 	private String waysDelete(String waysTitle, Model model) {
 		Ways ways = ws.select(waysTitle);
 		int result = ws.delete(waysTitle);
 		model.addAttribute("result",result);
 		model.addAttribute("ways",ways);
-		return "ways/waysDelete";
+		return "/ways/waysDelete";
 	}
 	
-	@RequestMapping("/ways/waysManagement.do")
+	@RequestMapping("waysManagement.do")
 	private String waysManagement(Model model, Ways ways) {
 		List<Ways> waysList = ws.list();
 		model.addAttribute("waysList",waysList);
 		return "/ways/waysManagement";
 	}
-	@RequestMapping("/ways/waysSelect.do")
+	@RequestMapping("waysSelect.do")
 	private String waysSelect(Model model, String waysTitle ) {
 		Ways ways = ws.select(waysTitle);
 		model.addAttribute("ways",ways);
-		return "ways/waysSelect";
+		return "/ways/waysSelect";
 	}
 }

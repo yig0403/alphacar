@@ -15,11 +15,11 @@
 		<tr th:if="${#lists.size(faqList)} > 0" th:each="faq:${faqList}">
 			<td>[[${faq.faqTitle}]]</td>
 			<td>
-				<a th:href="@{/faq/faqSelect.do(faqTitle=${faq.faqTitle})}">
+				<a th:href="@{faqSelect.do(faqTitle=${faq.faqTitle})}">
 				[[${faq.faqContents}]]
 				</a>
 			</td>
-		<tr><td colspan="2"><a th:href="@{/faq/faq.do}">목록으로</a></td></tr>
+		<tr><td colspan="2"><a th:href="@{faq.do}">목록으로</a></td></tr>
 	</table>
 </div>
 </body>

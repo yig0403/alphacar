@@ -9,7 +9,7 @@
 <body>
 <div class="container" align="center">
 	<h2>공지 수정</h2>
-<form action="/notice/noticeUpdate.do"method="post">
+<form action="noticeUpdate.do"method="post">
 	<input type="hidden" name="noNo" th:value="${notice.noNo }">
 <table class="table table-hover">
 	<tr><th>공지번호</th><td>[[${notice.noNo }]]</tr>
@@ -20,7 +20,7 @@
 	<tr><td colspan="2" align="center"><input type="submit" value="수정"
 		class="btn btn-dark"></td></tr>
 </table>
-<a href="/notice/noticeList.do" class="btn btn-dark">목록</a>
+<a href="noticeList.do" class="btn btn-dark">목록</a>
 </form>
 </div>
 </body>

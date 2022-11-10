@@ -5,7 +5,7 @@ drop table review;
 drop table charge;
 drop table report;
 drop table reportreply;
-drop table reserve;
+drop table reservation;
 drop table question;
 drop table questionreply;
 drop table notice;
@@ -31,23 +31,22 @@ CREATE TABLE member (
 alter table member modify (ad default 'n');
 alter table member modify (del default 'n');
 
-CREATE TABLE car (
-	carNo	VARCHAR2(10)	NOT NULL,
-	id	VARCHAR2(20)	NOT NULL,
-	carName	VARCHAR2(10)	NULL,
-	carRank	VARCHAR2(10)	NULL,
-	carKind	VARCHAR2(20)	NULL,
-	carType	VARCHAR2(5)	NULL,
-	carYear	VARCHAR2(10)	NULL,
-	fee	NUMBER	NULL,
-	carColor	VARCHAR2(10)	NULL,
-	carRegion	VARCHAR2(30)	NULL,
-	del	CHAR(1)	NULL,
-	cfileName	VARCHAR2(50)	NULL,
-	carRes	char(1)	NULL 
-);
 
-alter table car modify (carRes default 'n');
+create table car (
+	carNo VARCHAR2(20) NOT NULL,
+	carName VARCHAR2(20) NOT NULL,
+	carRank VARCHAR2(20) NOT NULL,
+	carKind VARCHAR2(20) NOT NULL,
+	carType VARCHAR2(20) NOT NULL,
+	carYear VARCHAR2(10)  NOT NULL,
+	fee NUMBER NOT NULL,
+	carColor VARCHAR2(20) NOT NULL,
+	carRegion  VARCHAR2(30) NOT NULL,
+	del CHAR(1) default 'n',
+	filename VARCHAR2(50) NOT NULL,
+	carRes CHAR(1) default 'n',
+	id VARCHAR2(20)
+);
 
 CREATE TABLE review (
 	rvNo	NUMBER	NOT NULL,
@@ -84,13 +83,16 @@ CREATE TABLE reportreply (
 	del	CHAR(1)	NULL
 );
 
-CREATE TABLE reserve (
-	rsNo	NUMBER	NOT NULL,
-	carNo	VARCHAR2(10)	NOT NULL,
-	id	VARCHAR2(20)	NOT NULL,
-	regdate	DATE	NULL,
-	cancel	CHAR(1)	NULL,
-	del	CHAR(1)	NULL
+create table reservation(
+	rsNo NUMBER NOT NULL,
+	regdate DATE,
+	startDate DATE,
+	endDate DATE,
+	amount NUMBER,
+	cancel CHAR(1) default 'n',
+	del CHAR(1) default 'n',
+	carNo VARCHAR2(20),
+	id VARCHAR2(20)
 );
 
 CREATE TABLE question (
@@ -123,7 +125,6 @@ CREATE TABLE notice (
 	regdate	DATE	NULL
 );
 alter table notice add del char(1);
-select * from notice;
 
 CREATE TABLE story (
 	stNo	NUMBER	NOT NULL,
@@ -162,8 +163,7 @@ CREATE TABLE ways (
 	waysContents	VARCHAR2(1000)	NULL,
 	del	CHAR(1)	NULL
 );
-alter table ways modify (ad default 'n');
-select*from ways;
+alter table ways modify (del default 'n');
 
 ALTER TABLE member ADD CONSTRAINT PK_MEMBER PRIMARY KEY (
 	id
@@ -189,7 +189,7 @@ ALTER TABLE reportreply ADD CONSTRAINT PK_REPORTREPLY PRIMARY KEY (
 	rprContent
 );
 
-ALTER TABLE reserve ADD CONSTRAINT PK_RESERVE PRIMARY KEY (
+ALTER TABLE reservation ADD CONSTRAINT PK_reservation PRIMARY KEY (
 	rsNo
 );
 
@@ -242,14 +242,14 @@ REFERENCES member (
 	id
 );
 
-ALTER TABLE charge ADD CONSTRAINT FK_reserve_TO_charge_1 FOREIGN KEY (
+ALTER TABLE charge ADD CONSTRAINT FK_reservation_TO_charge_1 FOREIGN KEY (
 	carNo
 )
 REFERENCES car (
 	carNo
 );
 
-ALTER TABLE charge ADD CONSTRAINT FK_reserve_TO_charge_2 FOREIGN KEY (
+ALTER TABLE charge ADD CONSTRAINT FK_reservation_TO_charge_2 FOREIGN KEY (
 	id
 )
 REFERENCES member (
@@ -277,14 +277,14 @@ REFERENCES member (
 	id
 );
 
-ALTER TABLE reserve ADD CONSTRAINT FK_car_TO_reserve_1 FOREIGN KEY (
+ALTER TABLE reservation ADD CONSTRAINT FK_car_TO_reservation_1 FOREIGN KEY (
 	carNo
 )
 REFERENCES car (
 	carNo
 );
 
-ALTER TABLE reserve ADD CONSTRAINT FK_car_TO_reserve_2 FOREIGN KEY (
+ALTER TABLE reservation ADD CONSTRAINT FK_car_TO_reservation_2 FOREIGN KEY (
 	id
 )
 REFERENCES member (
