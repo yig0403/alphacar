@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container" align="center">
+	<h2 class="text-primary">문의 작성</h2>
+<form action="questionInsert.do" method="post" name="frm">
+	<input type="hidden" name="qNo" th:value="${qNo }">
+	<input type="hidden" name="pageNum" th:value="${pageNum}">
+	<input type="hidden" name="qRef" th:value="${qRef }">
+	<input type="hidden" name="qRe_level" th:value="${qRe_level}">
+	<input type="hidden" name="qRe_step" th:value="${qRe_step}">
+	<input type="hidden" name="id" th:value="${member.id}">
+<table class="table table-bordered">	
+		<tr th:if="${qNo} == 0" class="warning"><th>제목</th><td><input type="text" name="subject" required="required"
+			></td></tr>
+		<tr th:if="${qNo} != 0" class="warning"><th>제목</th><td><input type="text" name="subject" required="required"
+			value="답변) "></td></tr>
+	<tr><th>작성자</th><td th:text="${member.id}" ></td></tr>
+	<tr><th>제목</th><td><input type="text" name="qTitle" required="required"></td></tr>
+	<tr><th>내용</th><td><textarea rows="5" cols="20" name="qContent" required="required"></textarea></td></tr>
+	<tr><td colspan="2" align="center"><input type="submit" value="작성완료" class="btn btn-primary"></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>
