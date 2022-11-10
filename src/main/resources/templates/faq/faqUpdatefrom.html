@@ -9,7 +9,7 @@
 <body>
 <div class="container" align="center">
 	<h2>질문 수정</h2>
-<form action="/faq/faqUpdate.do" method="post">
+<form action="faqUpdate.do" method="post">
 	<input type="hidden" name="faqTitle" th:value="${faq.faqTitle}">
 <table class="table table-hover">
 	<tr><th>질문내용</th><td>[[${faq.faqTitle}]]</td></tr>
@@ -18,7 +18,7 @@
 	<tr><td colspan="2" align="center"><input type="submit" value="수정"
 		class="btn btn-dark"></td></tr>
 </table>
-<a href="/faq/faqManagement.do" class="btn btn-dark">목록</a>
+<a href="faqManagement.do" class="btn btn-dark">목록</a>
 </form>
 </div>
 </body>

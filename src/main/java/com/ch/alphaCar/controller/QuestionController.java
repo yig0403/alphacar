@@ -22,7 +22,7 @@ public class QuestionController {
 	@Autowired
 	private MemberService ms;
 	
-	@RequestMapping("/question/questionList.do")
+	@RequestMapping("questionList.do")
 	private String questionList(Question question, String pageNum, Model model) {
 		int rowPerPage = 10; // 한 페이지에 보여줄 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
@@ -41,10 +41,10 @@ public class QuestionController {
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
-		return "question/questionList";
+		return "/question/questionList";
 	}
 	
-	@RequestMapping("/question/questionInsertForm.do")
+	@RequestMapping("questionInsertForm.do")
 	public String insertForm(Integer qNo, String pageNum, Model model, HttpSession session) {
 		int qRef=0, qRe_level=0, qRe_step=0;
 		if (qNo != 0 ) { // 답변글
@@ -63,6 +63,6 @@ public class QuestionController {
 		model.addAttribute("qRef",qRef);
 		model.addAttribute("qRe_level",qRe_level);
 		model.addAttribute("qRe_step",qRe_step);
-		return "question/questionInsertForm";
+		return "/question/questionInsertForm";
 	}
 }
