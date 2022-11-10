@@ -20,4 +20,6 @@ public interface CarService {
 
 	List<Car> listR(Car car);
 
+	List<Car> carListRank(Car car);
+
 }

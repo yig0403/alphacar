@@ -29,7 +29,7 @@ public class ReservationController {
 	private MemberService ms;
 	
 	@RequestMapping("reservationSearch.do")
-	public String reservationSearch(Reservation reservation, String pageNum, Model model, HttpSession session) {	
+	public String reservationSearch() {	
 		return "/reservation/reservationSearch";
 	}
 	

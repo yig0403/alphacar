@@ -25,4 +25,5 @@ public class Reservation {
 	private int endRow;
 	// 검색용
 	private String search;
+	private String keyword;
 }

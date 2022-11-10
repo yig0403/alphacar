@@ -36,7 +36,7 @@ public class CarController {
 		car.setEndRow(endRow);
 		List<Car> list = cs.list(car);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"차량사진","차량이름","등급","제조사"};
+		String[] title = {"차량이름","제조사","등급","지역"};
 		model.addAttribute("title",title);
 		model.addAttribute("car",car);
 		model.addAttribute("num", num);
@@ -45,6 +45,27 @@ public class CarController {
 		return "/car/carList";
 	}
 	
+	@RequestMapping("carListRank.do")
+	public String carListRank(Car car, String pageNum, Model model) {
+		int rowPerPage = 15; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = cs.getTotal(car);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		car.setStartRow(startRow);
+		car.setEndRow(endRow);
+		List<Car> carListRank = cs.carListRank(car);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"차량등급","제조사","지역","연식","요금"};
+		model.addAttribute("title",title);
+		model.addAttribute("car",car);
+		model.addAttribute("num", num);
+		model.addAttribute("carListRank", carListRank);
+		model.addAttribute("pb", pb);
+		return "/car/carListRank";
+	}
 	
 	@RequestMapping("carListR.do")
 	public String listR(Car car, String pageNum, Model model) {
@@ -59,7 +80,7 @@ public class CarController {
 		car.setEndRow(endRow);
 		List<Car> list = cs.listR(car);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"차량사진","차량이름","등급","제조사"};
+		String[] title = {"차량등급","제조사","지역","연식","요금"};
 		model.addAttribute("title",title);
 		model.addAttribute("car",car);
 		model.addAttribute("num", num);

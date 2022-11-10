@@ -36,7 +36,7 @@
                                     <div class="u-form-group u-form-select u-block-1dee-9">
                                          <label for="carRank" class="u-label u-block-1dee-11">차량등급</label>
                                                <div class="u-form-select-wrapper">
-                                                    <select id="carRank" name="carRank" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-12">
+                                                    <select id="carRank" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-12">
                                                            <option value="전체검색">전체검색</option>
                                                            <option value="경차">경차</option>
                                                            <option value="소형">소형</option>
@@ -50,8 +50,8 @@
                                               </div>
                                      </div>
                         <div class="u-align-center u-form-group u-form-submit u-block-1dee-13">
-                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-14">검색</a>
-                        <input type="submit" value="search" class="u-form-control-hidden">
+                  <a th:href="@{carListRank.do}" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-14">검색</a>
+                        <input type="submit" value="search" name="keyword" class="u-form-control-hidden">
                   </div>
         </form>
 </div>
@@ -138,9 +138,9 @@
     </form>
 </div>
         </div>
- 
-       <div class="u-layout-row"> 
-         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
+
+    <div class="u-layout-row">
+         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(carListRank)} > 0" th:each="car:${carListRank}">
              <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
                  <div class="u-container-layout u-block-1dee-53">
                      <img class="u-image u-image-round u-radius-10 u-block-1dee-54"  th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="318" data-image-height="200">
@@ -190,22 +190,7 @@
 		</th:block>		
 	</ul>
 </div>
-
- <div align="center">
-        <form th:action="@{carList.do}" method="get">
-          <select name="search">
-              <option value="${carName}">차 이름</option>
-              <option value="${carKind}">제조사</option>
-              <option value="${carRank}">등급</option>
-              <option value="${carRegion}">지역</option>
-          </select>
-	        <input type="hidden" name="pageNum" value="1"> 
-	        <input type="text" name="keyword" placeholder="검색어를 입력해주세요">
-	         <input type="submit" value="검색">
-   </form>	
-</div>
           
-	        
    </section>
 </body>
 <span th:insert="footer.html::footer"></span>
