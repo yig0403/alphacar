@@ -22,4 +22,13 @@ public class QuestionServiceImpl implements QuestionService {
 	public Question select(Integer qNo) {
 		return qd.select(qNo);
 	}
+	public int getMaxNum() {
+		return qd.getMaxNum();
+	}
+	public void updateStep(Question question) {
+		qd.updateStep(question);
+	}
+	public int insert(Question question) {
+		return qd.insert(question);
+	}
 }

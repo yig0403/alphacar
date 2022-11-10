@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("작성되었습니다");
+		location.href="questionList.do(pageNum=${pageNum})";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("작성 실패");
+		history.back();
+	</script>
+</span>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

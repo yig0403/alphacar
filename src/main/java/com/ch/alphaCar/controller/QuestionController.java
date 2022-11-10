@@ -1,5 +1,8 @@
 package com.ch.alphaCar.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.ch.alphaCar.dto.Member;
 import com.ch.alphaCar.dto.Question;
@@ -64,5 +69,34 @@ public class QuestionController {
 		model.addAttribute("qRe_level",qRe_level);
 		model.addAttribute("qRe_step",qRe_step);
 		return "/question/questionInsertForm";
+	}
+	@RequestMapping("questionInsert.do")
+	public String upload(@RequestParam("file") MultipartFile mf, Question question, Model model,
+			HttpSession session, Integer qNo, String pageNum ) throws IOException {
+		// 파일 업로드
+		String qfileName = mf.getOriginalFilename(); // 원래 파일명
+		String real = ("src/main/resources/static/qUpload"); // 실제 주소
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+qfileName));
+		fos.write(mf.getBytes());
+		fos.close();
+		int fileSize = (int)mf.getSize();
+		// 게시글 생성
+		int number = qs.getMaxNum(); // 게시글 번호 생성
+		if (question.getQNo() != 0) {  // 답변글
+			qs.updateStep(question);
+			question.setQRe_level(question.getQRe_level()+1);
+			question.setQRe_step(question.getQRe_step() + 1);
+		} else question.setQRef(number); 
+		question.setQNo(number);		
+		
+		int result = qs.insert(question); 
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);		
+		model.addAttribute("qfileName", qfileName);
+		model.addAttribute("fileSize", fileSize);
+		model.addAttribute("question", question);
+		
+		System.out.println("qfileName : "+ qfileName );
+		return "/question/questionInsert";
 	}
 }

@@ -32,4 +32,14 @@
 	<select id="select" parameterType="integer" resultType="question">
 		select * from question where qNo=#{qNo}	
 	</select>
+	<select id="getMaxNum" resultType="integer">
+		select nvl(max(qNo),0) + 1 from question 
+	</select>
+	<update id="updateStep" parameterType="question">
+		update question set qRe_step=qRe_step+1 where qRef=#{qRef} and qRe_step > #{qRe_step}
+	</update>
+	<select id="insert" parameterType="question">
+		insert into question values(#{qNo},#{id},#{qTitle},#{qContent}, sysdate,
+					#{qRef},#{qRe_level},#{qRe_step},#{qfileName},'n')
+	</select>
 </mapper>
