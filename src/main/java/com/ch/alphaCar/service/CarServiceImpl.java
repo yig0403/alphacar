@@ -42,8 +42,4 @@ public class CarServiceImpl implements CarService {
 	}
 
 
-	public List<Car> carListRank(Car car) {
-		return cd.carListRank(car);
-	}
-
 }

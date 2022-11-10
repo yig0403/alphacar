@@ -22,7 +22,9 @@
 				    carName like '%'||#{keyword}||'%' or
 				    carKind like '%'||#{keyword}||'%' or
 				    carRank like '%'||#{keyword}||'%' or
-				    carRegion like '%'||#{keyword}||'%' 
+				    carRegion like '%'||#{keyword}||'%' or 
+				    carYear like '%'||#{keyword}||'%' or 
+				    fee like '%'||#{keyword}||'%'  
 				    )
 				</if>				
 			</where>
@@ -42,25 +44,13 @@
 				    carName like '%'||#{keyword}||'%' or
 				    carKind like '%'||#{keyword}||'%' or
 				    carRank like '%'||#{keyword}||'%' or
-				    carRegion like '%'||#{keyword}||'%' 
+				    carRegion like '%'||#{keyword}||'%' or 
+				    carYear like '%'||#{keyword}||'%' or 
+				    fee like '%'||#{keyword}||'%'  
 				    )
 				</if>				
 			</where>
 			order by carYear,carNo)a)
-				where rn between #{startRow} and #{endRow}
-	</select>
-	
-	<select id="carListRank" parameterType="car"  resultType="car">
-		<!-- select * from board2 order by num desc -->
-		select * from (select a.*, rowNum rn from (
-			select * from car 
-			<where>
-				del='n' 
-				<if test="keyword != null and keyword != ''">
-				and carRank like '%'||#{keyword}||'%'
-				</if> 				
-			</where>
-			order by carNo)a)
 				where rn between #{startRow} and #{endRow}
 	</select>
 	
