@@ -19,7 +19,7 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<Question> list(Question question) {
 		return qd.list(question);
 	}
-	public Question select(int qNO) {
-		return qd.select(qNO);
+	public Question select(Integer qNo) {
+		return qd.select(qNo);
 	}
 }

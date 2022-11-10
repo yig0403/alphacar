@@ -10,6 +10,6 @@ public interface QuestionService {
 
 	List<Question> list(Question question);
 
-	Question select(int qNO);
+	Question select(Integer qNo);
 
 }
