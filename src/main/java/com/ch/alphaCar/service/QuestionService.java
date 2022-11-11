@@ -12,4 +12,10 @@ public interface QuestionService {
 
 	Question select(Integer qNo);
 
+	int getMaxNum();
+
+	void updateStep(Question question);
+
+	int insert(Question question);
+
 }
