@@ -71,32 +71,29 @@ public class QuestionController {
 		return "/question/questionInsertForm";
 	}
 	@RequestMapping("questionInsert.do")
-	public String upload(@RequestParam("file") MultipartFile mf, Question question, Model model,
-			HttpSession session, Integer qNo, String pageNum ) throws IOException {
-		// 파일 업로드
-		String qfileName = mf.getOriginalFilename(); // 원래 파일명
-		String real = ("src/main/resources/static/qUpload"); // 실제 주소
-		FileOutputStream fos = new FileOutputStream(new File(real+"/"+qfileName));
-		fos.write(mf.getBytes());
+	public String upload(Question question, Model model, HttpSession session, String pageNum ) throws IOException {
+		// 사진 포함 입력
+		Integer result = 0;
+		String fileName = question.getFile().getOriginalFilename();
+		question.setQfileName(fileName);
+		String real ="src/main/resources/static/qUpload";
+		FileOutputStream fos = new FileOutputStream(new File(real+"/"+fileName));
+		fos.write(question.getFile().getBytes());
 		fos.close();
-		int fileSize = (int)mf.getSize();
 		// 게시글 생성
-		int number = qs.getMaxNum(); // 게시글 번호 생성
+		Integer number = qs.getMaxNum();
 		if (question.getQNo() != 0) {  // 답변글
+		// ref가 같고 re_step이 읽은 글의 re_step보다 크면 re_step을 1증가
 			qs.updateStep(question);
 			question.setQRe_level(question.getQRe_level()+1);
 			question.setQRe_step(question.getQRe_step() + 1);
-		} else question.setQRef(number); 
-		question.setQNo(number);		
+		} else question.setQRef(number);
 		
-		int result = qs.insert(question); 
+		result = qs.insert(question);
+		
 		model.addAttribute("result", result);
-		model.addAttribute("pageNum", pageNum);		
-		model.addAttribute("qfileName", qfileName);
-		model.addAttribute("fileSize", fileSize);
-		model.addAttribute("question", question);
+		model.addAttribute("pageNum",pageNum);	
 		
-		System.out.println("qfileName : "+ qfileName );
 		return "/question/questionInsert";
 	}
 }

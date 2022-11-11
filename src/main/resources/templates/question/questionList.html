@@ -14,18 +14,18 @@
 	<tr th:if="${#lists.size(list)}>0" th:each="question:${list}"><td>[[${question.qNo }]]</td>
 		<th colspan="4" class="warning" th:if="${question.del}=='y'">삭제된 글입니다</th>
 		<th:block th:if="${question.del}=='n'">
+			<td>[[${question.id }]]</td>
 			<td>
 				<!-- 답변글은 re_level 0보다 크고 1 level마다 10px씩 들여 쓰기 -->
-				<th:block th:if="${question.re_level} > 0">
+				<th:block th:if="${question.qRe_level} > 0">
 					<img alt="" th:src="" height="5"
-						th:width="${board.re_level * 10}">
+						th:width="${board.qRe_level * 10}">
 					<img alt="" th:src="">
 				</th:block>
-				<a th:href="" class="btn btn-primary btn-sm">
-					[[${question.qtitle }]]</a>
-			</td>
-			<td>[[${question.id }]]</td>
-			<td>[[${question.reg_date}]]</td>
+				<a class="btn btn-primary btn-sm">
+					[[${question.qTitle }]]</a>
+			</td>			
+			<td>[[${question.regdate}]]</td>
 		</th:block></tr>
 </table>
 <div align="center">
