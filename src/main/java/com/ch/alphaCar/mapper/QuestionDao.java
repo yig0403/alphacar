@@ -11,14 +11,14 @@ public interface QuestionDao {
 
 	int getTotal(Question question);
 
-	List<Question> list(Question question);
-
 	Question select(Integer qNo);
 
 	int getMaxNum();
 
 	void updateStep(Question question);
 
-	int insert(Question question);
+	Integer insert(Question question);
+
+	List<Question> list(Question question);
 
 }

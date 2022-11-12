@@ -108,6 +108,7 @@ CREATE TABLE question (
 );
 alter table question add del char(1);
 
+select*from question;
 CREATE TABLE questionreply (
 	qrNo	NUMBER	NOT NULL,
 	qNo	NUMBER	NOT NULL,

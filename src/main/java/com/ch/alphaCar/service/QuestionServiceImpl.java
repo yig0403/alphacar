@@ -16,9 +16,6 @@ public class QuestionServiceImpl implements QuestionService {
 	public int getTotal(Question question) {
 		return qd.getTotal(question);
 	}
-	public List<Question> list(Question question) {
-		return qd.list(question);
-	}
 	public Question select(Integer qNo) {
 		return qd.select(qNo);
 	}
@@ -28,7 +25,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public void updateStep(Question question) {
 		qd.updateStep(question);
 	}
-	public int insert(Question question) {
+	public Integer insert(Question question) {
 		return qd.insert(question);
+	}
+	public List<Question> list(Question question) {
+		return qd.list(question);
 	}
 }

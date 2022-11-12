@@ -11,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
+import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.dto.Member;
 import com.ch.alphaCar.dto.Question;
 import com.ch.alphaCar.service.MemberService;
@@ -29,20 +28,19 @@ public class QuestionController {
 	
 	@RequestMapping("questionList.do")
 	private String questionList(Question question, String pageNum, Model model) {
-		int rowPerPage = 10; // 한 페이지에 보여줄 갯수
+		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
-		int total = qs.getTotal(question);
+		int total = qs.getTotal(question);		
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
 		int num = total - startRow + 1;
-		
 		question.setStartRow(startRow);
 		question.setEndRow(endRow);
 		List<Question> list = qs.list(question);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		
-		model.addAttribute("question", question);
+	
+		model.addAttribute("question",question);
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
@@ -88,6 +86,7 @@ public class QuestionController {
 			question.setQRe_level(question.getQRe_level()+1);
 			question.setQRe_step(question.getQRe_step() + 1);
 		} else question.setQRef(number);
+		question.setQNo(number);
 		
 		result = qs.insert(question);
 		
@@ -95,5 +94,11 @@ public class QuestionController {
 		model.addAttribute("pageNum",pageNum);	
 		
 		return "/question/questionInsert";
+	}
+	@RequestMapping("questionSelect.do")
+	private String questionSelect() {
+		
+		
+		return "/question/questionSelect";
 	}
 }
