@@ -36,7 +36,7 @@
                 <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="carUpload/cal.png" alt=""></span>
                   <h3 class="u-text u-text-2">언제?</h3>
                   <div class="u-form u-gradient u-form-1">
-                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form"  name="form-4" style="padding: 10px;">
+                    <form th:action="@{reservationList.do}" style="padding: 10px;">
                       <div class="u-form-date u-form-group u-form-group-1">
                         <label for="startDate" class="u-label u-label-1">대여 날짜</label>
                         <input type="date" placeholder="MM/DD/YYYY" id="startDate" name="startDate" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
@@ -59,7 +59,7 @@
 </g></svg></span>
                   <h3 class="u-text u-text-3">어디서?</h3>
                   <div class="u-form u-gradient u-form-2">
-                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form" style="padding: 10px;">
+                   <form th:action="@{reservationList.do}" style="padding: 10px;">
                       <div class="u-form-group u-form-select u-label-top u-form-group-4">
                         <label for="carRegion" class="u-label u-label-3">수도권</label>
                         <div class="u-form-select-wrapper">
