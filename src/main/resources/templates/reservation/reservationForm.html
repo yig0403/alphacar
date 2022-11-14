@@ -27,9 +27,9 @@
 	   <h2 class="text-primary">예약하기</h2>
           <form action="reservation.do" method="post" name="frm">
            
-          <div>
+          <div class="u-form-group u-label-left u-form-group-1">
 	         <label for="text">이름</label>
-	         <input type ="text" name="name" id="name">
+	         <input type ="text" name="name" th:value="${member.name}">
 	      </div>  
          
           <div class="u-form-group u-label-left u-form-group-1">
@@ -39,42 +39,42 @@
         
           <div class="u-form-group u-label-left u-form-group-1">
 	         <label for="carRank">차량 등급</label>
-	         <input type="text" name="carRank" required="required" th:value="${car.carRank }">
+	         <input type="text" name="carRank" th:value="${car.carRank }">
           </div>
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="carKind">제조사</label>
-	          <input type="text" name="carKind" required="required" th:value="${car.carKind }">
+	          <input type="text" name="carKind" th:value="${car.carKind }">
           </div>
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="carType">연료</label>
-	          <input type="text" name="carType" required="required" th:value="${car.carType }">
+	          <input type="text" name="carType" th:value="${car.carType }">
           </div>
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="carYear">연식</label>
-	          <input type="text" name="carYear" required="required" th:value="${car.carYear }">
+	          <input type="text" name="carYear" th:value="${car.carYear }">
           </div>
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="carRegion">대여 장소</label>
-	          <input type="text" name="carRegion" required="required" th:value="${car.carRegion }">
+	          <input type="text" name="carRegion" th:value="${car.carRegion }">
           </div>
           
           <div class="u-form-group u-label-left u-form-group-1">
               <label for="startDate">대여 날짜</label>
-	          <input type="date" name="startDate" required="required" th:value="${reservation.startDate }">
+	          <input type="date" name="startDate" th:value="${reservation.startDate }">
           </div>
           
            <div class="u-form-group u-label-left u-form-group-1">
               <label for="endDate">반납 날짜</label>
-	          <input type="date" name="endDate" required="required" th:value="${reservation.endDate }">
+	          <input type="date" name="endDate" th:value="${reservation.endDate }">
           </div>
           
            <div class="u-form-group u-label-left u-form-group-1">
-              <label for="fee">요금</label>
-	          <input type="number" name="fee" required="required" th:value="${reservation.amount}">
+              <label for="amount">요금</label>
+	          <input type="number" name="fee" th:value="${reservation.amount}">
           </div>
           
           <div>

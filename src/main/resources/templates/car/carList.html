@@ -162,7 +162,7 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{reservationSearch.do}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
                               </div>
                          </div>
                       </div>

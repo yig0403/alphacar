@@ -14,6 +14,10 @@ public interface ReservationService {
 
 	int delete(int rsNo);
 
+	int insert(Reservation reservation);
+
+	int getMaxNum();
+
 
 
 }

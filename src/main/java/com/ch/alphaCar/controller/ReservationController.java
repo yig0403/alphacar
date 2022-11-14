@@ -1,5 +1,8 @@
 package com.ch.alphaCar.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -86,6 +89,47 @@ public class ReservationController {
 		return "/reservation/reservationCancelForm";
 	}
 	
+	@RequestMapping("reservationInsertForm.do")
+	public String carInsertForm() {
+		return "/reservation/reservationInsertForm";
+	}
+	
+
+	@RequestMapping("reservation.do")
+	public String carInsert(String pageNum, Model model, HttpSession session, Reservation reservation) throws IOException {
+		int result = 0;
+		int getMaxNum=rs.getMaxNum();
+		reservation.setRsNo(getMaxNum);
+System.out.println(reservation.getRsNo());
+		Reservation reservation2 = rs.select(reservation.getRsNo());
+		String id = (String) session.getAttribute("id");
+		reservation.setId(id);
+		if (reservation2 == null) {
+			result = rs.insert(reservation);
+		} else result = -1;  // 이미 있으니 입력하지마
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum", pageNum);
+		return "/reservation/reservation";
+	}
+
+	@RequestMapping("reservationDelete.do")
+	public String reservationDelete(Reservation reservation,String pageNum ,Model model) {
+		int result = 0;
+		Reservation reservation2 = rs.select(reservation.getRsNo());
+		if( reservation2 != null) {
+		result = rs.delete(reservation.getRsNo());
+		}else result = -1;
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum,", pageNum);
+		return "/reservation/reservationDelete";
+	}
+	
+	@RequestMapping("reservationDeleteForm.do")
+	public String reservationDeleteForm(int rsNo, String pageNum,  Model model) {
+		model.addAttribute("rsNo", rsNo);
+		model.addAttribute("pageNum", pageNum);
+		return "/reservation/reservationDeleteForm";
+	}
 
 }
 
