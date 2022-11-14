@@ -354,5 +354,3 @@ ALTER TABLE ways ADD CONSTRAINT FK_member_TO_ways_1 FOREIGN KEY (
 REFERENCES member (
 	id
 );
-
-

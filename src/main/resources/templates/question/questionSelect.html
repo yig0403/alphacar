@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* 	$(function() {
+		$('#queDisp').load("questionList.do", "pageNum=[[${pageNum}]]");
+	}); */
+		
+	function del(qNo) {
+		var cf = confirm("정말로 삭제 하시겠습니까?");
+		if (cf) location.href="questionDelete.do?qNo="+qNo;
+		else alert("삭제가 취소 되었습니다");
+	}
+</script>
+</head>
+<body>
+	<div class="container" align="center">
+		<h3>문의사항 상세</h3>
+			<table class="table table-striped">
+				<tr><th>문의번호</th><td>[[${question.qNo }]]</td></tr>
+				<tr><th>작성자</th><td>[[${question.id }]]</td></tr>
+				<tr><th>작성일</th><td>[[${question.regdate }]]</td></tr>
+				<tr><th>문의내용</th><td>[[${question.qContent }]]</td></tr>				
+				<tr th:if="${question.qfileName} != null "><th>사진</th><td>
+					<img alt="" th:src="@{/qUpload/}+${question.qfileName}" width="200"></td></tr>
+				<tr th:if="${member.id}=='admin'">
+					<td colspan="2">
+						<a th:href="@{questionInsertForm.do(qNo=${question.qNo }, pageNum=${pageNum })}">답변</a>
+						<a th:onclick="del([[${question.qNo}]])">삭제</a>
+						<a th:href="@{questionUpdateForm.do(qNo=${question.qNo }, pageNum=${pageNum })}">수정</a>
+					</td>
+				</tr>
+			</table>
+		<div id="queDisp"></div>
+	</div>
+</body>
+</html>

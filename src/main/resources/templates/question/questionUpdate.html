@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<span th:if="${result} != 0">
+<span th:if="${result} > 0">
 	<script type="text/javascript">
-		alert("작성되었습니다");
+		alert("수정 되었습니다");
 		location.href="questionList.do?pageNum=[[${pageNum}]]";
 	</script>
 </span>
-<span th:if="${result} == 0 ">
+<span th:if="${result} == 0">
 	<script type="text/javascript">
-		alert("작성 실패");
+		alert("수정 실패");
 		history.back();
 	</script>
 </span>

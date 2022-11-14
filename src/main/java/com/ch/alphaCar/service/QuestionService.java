@@ -18,6 +18,10 @@ public interface QuestionService {
 
 	List<Question> list(Question question);
 
+	int delete(Integer qNo);
+
+	int update(Question question);
+
 
 
 }
