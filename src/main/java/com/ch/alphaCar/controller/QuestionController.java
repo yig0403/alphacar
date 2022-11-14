@@ -95,10 +95,10 @@ public class QuestionController {
 		
 		return "/question/questionInsert";
 	}
-	@RequestMapping("questionSelect.do")
-	private String questionSelect() {
-		
-		
-		return "/question/questionSelect";
-	}
+	/*
+	 * @RequestMapping("questionSelect.do") private String questionSelect(int) {
+	 * 
+	 * 
+	 * return "/question/questionSelect"; }
+	 */
 }
