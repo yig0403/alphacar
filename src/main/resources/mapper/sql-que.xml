@@ -27,7 +27,7 @@
 	<select id="list" parameterType="question" resultType="question">
 		select * from (select a.*, rowNum rn from (
 			select * from question order by qRef desc, qRe_step, qNo)a)
-				where rn between #{startRow} and #{endRow}
+				where rn between #{startRow} and #{endRow} and del='n'
 	</select>
 	<select id="select" parameterType="integer" resultType="question">
 		select * from question where qNo=#{qNo}	
@@ -49,4 +49,10 @@
 			</if>	
 			'n')
 	</select>
+	<update id="delete" parameterType="integer">
+		update question set del='y' where qNo=#{qNo}
+	</update>
+	<update id="update" parameterType="question">
+		update question set qTitle=#{qTitle}, qContent=#{qContent} where qNo=#{qNo}
+	</update>
 </mapper>

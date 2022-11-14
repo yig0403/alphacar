@@ -31,4 +31,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public List<Question> list(Question question) {
 		return qd.list(question);
 	}
+	public int delete(Integer qNo) {
+		return qd.delete(qNo);
+	}
+	public int update(Question question) {
+		return qd.update(question);
+	}
 }

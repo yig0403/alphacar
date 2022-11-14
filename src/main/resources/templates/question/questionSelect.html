@@ -9,12 +9,12 @@
 /* 	$(function() {
 		$('#queDisp').load("questionList.do", "pageNum=[[${pageNum}]]");
 	}); */
-	window.onload = function() {
-		if(member.id != question.id )
-			alert("작성자만 확인 가능합니다");
-			return "quetionList.do"
-	};
-	
+		
+	function del(qNo) {
+		var cf = confirm("정말로 삭제 하시겠습니까?");
+		if (cf) location.href="questionDelete.do?qNo="+qNo;
+		else alert("삭제가 취소 되었습니다");
+	}
 </script>
 </head>
 <body>
@@ -27,6 +27,13 @@
 				<tr><th>문의내용</th><td>[[${question.qContent }]]</td></tr>				
 				<tr th:if="${question.qfileName} != null "><th>사진</th><td>
 					<img alt="" th:src="@{/qUpload/}+${question.qfileName}" width="200"></td></tr>
+				<tr th:if="${member.id}=='admin'">
+					<td colspan="2">
+						<a th:href="@{questionInsertForm.do(qNo=${question.qNo }, pageNum=${pageNum })}">답변</a>
+						<a th:onclick="del([[${question.qNo}]])">삭제</a>
+						<a th:href="@{questionUpdateForm.do(qNo=${question.qNo }, pageNum=${pageNum })}">수정</a>
+					</td>
+				</tr>
 			</table>
 		<div id="queDisp"></div>
 	</div>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function idChk(qNo, pageNum) {
-		if ([[${question.id == member.id or member.id =='admin'} ]]) {
+		if ([[${question.id == member.id || member.id =='admin'} ]]) {
 			location.href = "questionSelect.do?qNo="+qNo + "&pageNum=" + pageNum;
 		}
 		else 
@@ -21,19 +21,26 @@
 		<table class="table table-striped">
 			<tr class="danger">
 				<th>문의번호</th>
-				<th>작성자</th>
 				<th>제목</th>
+				<th>작성자</th>
 				<th>작성일</th>
 			</tr>
 			<tr class="warning" th:if="${#lists.size(list)}==0">
-				<td colspan="5">문의내역이 없습니다</td>
+				<td colspan="4">문의내역이 없습니다</td>
 			</tr>
-			<tr th:if="${#lists.size(list)}>0" th:each="que:${list}">
-				<td>[[${que.qNo }]]</td>
-				<td>[[${que.id}]]</td>
-				<td><button th:onclick="'idChk('+${que.qNo}+','+${pb.currentPage}+')'">[[${que.qTitle}]]</button></td>
-				<td>[[${que.regdate}]]</td>
-			</tr>
+			<tr th:if="${#lists.size(list)}>0" th:each="que:${list}"><td>[[${que.qNo }]]</td>
+				<th:block>
+					<td>
+					<th:block th:if="${question.qRe_level} > 0">
+						<img alt="" th:src="@{/static/images/level.gif}" height="5"
+							th:width="${question.qRe_level * 10}">
+						<img alt="" th:src="@{/static/images/re.gif}">
+					</th:block>
+					<button class="btn btn-warning" th:onclick="'idChk('+${que.qNo}+','+${pb.currentPage}+')'">[[${que.qTitle}]]</button>					
+					</td>
+					<td>[[${que.id}]]</td>					
+					<td>[[${que.regdate}]]</td>
+				</th:block></tr>
 		</table>
 		<div align="center">
 			<ul class="pagination">

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ch.alphaCar.dto.Member;
+import com.ch.alphaCar.dto.Notice;
 import com.ch.alphaCar.dto.Question;
 import com.ch.alphaCar.service.MemberService;
 import com.ch.alphaCar.service.PagingBean;
@@ -108,7 +109,7 @@ public class QuestionController {
 	
 	@RequestMapping("questionSelect.do")
 	private String questionSelect(Integer qNo, Model model, String pageNum, HttpSession session) {		
-		String id = (String) session.getAttribute("id");
+		String id = (String)session.getAttribute("id");
 		if (id != null || !id.equals("")) {
 			Member member = ms.select(id);
 			model.addAttribute("member", member);
@@ -118,6 +119,28 @@ public class QuestionController {
 		model.addAttribute("pageNum", pageNum);
 	 
 		return "/question/questionSelect"; 
+	}
+	@RequestMapping("questionDelete.do")
+	private String questionDelete(Model model, Integer qNo) {
+		Question question = qs.select(qNo);
+		int result = qs.delete(qNo);
+		model.addAttribute("result", result);
+		model.addAttribute("question", question);
+		return "/question/questionDelete";
+	}
+	@RequestMapping("questionUpdateForm.do")
+	private String questionUpdateForm(Integer qNo, String pageNum, Model model) {
+		Question question = qs.select(qNo);		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("question", question);
+		return "/question/questionUpdateForm";
+	}
+	@RequestMapping("questionUpdate.do")
+	private String questionUpdate(Question question, String pageNum, Model model) {
+		int result = qs.update(question);
+		model.addAttribute("result",result);
+		model.addAttribute("pageNum",pageNum);		
+		return "/question/questionUpdate";
 	}
 	
 }
