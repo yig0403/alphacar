@@ -5,44 +5,56 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head><body>
-<div class="container" align="center">
-	<h2 class="primary">문의 내역</h2>
-<table class="table table-striped">
-	<tr class="danger"><th>문의번호</th><th>작성자</th><th>제목</th><th>작성일</th></tr>
-	<tr class="warning" th:if="${#lists.size(list)}==0"><td colspan="5">문의내역이 없습니다</td></tr>
-	<tr th:if="${#lists.size(list)}>0" th:each="que:${list}">
-		<td>[[${que.qNo }]]</td>
-		<td>[[${que.id}]]</td>
-		<td><a th:href="@{questionSelect.do(qNo=${que.qNo})}">[[${que.qTitle }]]</a></td>
-		<td>[[${que.regdate}]]</td>		
-	</tr>
-</table>
-<div align="center">
-	<ul class="pagination">
-		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
-			<li><a th:href="@{list.do(pageNum=1)}">
-				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
-			<li><a th:href="@{list.do(pageNum=${pb.startPage-1 })}">
-				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
-		</th:block>
-		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
-			<th:block th:if="${pb.currentPage == i }">
-				<li class="active"><a th:href="@{list.do(pageNum=${i})}">[[${i}]]</a></li>
-			</th:block>
-			<th:block th:if="${pb.currentPage != i }">
-				<li><a th:href="@{list.do(pageNum=${i})}">[[${i}]]</a></li>
-			</th:block>		
-		</th:block>
-		<th:block th:if="${pb.endPage < pb.totalPage}">
-			<li><a th:href="@{list.do(pageNum=${pb.endPage+1})}">
-				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
-			<li><a th:href="@{list.do(pageNum=${pb.totalPage})}">
-				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
-		</th:block>		
-	</ul>
-</div>
-<a href="questionInsertForm.do?qNo=0&pageNum=1" class="btn btn-warning">문의하기</a>
-</div>
+</head>
+<body>
+	<div class="container" align="center">
+		<h2 class="primary">문의 내역</h2>
+		<table class="table table-striped">
+			<tr class="danger">
+				<th>문의번호</th>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>작성일</th>
+			</tr>
+			<tr class="warning" th:if="${#lists.size(list)}==0">
+				<td colspan="5">문의내역이 없습니다</td>
+			</tr>
+			<tr th:if="${#lists.size(list)}>0" th:each="que:${list}">
+				<td>[[${que.qNo }]]</td>
+				<td>[[${que.id}]]</td>
+				<td><a th:href="@{questionSelect.do(qNo=${que.qNo})}">[[${que.qTitle}]]</a></td>
+				<td>[[${que.regdate}]]</td>
+			</tr>
+		</table>
+		<div align="center">
+			<ul class="pagination">
+				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->
+				<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+					<li><a th:href="@{questionList.do(pageNum=1)}"> <span
+							class="glyphicon glyphicon-fast-backward"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.startPage-1 })}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+					</a></li>
+				</th:block>
+				<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+					<th:block th:if="${pb.currentPage == i }">
+						<li class="active"><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+					<th:block th:if="${pb.currentPage != i }">
+						<li><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+				</th:block>
+				<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+				<th:block th:if="${pb.endPage < pb.totalPage}">
+					<li><a th:href="@{questionList.do(pageNum=${pb.endPage+1})}"> <span
+							class="glyphicon glyphicon-triangle-right"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.totalPage})}"> <span
+							class="glyphicon glyphicon-fast-forward"></span></a></li>
+				</th:block>
+			</ul>
+			<div align="center"><a href="questionInsertForm.do?qNo=0&pageNum=1"
+				class="btn btn-warning">문의하기</a></div>
+		</div>
+	</div>
 </body>
 </html>

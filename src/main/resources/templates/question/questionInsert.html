@@ -10,7 +10,7 @@
 <span th:if="${result} != 0">
 	<script type="text/javascript">
 		alert("작성되었습니다");
-		location.href="questionList.do(pageNum=${pageNum})";
+		location.href="questionList.do?pageNum=[[${pageNum}]]";
 	</script>
 </span>
 <span th:if="${result} == 0 ">
