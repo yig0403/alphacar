@@ -31,5 +31,15 @@ public class ReservationServiceImpl implements ReservationService{
 		return rd.delete(rsNo);
 	}
 
+
+	public int insert(Reservation reservation) {
+		return rd.insert(reservation);
+	}
+
+
+	public int getMaxNum() {
+		return rd.getMaxNum();
+	}
+
 	
 }

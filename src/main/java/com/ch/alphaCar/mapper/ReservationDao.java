@@ -19,4 +19,8 @@ public interface ReservationDao {
 
 	List<Reservation> listSearch(Reservation reservation);
 
+	int insert(Reservation reservation);
+
+	int getMaxNum();
+
 }

@@ -28,6 +28,8 @@ dependencies {
 	implementation 'commons-fileupload:commons-fileupload:1.4'
 	
 	implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '4.2.4.RELEASE'
+	implementation group: 'com.github.iamport', name : 'iamport-rest-client-java', version: '0.2.22'
+	
 		
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
