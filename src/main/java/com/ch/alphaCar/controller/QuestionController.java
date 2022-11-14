@@ -26,7 +26,7 @@ public class QuestionController {
 	private MemberService ms;
 
 	@RequestMapping("questionList.do")
-	private String questionList(Question question, String pageNum, Model model) {
+	private String questionList(Question question, String pageNum, Model model, HttpSession session ) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals(""))
 			pageNum = "1";
@@ -39,6 +39,12 @@ public class QuestionController {
 		question.setEndRow(endRow);
 		List<Question> list = qs.list(question);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		
+		String id = (String) session.getAttribute("id");
+		if (id != null || !id.equals("")) {
+			Member member = ms.select(id);
+			model.addAttribute("member", member);
+		}
 
 		model.addAttribute("question", question);
 		model.addAttribute("num", num);
@@ -99,10 +105,19 @@ public class QuestionController {
 
 		return "/question/questionInsert";
 	}
-	/*
-	 * @RequestMapping("questionSelect.do") private String questionSelect(int) {
-	 * 
-	 * 
-	 * return "/question/questionSelect"; }
-	 */
+	
+	@RequestMapping("questionSelect.do")
+	private String questionSelect(Integer qNo, Model model, String pageNum, HttpSession session) {		
+		String id = (String) session.getAttribute("id");
+		if (id != null || !id.equals("")) {
+			Member member = ms.select(id);
+			model.addAttribute("member", member);
+		}
+		Question question = qs.select(qNo);
+		model.addAttribute("question", question);
+		model.addAttribute("pageNum", pageNum);
+	 
+		return "/question/questionSelect"; 
+	}
+	
 }

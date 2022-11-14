@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* 	$(function() {
+		$('#queDisp').load("questionList.do", "pageNum=[[${pageNum}]]");
+	}); */
+	window.onload = function() {
+		if(member.id != question.id )
+			alert("작성자만 확인 가능합니다");
+			return "quetionList.do"
+	};
+	
+</script>
+</head>
+<body>
+	<div class="container" align="center">
+		<h3>문의사항 상세</h3>
+			<table class="table table-striped">
+				<tr><th>문의번호</th><td>[[${question.qNo }]]</td></tr>
+				<tr><th>작성자</th><td>[[${question.id }]]</td></tr>
+				<tr><th>작성일</th><td>[[${question.regdate }]]</td></tr>
+				<tr><th>문의내용</th><td>[[${question.qContent }]]</td></tr>				
+				<tr th:if="${question.qfileName} != null "><th>사진</th><td>
+					<img alt="" th:src="@{/qUpload/}+${question.qfileName}" width="200"></td></tr>
+			</table>
+		<div id="queDisp"></div>
+	</div>
+</body>
+</html>
