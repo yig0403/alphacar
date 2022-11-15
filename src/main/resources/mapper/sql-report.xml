@@ -17,4 +17,27 @@
 	<resultMap type="member" id="memberResult">
 		<result property="id" column="id"/>	
 	</resultMap>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from report
+	</select>
+	<select id="list" parameterType="report" resultMap="reportResult">
+		select * from (select a.*, rowNum rn from (
+			select * from report)a)
+				where rn between #{startRow} and #{endRow} and del='n'
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(rpNo),0) + 1 from report 
+	</select>
+	<select id="insert" parameterType="report">
+		insert into report values (#{rpNo},#{id},#{rpTitle},#{rpContent}, 0,
+					'n', regdate,
+			<if test="rpfileName!=null and rpfileName!=''">
+				#{rpfileName},
+			</if>	
+			<if test="rpfileName==null or rpfileName==''">
+				null,
+			</if>	
+			#{rType} )
+	</select>
 </mapper>

@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function idChk(index,rpNo, pageNum) {
+		id = $('#'+index).text();
+		if (id == '[[${member.id}]]' || '[[${member.id}]]' == 'admin') {
+			location.href = "reportSelect.do?rpNo="+rpNo + "&pageNum=" + pageNum;
+		}
+		else 
+			alert ("작성자나 관리자만 확인가능합니다");
+	}
+</script>
 </head>
 <body>
-
+	<div class="container" align="center">
+		<h2 class="primary">신고목록</h2>
+		<table class="table" >
+			<tr class="danger">
+				<th>신고번호</th>
+				<th>신고제목</th>
+				<th>신고자</th>
+				<th>신고일</th>
+			</tr>
+			<tr class="warning" th:if="${#lists.size(list)}==0">
+				<td colspan="4">신고내역이 없습니다</td>
+			</tr>
+			<tr th:if="${#lists.size(list)}>0" th:each="re, stat:${list}"><td>[[${re.rpNo }]]</td>
+				<td>				
+					<button class="btn btn-warning" 
+						th:onclick="'idChk('+${stat.index}+','+${re.rpNo}+','+${pb.currentPage}+')'">
+							[[${re.rpTitle}]]
+					</button>					
+				</td>
+				<td th:text="${que.id}" th:id="${stat.index}"></td>					
+				<td>[[${re.regdate}]]</td>
+			</tr>
+		</table>
+		<div align="center">
+			<ul class="pagination">
+				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->
+				<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+					<li><a th:href="@{questionList.do(pageNum=1)}"> <span
+							class="glyphicon glyphicon-fast-backward"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.startPage-1 })}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+					</a></li>
+				</th:block>
+				<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+					<th:block th:if="${pb.currentPage == i }">
+						<li class="active"><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+					<th:block th:if="${pb.currentPage != i }">
+						<li><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+				</th:block>
+				<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+				<th:block th:if="${pb.endPage < pb.totalPage}">
+					<li><a th:href="@{questionList.do(pageNum=${pb.endPage+1})}"> <span
+							class="glyphicon glyphicon-triangle-right"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.totalPage})}"> <span
+							class="glyphicon glyphicon-fast-forward"></span></a></li>
+				</th:block>
+			</ul>
+			<div align="center"><a href="reportInsertForm.do?rpNo=0&pageNum=1"
+				class="btn btn-warning">신고하기</a></div>
+		</div>
+	</div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

@@ -74,6 +74,7 @@ CREATE TABLE report (
 	regdate	DATE	NULL,
 	rpfileName	VARCHAR2(50)	NULL
 );
+alter table report add rType varchar2(20);
 
 CREATE TABLE reportreply (
 	rrNo VARCHAR2(1000) NOT NULL,	

@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<select id="getTotal" resultType="integer">
-		select count(*) from question where del='n'
+		select count(*) from question
 	</select>
 	
 	<select id="list" parameterType="question" resultMap="questionResult">

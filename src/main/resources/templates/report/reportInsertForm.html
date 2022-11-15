@@ -64,26 +64,31 @@
 </head>
 <body>
 <div class="container" align="center">
-	<h2 class="text-primary">문의 작성</h2>
-<form action="questionInsert.do" method="post" name="frm" enctype="multipart/form-data">
-	<input type="hidden" name="qNo" th:value="${qNo }">
+	<h3 class="text-primary">신고하기</h3>
+<form action="reportInsert.do" method="post" name="frm" enctype="multipart/form-data">
+	<input type="hidden" name="rpNo" th:value="${rpNo }">
 	<input type="hidden" name="pageNum" th:value="${pageNum}">
-	<input type="hidden" name="qRef" th:value="${qRef }">
-	<input type="hidden" name="qRe_level" th:value="${qRe_level}">
-	<input type="hidden" name="qRe_step" th:value="${qRe_step}">
 	<input type="hidden" name="id" th:value="${member.id}">
-<table class="table table-bordered">	
-		<tr th:if="${qNo} == 0" class="warning"><th>제목</th><td><input type="text" name="qTitle" required="required"
-			></td></tr>
-		<tr th:if="${qNo} != 0" class="warning"><th>제목</th><td><input type="text" name="qTitle" required="required"
-			value="답변) "></td></tr>
+<table class="table table-bordered">
+	<tr>
+		<th>신고유형</th>
+		<td>
+			<select th:id="rType" th:name="rType" required="required">
+				<option th:value="'차량불량'" th:text="차량불량"></option>
+				<option th:value="'회원신고'" th:text="회원신고"></option>
+				<option th:value="'스토리신고'" th:text="스토리신고"></option>
+				<option th:value="'기타'" th:text="스토리신고"></option>
+			</select>
+		</td>
+	</tr>
+	<tr><th>제목</th><td><input type="text" name="rpTitle" required="required"></td></tr>		
 	<tr><th>작성자</th><td th:text="${member.id}" ></td></tr>
-	<tr><th>내용</th><td><textarea rows="5" cols="20" name="qContent" required="required"></textarea></td></tr>
+	<tr><th>내용</th><td><textarea rows="5" cols="40" name="rpContent" required="required"></textarea></td></tr>
 	<tr><th>사진 <span class="glyphicon glyphicon-picture"></span></th>
 		<td><input type="file" name="file"></td></tr>
 	<!-- drag & drop -->
 	<tr><th>사진  <span class="glyphicon glyphicon-picture"></span></th> 
-		<td><div id="drop"><div id="thumbnails">사진은 한장만 첨부 가능합니다</div></div></td></tr>
+		<td><div id="drop"><div id="thumbnails">사진은 한장만 첨부가능합니다</div></div></td></tr>
 	<tr><td colspan="2" align="center"><input type="submit" value="작성완료" class="btn btn-primary"></td></tr>
 </table>
 </form>
