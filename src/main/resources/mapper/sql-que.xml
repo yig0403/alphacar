@@ -24,9 +24,9 @@
 		select count(*) from question where del='n'
 	</select>
 	
-	<select id="list" parameterType="question" resultType="question">
+	<select id="list" parameterType="question" resultMap="questionResult">
 		select * from (select a.*, rowNum rn from (
-			select * from question order by qRef desc, qRe_step, qNo)a)
+			select * from question order by qRef desc, qRe_step)a)
 				where rn between #{startRow} and #{endRow} and del='n'
 	</select>
 	<select id="select" parameterType="integer" resultType="question">

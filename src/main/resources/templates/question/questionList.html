@@ -33,9 +33,9 @@
 				<th:block>
 					<td>
 					<th:block th:if="${que.qRe_level} > 0">
-						<img alt="" th:src="@{/static/images/level.gif}" height="5"
+						<img alt="" th:src="@{/images/level.gif}" height="5"
 							th:width="${que.qRe_level} * 10">
-						<img alt="" th:src="@{/static/images/re.gif}">
+						<img alt="" th:src="@{/images/re.gif}">
 					</th:block>
 					<button class="btn btn-warning" th:onclick="'idChk('+${stat.index}+','+${que.qNo}+','+${pb.currentPage}+')'">[[${que.qTitle}]]</button>					
 					</td>
