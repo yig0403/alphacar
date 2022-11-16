@@ -15,13 +15,8 @@
     <script class="u-script" type="text/javascript" src="nicepage.js" defer=""></script>
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    
-    
+  
     <script type="text/javascript">
-	$(function() {
-		$('#carDisp').load("carList.do", "pageNum=[[${pageNum}]]");
-	});
-	
 	// 그림 보여주기
 	function preview(file) {
 		var reader = new FileReader();
@@ -45,6 +40,8 @@
       <div class="u-clearfix u-sheet u-sheet-1">
         <h3 class="u-text u-text-default u-text-1">예약하기</h3>
         <div class="u-container-style u-group u-shape-rectangle u-group-1">
+          <form action="reservation.do" method="post">
+          
           <div class="u-container-layout u-valign-bottom u-container-layout-1">
             <img class="u-image u-image-round u-radius-10 u-image-1" th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="322" data-image-height="198">
             <div class="u-align-right u-table u-table-responsive u-table-1">
@@ -96,11 +93,11 @@
                   </tr>
                   <tr style="height: 50px;">
                     <td>대여날짜</td>
-                    <td>[[${reservation.startDate}]]+[[${reservation.startTime}]]</td>
+                    <td>[[${reservation.startDate}]]</td>
                   </tr>
                   <tr style="height: 50px;">
                     <td>반납날짜</td>
-                    <td>[[${reservation.endDate}]]+[[${reservation.startTime}]]</td>
+                    <td>[[${reservation.endDate}]]</td>
                   </tr>
                   <tr style="height: 50px;">
                     <td>요금</td>
@@ -109,9 +106,10 @@
                 </tbody>
               </table>
             </div>
-            <a href="@{reservation.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-1">결제하시겠습니까?</a>
-            <a href="@{/car/carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">취소</a>
+            <a th:href="@{reservation.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-1">예약하시겠습니까?</a>
+            <a th:href="@{/car/carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">취소</a>
           </div>
+          </form>
         </div>
       </div>
     </section>

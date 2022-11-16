@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Car;
+import com.ch.alphaCar.dto.Member;
 import com.ch.alphaCar.service.CarService;
 import com.ch.alphaCar.service.PagingBean;
 
@@ -157,6 +158,5 @@ public class CarController {
 		model.addAttribute("pageNum", pageNum);
 		return "/car/carDeleteForm";
 	}
-
 
 }

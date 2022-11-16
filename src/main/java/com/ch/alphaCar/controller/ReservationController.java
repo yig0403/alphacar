@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Car;
+import com.ch.alphaCar.dto.Member;
 import com.ch.alphaCar.dto.Reservation;
 import com.ch.alphaCar.service.CarService;
 import com.ch.alphaCar.service.MemberService;
@@ -60,13 +61,7 @@ public class ReservationController {
 	    return "/reservation/reservationHistory";	
 	}
 	@RequestMapping("reservationView.do")
-	public String reservationView(int rsNo,String carNo,String pageNum,Model model, HttpSession session ) {
-		String id = (String)session.getAttribute("id");
-		Car car = cs.select(carNo);
-		Reservation reservation=rs.select(rsNo);
-		model.addAttribute("car",car);
-		model.addAttribute("reservation",reservation);
-		model.addAttribute("pageNum",pageNum);
+	public String reservationView(Reservation reservaiton,Model model) {
 		return "/reservation/reservationView";
 	}
 	
@@ -96,12 +91,12 @@ public class ReservationController {
 	
 
 	@RequestMapping("reservation.do")
-	public String carInsert(String pageNum, Model model, HttpSession session, Reservation reservation) throws IOException {
+	public String carInsert(String carNo, String pageNum, Model model, HttpSession session, Reservation reservation) throws IOException {
 		int result = 0;
 		int getMaxNum=rs.getMaxNum();
 		reservation.setRsNo(getMaxNum);
-System.out.println(reservation.getRsNo());
 		Reservation reservation2 = rs.select(reservation.getRsNo());
+		Car car = cs.select(carNo);
 		String id = (String) session.getAttribute("id");
 		reservation.setId(id);
 		if (reservation2 == null) {
