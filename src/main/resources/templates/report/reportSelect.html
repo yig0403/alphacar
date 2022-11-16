@@ -16,7 +16,7 @@
 		$('#rprListDisp').load('report/rprList.do?rpNo='+'[[${report.rpNo}]]');	
 		$('#rprInsert').click(function() {
 			var sendData = $('#frm1').serialize();
-			$.post('report/rprInsert', sendData, function(data) {
+			$.post('rprInsert.do?'+'[[${report.rpNo}]]', sendData, function(data) {
 				alert('댓글이 입력 되었습니다');
 				$('#rprListDisp').html(data);
 			});

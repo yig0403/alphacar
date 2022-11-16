@@ -21,5 +21,12 @@
 		<result property="rpNo" column="rpNo"/>	
 	</resultMap>
 	
+	<insert id="insert" parameterType="rpr">
+		<selectKey keyProperty="rrNo" order="BEFORE" resultType="integer">
+			select nvl(max(rrNo),0) + 1 rrNo from reportreply
+		</selectKey>
+		insert into reportreply values(#{rrNo},#{rpNo},${id},#{rprContent},
+			sysdate,'n')
+	</insert>
 	
 </mapper>
