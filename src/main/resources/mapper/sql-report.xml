@@ -23,7 +23,7 @@
 	</select>
 	<select id="list" parameterType="report" resultMap="reportResult">
 		select * from (select a.*, rowNum rn from (
-			select * from report)a)
+			select * from report order by rpNo desc)a)
 				where rn between #{startRow} and #{endRow} and del='n'
 	</select>
 	<select id="getMaxNum" resultType="int">
@@ -31,7 +31,7 @@
 	</select>
 	<select id="insert" parameterType="report">
 		insert into report values (#{rpNo},#{id},#{rpTitle},#{rpContent}, 0,
-					'n', regdate,
+					'n', sysdate,
 			<if test="rpfileName!=null and rpfileName!=''">
 				#{rpfileName},
 			</if>	

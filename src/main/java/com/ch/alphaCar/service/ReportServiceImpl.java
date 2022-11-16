@@ -22,7 +22,7 @@ public class ReportServiceImpl implements ReportService {
 	public int getMaxNum() {
 		return rd.getMaxNum();
 	}
-	public int insert(Report report) {
+	public Integer insert(Report report) {
 		return rd.insert(report);
 	}
 }

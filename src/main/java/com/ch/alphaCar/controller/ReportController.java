@@ -67,7 +67,7 @@ public class ReportController {
 	@RequestMapping("reportInsert.do")
 	private String reportInsert(Report report, Model model, String pageNum, HttpSession session) throws IOException {
 				// 사진 포함 입력
-				int result = 0;
+				Integer result = 0;
 				String fileName = report.getFile().getOriginalFilename();
 				if (fileName != null && !fileName.equals("")) {
 					report.setRpfileName(fileName);

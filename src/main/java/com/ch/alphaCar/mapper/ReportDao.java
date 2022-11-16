@@ -15,6 +15,6 @@ public interface ReportDao {
 
 	int getMaxNum();
 
-	int insert(Report report);
+	Integer insert(Report report);
 	
 }
