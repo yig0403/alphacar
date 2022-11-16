@@ -16,5 +16,13 @@ public interface ReportDao {
 	int getMaxNum();
 
 	Integer insert(Report report);
+
+	Report select(Integer rpNo);
+
+	int delete(Integer rpNo);
+
+	int update(Report report);
+
+	void updaterpRead(Integer rpNo);
 	
 }

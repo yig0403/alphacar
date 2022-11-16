@@ -69,7 +69,7 @@ CREATE TABLE report (
 	id	VARCHAR2(20)	NOT NULL,
 	rpTitle	VARCHAR2(100)	NULL,
 	rpContent	VARCHAR2(1000)	NULL,
-	rpRead	CHAR(1)	NULL,
+	rpRead	NUMBER	NULL,
 	del	CHAR(1)	NULL,
 	regdate	DATE	NULL,
 	rpfileName	VARCHAR2(50)	NULL

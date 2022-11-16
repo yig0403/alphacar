@@ -40,4 +40,16 @@
 			</if>	
 			#{rType} )
 	</select>
+	<select id="select" parameterType="integer" resultType="report">
+		select * from report where rpNo=#{rpNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update report set del='y' where rpNo=#{rpNo}
+	</update>
+	<update id="update" parameterType="report">
+		update report set rpTitle=#{rpTitle}, rpContent=#{rpContent} where rpNo=#{rpNo}
+	</update>
+	<update id="updaterpRead" parameterType="integer">
+		update report set rpRead = rpRead + 1 where rpNo=#{rpNo}
+	</update>
 </mapper>

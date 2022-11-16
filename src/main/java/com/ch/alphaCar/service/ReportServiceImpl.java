@@ -25,4 +25,16 @@ public class ReportServiceImpl implements ReportService {
 	public Integer insert(Report report) {
 		return rd.insert(report);
 	}
+	public Report select(Integer rpNo) {
+		return rd.select(rpNo);
+	}
+	public int delete(Integer rpNo) {
+		return rd.delete(rpNo);
+	}
+	public int update(Report report) {
+		return rd.update(report);
+	}
+	public void updaterpRead(Integer rpNo) {
+		rd. updaterpRead(rpNo);
+	}
 }

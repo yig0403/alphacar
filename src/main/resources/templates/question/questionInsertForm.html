@@ -72,13 +72,13 @@
 	<input type="hidden" name="qRe_level" th:value="${qRe_level}">
 	<input type="hidden" name="qRe_step" th:value="${qRe_step}">
 	<input type="hidden" name="id" th:value="${member.id}">
-<table class="table table-bordered">	
+<table class="table table-striped table-dark">	
 		<tr th:if="${qNo} == 0" class="warning"><th>제목</th><td><input type="text" name="qTitle" required="required"
 			></td></tr>
 		<tr th:if="${qNo} != 0" class="warning"><th>제목</th><td><input type="text" name="qTitle" required="required"
 			value="답변) "></td></tr>
 	<tr><th>작성자</th><td th:text="${member.id}" ></td></tr>
-	<tr><th>내용</th><td><textarea rows="5" cols="20" name="qContent" required="required"></textarea></td></tr>
+	<tr><th>내용</th><td><textarea rows="5" cols="40" name="qContent" required="required"></textarea></td></tr>
 	<tr><th>사진 <span class="glyphicon glyphicon-picture"></span></th>
 		<td><input type="file" name="file"></td></tr>
 	<!-- drag & drop -->

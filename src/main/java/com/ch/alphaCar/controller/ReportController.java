@@ -86,5 +86,40 @@ public class ReportController {
 		
 		return "/report/reportInsert";
 	}
+	@RequestMapping("reportSelect.do")
+	private String reportSelect(Integer rpNo, Model model, String pageNum, HttpSession session) {
+		String id = (String)session.getAttribute("id");
+		if (id != null || !id.equals("")) {
+			Member member = ms.select(id);
+			model.addAttribute("member", member);
+		}
+		rs.updaterpRead(rpNo);
+		Report report = rs.select(rpNo);		
+		model.addAttribute("report", report);
+		model.addAttribute("pageNum", pageNum);
+		return "/report/reportSelect";
+	}
+	@RequestMapping("reportDelete.do")
+	private String reportDelete(Model model, Integer rpNo) {
+		Report report = rs.select(rpNo);
+		int result = rs.delete(rpNo);
+		model.addAttribute("result", result);
+		model.addAttribute("report", report);
+		return "/report/reportDelete";
+	}
+	@RequestMapping("reportUpdateForm.do")
+	private String reportUpdateForm(Integer rpNo, String pageNum, Model model) {
+		Report report = rs.select(rpNo);		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("report", report);
+		return "/report/reportUpdateForm";
+	}
+	@RequestMapping("reportUpdate.do")
+	private String reportUpdate(Report report, String pageNum, Model model) {
+		int result = rs.update(report);
+		model.addAttribute("result",result);
+		model.addAttribute("pageNum",pageNum);		
+		return "/report/reportUpdate";
+	}
 	
 }

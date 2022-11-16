@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function del(rpNo) {
+		var cf = confirm("정말로 삭제 하시겠습니까?");
+		if (cf) location.href="reportDelete.do?rpNo="+rpNo;
+		else alert("삭제가 취소 되었습니다");
+	}
+	
+	$(function() {
+		$('#rprListDisp').load('report/rprList.do?rpNo='+'[[${report.rpNo}]]');	
+		$('#rprInsert').click(function() {
+			var sendData = $('#frm1').serialize();
+			$.post('report/rprInsert', sendData, function(data) {
+				alert('댓글이 입력 되었습니다');
+				$('#rprListDisp').html(data);
+			});
+		});
+	});
+</script>
 </head>
 <body>
-
+	<div class="container" align="center">
+		<h3 class="text-primary">신고내용</h3>
+			<table class="table table-dark">
+				<tr><th>신고번호</th><td>[[${report.rpNo }]]</td></tr>
+				<tr><th>작성자</th><td>[[${report.id }]]</td></tr>
+				<tr><th>신고일</th><td>[[${report.regdate }]]</td></tr>
+				<tr><th>조회수</th><td>[[${report.rpRead }]]</td></tr>
+				<tr><th>신고내용</th><td>[[${report.rpContent }]]</td></tr>				
+				<tr th:if="${report.rpfileName} != null "><th>사진</th><td>
+					<img alt="" th:src="@{/rUpload/}+${report.rpfileName}" width="200"></td></tr>
+				<tr th:if="${member.id}=='admin' or ${member.id}==${report.id}">
+					<td colspan="2">
+						<a th:onclick="del([[${report.rpNo}]])">삭제</a>
+						<a th:href="@{reportUpdateForm.do(rpNo=${report.rpNo }, pageNum=${pageNum })}">수정</a>
+					</td>
+				</tr>
+			</table>			
+		<h5 class="text-primary">comment</h5>
+			<form action="" name="frm1" id="frm1">
+				<input type="hidden" name="rpNo" th:value="${report.rpNo}">
+					<table>
+						<tr><th>작성자</th><td type="text" name="id" th:text="${report.id }"></td>
+						<th>댓글</th><td><textarea rows="3" cols="40" name="rprContent"></textarea></td>
+						<td><input type="button" value="댓글 입력" id="rprInsert" class="btn btn-sm btn-dark"></td></tr>
+					</table>			
+				</form>
+			<div id="rprListDisp"></div>
+		<div id="rpDisp"></div>
+	</div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

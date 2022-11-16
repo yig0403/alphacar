@@ -19,8 +19,8 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h3>문의사항 상세</h3>
-			<table class="table table-striped">
+		<h3 class="text-info">문의사항 상세</h3>
+			<table class="table table table-striped table-dark">
 				<tr><th>문의번호</th><td>[[${question.qNo }]]</td></tr>
 				<tr><th>작성자</th><td>[[${question.id }]]</td></tr>
 				<tr><th>작성일</th><td>[[${question.regdate }]]</td></tr>
@@ -38,4 +38,5 @@
 		<div id="queDisp"></div>
 	</div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

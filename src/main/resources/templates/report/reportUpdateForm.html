@@ -9,32 +9,32 @@
 <body>
 	<div class="container" align="center">
 		<h2>답변 수정</h2>
-		<form action="questionUpdate.do" method="post">
-			<input type="hidden" name="qNo" th:value="${question.qNo }">
-			<input type="hidden" name="id" th:value="${question.id }"> <input
+		<form action="reportUpdate.do" method="post">
+			<input type="hidden" name="rpNo" th:value="${report.rpNo }"> <input
+				type="hidden" name="id" th:value="${report.id }"> <input
 				type="hidden" name="pageNum" th:value="${pageNum }">
 			<table class="table table-hover">
 				<tr>
-					<th>문의번호</th>
-					<td>[[${question.qNo }]]
+					<th>신고번호</th>
+					<td>[[${report.rpNo }]]
 				</tr>
 				<tr>
-					<th>문의번호</th>
-					<td>[[${question.id }]]
+					<th>신고자</th>
+					<td>[[${report.id }]]
 				</tr>
 				<tr>
 					<th>작성일</th>
-					<td>[[${question.regdate }]]
+					<td>[[${report.regdate }]]
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="qTitle" required="required"
-						th:value="${question.qTitle }"></td>
+					<td><input type="text" name="rpTitle" required="required"
+						th:value="${report.rpTitle }"></td>
 				</tr>
 				<tr>
-					<th>문의내용</th>
-					<td><textarea rows="5" cols="40" name="qContent"
-							required="required" th:value="${question.qContent }">
+					<th>신고내용</th>
+					<td><textarea rows="5" cols="40" name="rpContent"
+							required="required" th:value="${report.rpContent }">
 							</textarea></td>
 				</tr>
 				<tr>
@@ -42,7 +42,7 @@
 						class="btn btn-dark"></td>
 				</tr>
 			</table>
-			<a th:href="@{questionList.do(pageNum=${pageNum})}"
+			<a th:href="@{reportList.do(pageNum=${pageNum})}"
 				class="btn btn-dark">목록</a>
 		</form>
 	</div>

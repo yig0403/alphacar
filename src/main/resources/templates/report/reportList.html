@@ -18,25 +18,27 @@
 </head>
 <body>
 	<div class="container" align="center">
-		<h2 class="primary">신고목록</h2>
+		<h3 class="primary">신고목록</h3>
 		<table class="table" >
-			<tr class="danger">
+			<tr class="Dark">
 				<th>신고번호</th>
 				<th>신고제목</th>
 				<th>신고자</th>
+				<th>조회수</th>
 				<th>신고일</th>
 			</tr>
 			<tr class="warning" th:if="${#lists.size(list)}==0">
-				<td colspan="4">신고내역이 없습니다</td>
+				<td colspan="5">신고내역이 없습니다</td>
 			</tr>
 			<tr th:if="${#lists.size(list)}>0" th:each="re, stat:${list}"><td>[[${re.rpNo }]]</td>
 				<td>				
-					<button class="btn btn-warning" 
+					<button class="btn btn-Link" 
 						th:onclick="'idChk('+${stat.index}+','+${re.rpNo}+','+${pb.currentPage}+')'">
 							[[${re.rpTitle}]]
 					</button>					
 				</td>
-				<td th:text="${re.id}" th:id="${stat.index}"></td>					
+				<td th:text="${re.id}" th:id="${stat.index}"></td>
+				<td>[[${re.rpRead}]]</td>								
 				<td>[[${re.regdate}]]</td>
 			</tr>
 		</table>

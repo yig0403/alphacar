@@ -14,7 +14,7 @@ public class Report {
 	private String id;
 	private String rpTitle;
 	private String rpContent;
-	private String rpRead;
+	private int rpRead;
 	private String del;
 	private Date regdate;
 	private String rpfileName;
