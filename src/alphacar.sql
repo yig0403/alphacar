@@ -69,16 +69,18 @@ CREATE TABLE report (
 	id	VARCHAR2(20)	NOT NULL,
 	rpTitle	VARCHAR2(100)	NULL,
 	rpContent	VARCHAR2(1000)	NULL,
-	rpRead	CHAR(1)	NULL,
+	rpRead	NUMBER	NULL,
 	del	CHAR(1)	NULL,
 	regdate	DATE	NULL,
 	rpfileName	VARCHAR2(50)	NULL
 );
+alter table report add rType varchar2(20);
 
 CREATE TABLE reportreply (
-	rprContent	VARCHAR2(500)	NOT NULL,
+	rrNo VARCHAR2(1000) NOT NULL,	
 	rpNo	NUMBER	NOT NULL,
 	id	VARCHAR2(20)	NOT NULL,
+	rprContent	VARCHAR2(1000)	NOT NULL,
 	regdate	DATE	NULL,
 	del	CHAR(1)	NULL
 );
@@ -187,7 +189,7 @@ ALTER TABLE report ADD CONSTRAINT PK_REPORT PRIMARY KEY (
 );
 
 ALTER TABLE reportreply ADD CONSTRAINT PK_REPORTREPLY PRIMARY KEY (
-	rprContent
+	rrNo
 );
 
 ALTER TABLE reservation ADD CONSTRAINT PK_reservation PRIMARY KEY (
