@@ -31,5 +31,13 @@
 	<select id="list" parameterType="integer" resultType="rpr">
 		select * from reportreply where rpNo=#{rpNo} order by rrNo
 	</select>
-	
+	<select id="select2" parameterType="integer" resultType="rpr">
+		select * from reportreply where rrNo=#{rrNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update reportreply set del='y' where rrNo=#{rrNo}
+	</update>
+	<update id="update" parameterType="integer">
+		update reportreply set rprContent=#{rprContent} where rrNo=#{rrNo}
+	</update>
 </mapper>

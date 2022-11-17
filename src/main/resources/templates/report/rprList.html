@@ -27,10 +27,10 @@
 			" value='취소'>");
 	}
 	function lst(rpNo) {
-		$('#rprListDisp').load('/report/replyList/rpNo/'+rpNo);
+		$('#rprListDisp').load('/report/replyList.do?rpNo='+rpNo);
 	}
 	function up(rpNo,rrNo) {
-		var sendData = "replytext="+$('#rt').val()+"&rpNo="+rpNo+"&rrNo="+rrNo;
+		var sendData = "rprContent="+$('#rt').val()+"&rpNo="+rpNo+"&rrNo="+rrNo;
 		$.post('rUpdate.do', sendData, function(data) {
 			alert("수정 되었습니다");
 			$('#rprListDisp').html(data);
@@ -40,7 +40,7 @@
 </head>
 <body>
 <div th:if="${#lists.size(rprList)} > 0">
-	<h3 class="text-primary">댓글</h3>
+	<h5 class="text-primary">답변</h5>
 <table class="table">
 	<tr class="Dark"><td>작성자</td><td>내용</td><td>작성일</td><td></td></tr>
 <th:block th:each="rpr:${rprList}">
@@ -51,7 +51,7 @@
 		<tr><td>[[${rpr.id }]]</td>
 			<td id="td_${rpr.rrNo }"><pre>[[${rpr.rprContent }]]</pre></td>
 			<td>[[${rpr.regdate }]]</td>
-			<th:block th:if="${rpr.id}  == ${report.id}">
+			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
 				<td id="btn_${rpr.rrNo}">
 					<input type="button" class="btn btn-warning btn-sm"
 					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">

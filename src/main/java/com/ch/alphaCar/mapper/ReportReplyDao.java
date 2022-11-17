@@ -13,4 +13,12 @@ public interface ReportReplyDao {
 
 	List<ReportReply> list(Integer rpNo);
 
+	ReportReply select2(Integer rrNo);
+
+	void delete(Integer rrNo);
+
+	void update(Integer rrNo);
+
+	
+
 }

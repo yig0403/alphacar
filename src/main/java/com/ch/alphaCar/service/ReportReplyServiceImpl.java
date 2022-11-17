@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ch.alphaCar.dto.ReportReply;
-import com.ch.alphaCar.mapper.MemberDao;
-import com.ch.alphaCar.mapper.ReportDao;
 import com.ch.alphaCar.mapper.ReportReplyDao;
 
 @Service
@@ -22,4 +20,15 @@ public class ReportReplyServiceImpl implements ReportReplyService {
 	public List<ReportReply> list(Integer rpNo) {
 		return rrd.list(rpNo);
 	}
+	public ReportReply select2(Integer rrNo) {
+		return rrd.select2(rrNo);
+	}
+
+	public void delete(Integer rrNo) {
+		rrd.delete(rrNo);
+	}
+	public void update(Integer rrNo) {
+		rrd.update(rrNo);
+	}
+	
 }
