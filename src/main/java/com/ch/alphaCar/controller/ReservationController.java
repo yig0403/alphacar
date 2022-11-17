@@ -35,11 +35,11 @@ public class ReservationController {
 	@Autowired 
 	private MemberService ms;
 	
-	
 	@RequestMapping("reservationSearch.do")
-	public String reservationSearch() {
+	public String reservationSearch() {	
 		return "/reservation/reservationSearch";
 	}
+	
 	
 	@RequestMapping("reservationHistory.do")
 	public String reservationHistory(Reservation reservation, String pageNum, Model model, HttpSession session) {
@@ -66,6 +66,25 @@ public class ReservationController {
 	@RequestMapping("reservationView.do")
 	public String reservationView(Reservation reservaiton,Model model) {
 		return "/reservation/reservationView";
+	}
+	
+	@RequestMapping("reservationCancel.do")
+	public String reservationCancel(Reservation reservation,String pageNum ,Model model) {
+		int result = 0;
+		Reservation reservation2 = rs.select(reservation.getRsNo());
+		if(reservation2 != null) {
+		result = rs.delete(reservation.getRsNo());
+		}else result = -1;
+		model.addAttribute("result", result);
+		model.addAttribute("pageNum,", pageNum);
+		return "/reservation/reservationCancel";
+	}
+	
+	@RequestMapping("reservationCancelForm.do")
+	public String reservationCancelForm(String rsNo, String pageNum,  Model model) {
+		model.addAttribute("rsNo", rsNo);
+		model.addAttribute("pageNum", pageNum);
+		return "/reservation/reservationCancelForm";
 	}
 	
 	@RequestMapping("reservationInsertForm.do")
@@ -104,7 +123,7 @@ public class ReservationController {
 		int result = 0;
 		Reservation reservation2 = rs.select(reservation.getRsNo());
 		if( reservation2 != null) {
-		result = rs.delete(reservation2.getRsNo());
+		result = rs.delete(reservation.getRsNo());
 		}else result = -1;
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum,", pageNum);
@@ -120,14 +139,12 @@ public class ReservationController {
 
 	
 	@RequestMapping("reservationReturn.do")
-	public String reservationReturn(Reservation reservation,String pageNum ,Model model,String carNo) {
+	public String reservationReturn(Reservation reservation,String pageNum ,Model model) {
 		int result = 0;
 		Reservation reservation2 = rs.select(reservation.getRsNo());
-		System.out.println(reservation.getCarNo());
-		
 		if( reservation2 != null) {
-			result = rs.update1(reservation2.getRsNo());
-
+			result = rs.update1(reservation.getRsNo());
+			 
 		}else result = -1;
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum,", pageNum);

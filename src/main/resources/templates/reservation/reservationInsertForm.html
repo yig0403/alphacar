@@ -218,9 +218,10 @@
 	    <div class="container" id="container" align="center">
 	      <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; margin-bottom: -20px; margin-right: 30px; background-image: url(/kym/img/payment_medium.png);"></a>
 	    	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
+	    	   <form th:action="@{reservation.do}" method="post">
 	    	<div id="h_info">
 	    			<h4>차량 정보</h4>
-	    			<img alt="" class="u-image u-image-default u-product-control u-image-1" src="@{carUpload/}+${/car/car.filename}" style="width:300px; height:200px;">
+	    			<img alt="" src="@{/carUpload/}+${car.filename}" style="width:300px; height:200px;">
 	    			<div>
 	    			<input type="text" name="carNo" id="carNo">
 	    			<div>${car.carName}</div>
@@ -242,10 +243,11 @@
 	      
 	      <div id="u_info" align="center">   
                <div align = "center">
-                 <a th:href="@{reservation.do}" class="btn btn-success"></a>
+                  <input type="submit" value="예약하시겠습니까" class="btn btn-success u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2" name="예약">
                      <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">취소</a>
               </div>
          </div>
+        </form>
        </div>
    </section>
 </body>
