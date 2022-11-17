@@ -7,7 +7,7 @@ import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
 @Data
-@Alias("reportreply")
+@Alias("rpr")
 public class ReportReply {
 	private int rrNo;	
 	private int rpNo;

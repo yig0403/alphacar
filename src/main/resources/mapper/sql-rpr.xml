@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.alphaCar.mapper.ReportReplyDao">
-	<resultMap type="reportreply" id="reportreplyResult">
+	<resultMap type="rpr" id="reportreplyResult">
 		<result property="rrNo" column="rrNo"/>
 		<result property="rpNo" column="rpNo"/>
 		<result property="id" column="id"/>
@@ -22,11 +22,14 @@
 	</resultMap>
 	
 	<insert id="insert" parameterType="rpr">
-		<selectKey keyProperty="rrNo" order="BEFORE" resultType="integer">
+		<selectKey keyProperty="rrNo" order="BEFORE" resultType="int">
 			select nvl(max(rrNo),0) + 1 rrNo from reportreply
 		</selectKey>
-		insert into reportreply values(#{rrNo},#{rpNo},${id},#{rprContent},
+		insert into reportreply values(#{rrNo},#{rpNo},#{id},#{rprContent},
 			sysdate,'n')
 	</insert>
+	<select id="list" parameterType="integer" resultType="rpr">
+		select * from reportreply where rpNo=#{rpNo} order by rrNo
+	</select>
 	
 </mapper>

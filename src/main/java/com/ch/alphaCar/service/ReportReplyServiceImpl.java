@@ -1,5 +1,7 @@
 package com.ch.alphaCar.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,9 @@ public class ReportReplyServiceImpl implements ReportReplyService {
 	
 	public void insert(ReportReply rpr) {
 		rrd.insert(rpr);
+	}
+
+	public List<ReportReply> list(Integer rpNo) {
+		return rrd.list(rpNo);
 	}
 }

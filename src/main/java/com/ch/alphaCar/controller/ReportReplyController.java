@@ -1,5 +1,7 @@
 package com.ch.alphaCar.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +22,24 @@ public class ReportReplyController {
 	@Autowired
 	private MemberService ms;
 	
+	@RequestMapping("/report/rprList.do")
+	private String replyList(Model model, Integer rpNo) {
+		Report report = rs.select(rpNo);
+		List<ReportReply> rprList = rrs.list(rpNo);
+		model.addAttribute("rprList",rprList);
+		model.addAttribute("report",report);
+		
+		return "report/rprList";
+	}
+	
 	@RequestMapping("rprInsert.do")
-	private String rprInsert(ReportReply rpr, Model model, Report report, int rpNo) {
-		rrs.insert(rpr);		
+	private String rprInsert(ReportReply rpr, Model model, Report report, Integer rpNo) {		
+		rrs.insert(rpr);
 		report = rs.select(rpNo);
-		int num = report.getRpNo();
+		Integer num = report.getRpNo();
 		model.addAttribute("rpNo",num);
 		model.addAttribute("rpr",rpr);
-		return "redirect:/report/rprList";
+		return "redirect:/report/rprList.do?rpNo="+rpNo;
 	}
 	
 }
