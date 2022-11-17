@@ -232,14 +232,13 @@
       <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
         <h3 class="u-text u-text-default u-text-palette-5-dark-2 u-text-1">서비스 바로가기</h3>
         <div class="u-form u-form-1">
-          <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" name="form-3" style="padding: 10px;">
+           <form th:action="@{carList.do}" method="get" name="form-3" style="padding: 10px;">
             <div class="u-form-group u-form-group-1">
               <label for="carList" class="u-label"></label>
-              <input type="text" placeholder="전체 검색" id="search" name="search" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+              <input type="text" placeholder="차량 검색" id="keyword" name="keyword" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
-              <a th:href="@{reservationList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">검색</a>
-              <input type="submit" value="submit" class="u-form-control-hidden">
+              <input type="submit" value="검색" th:href="@{carList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">
             </div>
           </form>
         </div>
@@ -255,22 +254,15 @@
         <img src="carUpload/3.png" alt="">
         </span>
         
-        <span class="u-icon u-icon-4">
-        <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 52 52" style="">
-        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-8f02"></use></svg>
-        
-        <svg class="u-svg-content" viewBox="0 0 52 52" x="0px" y="0px" id="svg-8f02" style="enable-background:new 0 0 52 52;">
-        <path style="fill:currentColor;" d="M38.853,5.324L38.853,5.324c-7.098-7.098-18.607-7.098-25.706,0h0
-	C6.751,11.72,6.031,23.763,11.459,31L26,52l14.541-21C45.969,23.763,45.249,11.72,38.853,5.324z M26.177,24c-3.314,0-6-2.686-6-6
-	s2.686-6,6-6s6,2.686,6,6S29.491,24,26.177,24z"></path></svg>
-	
-	    </span>
+        <span class="u-file-icon u-icon u-icon-4">
+        <img src="carUpload/위치.png" alt="">
+        </span>
 	    
         <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">전체목록 보기</a>
         <a th:href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-3">예약확인 / 이용내역</a>
         <a th:href="@{carListR.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-4">신차보기<br>
         </a>
-        <a href="https://nicepage.com/website-design" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-5">지점위치보기<br>
+        <a th:href="@{carRegionList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-5">지점위치보기<br>
         </a>
       </div>
     </section>    

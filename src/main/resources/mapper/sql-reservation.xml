@@ -14,22 +14,9 @@
 			<where>
 				del='n' and id=#{id}
 			</where>
-			order by rsNo)a)
+			order by rsNo desc)a)
 				where rn between #{startRow} and #{endRow}
-	</select>
-	
-	
-	<select id="listSearch" parameterType="reservation"  resultType="reservation">
-		<!-- select * from board2 order by num desc -->
-		select * from (select a.*, rowNum rn from (
-			select * from car
-			<where>
-				carRes='n'
-			</where>
-			order by carNo)a)
-				where rn between #{startRow} and #{endRow}
-	</select>
-	
+	</select>	
 	
 	<update id="delete" parameterType="integer">
 		update reservation set del='y' where rsNo=#{rsNo}
@@ -46,6 +33,13 @@
 	   <insert id="insert" parameterType="reservation">
 		insert into reservation values(#{rsNo}, sysdate,#{startDate},#{endDate}, 'n', #{amount}, 'n', #{carNo}, #{id})
 	</insert>
-
+   
+   	<update id="update1" parameterType="reservation">
+		update reservation set cancel='y' where rsNo=#{rsNo}
+	</update>
 	
+	<update id="update2" parameterType="car">
+	 update car set carRes='n' where carNo=#{carNo}
+	</update>
+
 </mapper>

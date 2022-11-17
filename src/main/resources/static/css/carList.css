@@ -187,7 +187,8 @@
     min-height: 1658px;
   }
   .u-block-1dee-7 {
-    max-height: 430px;
+    height: 430px;
+    margin-top:10px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 10px;
@@ -436,7 +437,7 @@
     min-height: 1367px;
   }
   .u-block-1dee-7 {
-    max-height: 430px;
+    height: 430px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 10px;
@@ -685,7 +686,7 @@
     min-height: 100px;
   }
   .u-block-1dee-7 {
-    max-height: 430px;
+     height: 430px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 10px;
@@ -934,7 +935,7 @@
     min-height: 100px;
   }
   .u-block-1dee-7 {
-    max-height: 430px;
+     height: 430px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 10px;
@@ -1183,7 +1184,7 @@
     min-height: 100px;
   }
   .u-block-1dee-7 {
-    max-height: 430px;
+     height: 430px;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 10px;

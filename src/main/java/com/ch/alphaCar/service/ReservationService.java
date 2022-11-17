@@ -2,6 +2,7 @@ package com.ch.alphaCar.service;
 
 import java.util.List;
 
+import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.dto.Reservation;
 
 public interface ReservationService {
@@ -18,6 +19,8 @@ public interface ReservationService {
 
 	int getMaxNum();
 
+	int update1(int rsNo);
 
+	int update2(String carNo);
 
 }

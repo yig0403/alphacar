@@ -24,7 +24,7 @@
   <body class="u-body u-xl-mode" data-lang="en">
      <section class="u-align-center u-clearfix u-section-1" id="sec-2494">
       <div class="u-clearfix u-sheet u-block-1dee-2">
-           <h2 class="u-text u-text-default u-block-1dee-8">렌트 차량 목록</h2>
+           <h2 class="u-text u-text-default u-block-1dee-8">전체 차량 목록</h2>
    
            
 <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-block-1dee-3">
@@ -162,7 +162,7 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{reservationSearch.do}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57" style="margin-left:35px;">예약하기</a>
                               </div>
                          </div>
                       </div>
@@ -200,7 +200,7 @@
 	</ul>
 </div>
 
- <div align="center">
+ <div align="center" style="margin-bottom: 50px;">
         <form th:action="@{carList.do}" method="get">
           <select name="search">
               <option value="${carName}">차 이름</option>

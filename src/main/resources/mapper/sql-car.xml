@@ -16,7 +16,7 @@
 		select * from (select a.*, rowNum rn from (
 			select * from car 
 			<where>
-				del='n'
+				del='n' and carRes='n'
 			   <if test="keyword != null and keyword != ''">
 			       and (
 				    carName like '%'||#{keyword}||'%' or
@@ -38,7 +38,7 @@
 		select * from (select a.*, rowNum rn from (
 			select * from car 
 			<where>
-				del='n'
+				del='n' and carRes='n'
 			   <if test="keyword != null and keyword != ''">
 			       and (
 				    carName like '%'||#{keyword}||'%' or
@@ -71,4 +71,9 @@
 	<select id="getTotal" parameterType="car" resultType="integer">
 		select count(*) from car where del='n'
 	</select>
+	
+	<update id="update1" parameterType="car">
+	 update car set carRes='y' where carNo=#{carNo}
+	</update>
+	
 </mapper>

@@ -10,11 +10,13 @@
 .u-section-1 .u-form-1 {
   height: 706px;
   width: 700px;
-  margin: 61px auto 0;
+  margin: 30px auto 0;
 }
 
 .u-section-1 .u-form-group-1 {
-  margin-left: 0;
+  margin-left: 40px;
+  margin-right: 100px;
+  margin-top:20px
 }
 
 .u-section-1 .u-label-1 {
@@ -23,7 +25,9 @@
 }
 
 .u-section-1 .u-form-group-2 {
-  margin-left: 0;
+    margin-left: 40px;
+    margin-right: 100px;
+    margin-top:20px
 }
 
 .u-section-1 .u-label-2 {
@@ -32,7 +36,8 @@
 }
 
 .u-section-1 .u-form-group-3 {
-  margin-left: 0;
+    margin-left: 40px;
+    margin-right: 100px;
 }
 
 .u-section-1 .u-label-3 {
@@ -145,6 +150,7 @@
 
   .u-section-1 .u-form-1 {
     width: 540px;
+ 
   }
 }
 
@@ -155,5 +161,6 @@
 
   .u-section-1 .u-form-1 {
     width: 340px;
+
   }
 }

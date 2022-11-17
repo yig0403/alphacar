@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ch.alphaCar.dto.Car;
 import com.ch.alphaCar.dto.Reservation;
 import com.ch.alphaCar.mapper.ReservationDao;
 
@@ -41,5 +42,13 @@ public class ReservationServiceImpl implements ReservationService{
 		return rd.getMaxNum();
 	}
 
+
+	public int update1(int rsNo) {
+		return rd.update1(rsNo);
+	}
+
+	public int update2(String carNo) {
+		return rd.update2(carNo);
+	}
 	
 }

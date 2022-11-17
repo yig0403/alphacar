@@ -24,7 +24,7 @@
   <body class="u-body u-xl-mode" data-lang="en">
      <section class="u-align-center u-clearfix u-section-1" id="sec-2494">
       <div class="u-clearfix u-sheet u-block-1dee-2">
-           <h2 class="u-text u-text-default u-block-1dee-8">렌트 차량 목록</h2>
+           <h2 class="u-text u-text-default u-block-1dee-8">전체 차량 목록</h2>
    
            
 <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-block-1dee-3">
@@ -130,13 +130,18 @@
                  <div class="u-form-select-wrapper">
                         <select id="fee" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-36">
                               <option value="선택">선택</option>
-                              <option value="1 ~ 3ㄴ">1 ~ 3만원</option>
-                              <option value="4 ~ 6만원">4 ~ 6만원</option>
-                              <option value="7 ~ 10만원">7 ~ 10만원</option>
-                              <option value="21 ~ 30만원">21 ~ 30만원</option>
-                              <option value="31 ~ 40만원">31 ~ 40만원</option>
-                              <option value="41 ~ 70만원">41 ~ 70만원</option>
-                              <option value="71 ~ 100만원">71 ~ 100만원</option>
+                              <option value="40000">40000원</option>
+                              <option value="50000">50000원</option>
+                              <option value="60000">60000원</option>
+                              <option value="70000">70000원</option>
+                              <option value="80000">80000원</option>
+                              <option value="90000">90000원</option>
+                              <option value="100000">100000원</option>
+                              <option value="110000">110000원</option>
+                              <option value="120000">120000원</option>
+                              <option value="130000">130000원</option>
+                              <option value="140000">140000원</option>
+                              <option value="150000">150000원</option>
                           </select>
                  </div>
           </div>
@@ -162,7 +167,7 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57" style="margin-left:35px;">예약하기</a>
                               </div>
                          </div>
                       </div>

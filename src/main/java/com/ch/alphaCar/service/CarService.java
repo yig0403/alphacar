@@ -20,4 +20,6 @@ public interface CarService {
 
 	List<Car> listR(Car car);
 
+	int update1(String carNo);
+
 }

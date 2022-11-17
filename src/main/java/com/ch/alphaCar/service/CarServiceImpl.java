@@ -42,4 +42,8 @@ public class CarServiceImpl implements CarService {
 	}
 
 
+	public int update1(String carNo) {
+		return cd.update1(carNo);
+	}
+
 }

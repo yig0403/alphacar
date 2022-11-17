@@ -33,7 +33,7 @@
 
 .u-section-1 .u-form-1 {
   height: 249px;
-  background-image: linear-gradient(#ffd600, #5470db);
+  background-image: linear-gradient(black, grey);
   width: 327px;
   margin: 67px auto 0;
 }
@@ -61,7 +61,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-image: linear-gradient(#ed6c64, #5470db);
+  background-image: linear-gradient(black, grey);
 }
 
 .u-section-1 .u-layout-cell-2 {
@@ -86,7 +86,7 @@
 .u-section-1 .u-form-2 {
   height: 572px;
   width: 320px;
-  background-image: linear-gradient(#ffd600, #5470db);
+  background-image: linear-gradient(black, grey);
   margin: 69px 0 0;
 }
 
@@ -140,7 +140,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-image: linear-gradient(#ed6c64, #5470db);
+  background-image: linear-gradient(black, grey);
   margin-right: auto;
   margin-left: auto;
   display: block;
@@ -175,7 +175,7 @@
 
 .u-section-1 .u-form-3 {
   height: 68px;
-  background-image: linear-gradient(#ffd600, #5470db);
+  background-image: linear-gradient(black, grey);
   width: 320px;
   margin: 22px 0 0;
 }
@@ -198,7 +198,7 @@
 }
 
 .u-section-1 .u-btn-3 {
-  background-image: linear-gradient(#ed6c64, #5470db);
+  background-image: linear-gradient(black, grey);
   padding: 8px 15px 10px 14px;
 }
 
@@ -210,7 +210,7 @@
 
 .u-section-1 .u-form-4 {
   height: 68px;
-  background-image: linear-gradient(#ffd600, #5470db);
+  background-image: linear-gradient(black, grey);
   width: 320px;
   margin: 22px 0 0;
 }
@@ -233,13 +233,13 @@
 }
 
 .u-section-1 .u-btn-4 {
-  background-image: linear-gradient(#ed6c64, #5470db);
+  background-image: linear-gradient(black, grey);
   padding: 8px 15px 10px 14px;
 }
 
 .u-section-1 .u-form-5 {
   height: 270px;
-  background-image: linear-gradient(#ffd600, #5470db);
+  background-image: linear-gradient(black, grey);
   width: 320px;
   margin: 48px 0 0;
 }
@@ -267,7 +267,7 @@
   border-style: none;
   font-weight: 700;
   text-transform: uppercase;
-  background-image: linear-gradient(#ed6c64, #5470db);
+  background-image: linear-gradient(black, grey);
 }
 
 @media (max-width: 1199px) {

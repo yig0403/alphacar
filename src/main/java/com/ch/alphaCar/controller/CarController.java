@@ -23,10 +23,15 @@ import com.ch.alphaCar.service.PagingBean;
 public class CarController {
 	@Autowired
 	private CarService cs;
+	
+	@RequestMapping("carRegionList.do")
+	public String carRegionList() {
+		return "car/carRegionList";
+	}
     
 	@RequestMapping("carList.do")
 	public String list(Car car, String pageNum, Model model) {
-		int rowPerPage = 15; // 한 화면에 보여주는 갯수
+		int rowPerPage = 12; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = cs.getTotal(car);		

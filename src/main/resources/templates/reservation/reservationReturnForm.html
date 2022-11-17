@@ -2,8 +2,8 @@
 <span th:insert="header.html::header"></span><head><meta charset="UTF-8">
 <title>Insert title here</title></head><body>
 <div class="container" align="center">
-	<h2 class="text-primary">이용내역을 삭제하시겠습니까?</h2>
-<form th:action="reservationDelete.do" method="post">
+	<h2 class="text-primary">차량 반납하시겠습니까?</h2>
+<form action="reservationReturn.do" method="post">
 	<input type="hidden" name="rsNo" th:value="${rsNo}">
 	<input type="hidden" name="pageNum" th:value="${pageNum }">
 	<input type="submit" value="예" class="btn btn-danger">

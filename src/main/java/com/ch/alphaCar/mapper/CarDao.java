@@ -23,4 +23,6 @@ public interface CarDao {
 
 	List<Car> listR(Car car);
 
+	int update1(String carNo);
+
 }
