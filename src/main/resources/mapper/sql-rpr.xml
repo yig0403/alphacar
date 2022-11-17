@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ch.alphaCar.mapper.ReportReplyDao">
-	<resultMap type="reportreply" id="reportreplyResult">
+	<resultMap type="rpr" id="reportreplyResult">
 		<result property="rrNo" column="rrNo"/>
 		<result property="rpNo" column="rpNo"/>
 		<result property="id" column="id"/>
@@ -21,5 +21,23 @@
 		<result property="rpNo" column="rpNo"/>	
 	</resultMap>
 	
-	
+	<insert id="insert" parameterType="rpr">
+		<selectKey keyProperty="rrNo" order="BEFORE" resultType="int">
+			select nvl(max(rrNo),0) + 1 rrNo from reportreply
+		</selectKey>
+		insert into reportreply values(#{rrNo},#{rpNo},#{id},#{rprContent},
+			sysdate,'n')
+	</insert>
+	<select id="list" parameterType="integer" resultType="rpr">
+		select * from reportreply where rpNo=#{rpNo} order by rrNo
+	</select>
+	<select id="select2" parameterType="integer" resultType="rpr">
+		select * from reportreply where rrNo=#{rrNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update reportreply set del='y' where rrNo=#{rrNo}
+	</update>
+	<update id="update" parameterType="integer">
+		update reportreply set rprContent=#{rprContent} where rrNo=#{rrNo}
+	</update>
 </mapper>

@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header.html::header"></span>
 <span th:insert="header2.html::header"></span>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	function rDelete(bno,rno) {
-		var sendData = 'bno='+bno+'&rno='+rno;
-		$.post('${path}/rDelete', sendData, function(data) {
+	function rDelete(rpNo,rrNo) {
+		var sendData = '?rpNo='+rpNo+'&rrNo='+rrNo;
+		$.post('rDelete.do', sendData, function(data) {
 			alert('댓글이 삭제 되었습니다');
-			$('#rbdListDisp').html(data);
+			$('#rprListDisp').html(data);
 		});
 	}
-	function rUpdate(bno,rno) {
+	function rUpdate(rpNo,rrNo) {
 		/*  input에 있는 데이터를 읽어서 textarea로 넣어야 수정할 수 있음
 			input, textarea, select등 form안에 있는 데이터 jquery에서 val()
 			td, span, div처럼 일반 테스트 데이터를 읽을 때는 jquery에서 text() */
-		var txt = $('#td_'+rno).text();
+		var txt = $('#td_'+rrNo).text();
 		/* 읽은 데이터를 textarea에 넣기 */
-		$('#td_'+rno).html("<textarea rows='3' class='form-control' id='rt'>"+
+		$('#td_'+rrNo).html("<textarea rows='3' class='form-control' id='rt'>"+
 				txt+"</textarea>");
 		/* 클릿한 버튼을 확인과 취소로 변경  */
-		$('#btn_'+rno).html("<input type='button' onclick='up("+bno+","+rno+
+		$('#btn_'+rrNo).html("<input type='button' onclick='up("+rpNo+","+rrNo+
 				")' class='btn btn-sm btn-danger' value='확인'> "+
-			"<input type='button' onclick='lst("+bno+")' class='btn btn-sm btn-info' "+
+			"<input type='button' onclick='lst("+rpNo+")' class='btn btn-sm btn-info' "+
 			" value='취소'>");
 	}
-	function lst(bno) {
-		$('#rbdListDisp').load('${path}/replyList/bno/'+bno);
+	function lst(rpNo) {
+		$('#rprListDisp').load('/report/replyList.do?rpNo='+rpNo);
 	}
-	function up(bno,rno) {
-		var sendData = "replytext="+$('#rt').val()+"&bno="+bno+"&rno="+rno;
-		$.post('${path}/rUpdate', sendData, function(data) {
+	function up(rpNo,rrNo) {
+		var sendData = "rprContent="+$('#rt').val()+"&rpNo="+rpNo+"&rrNo="+rrNo;
+		$.post('rUpdate.do', sendData, function(data) {
 			alert("수정 되었습니다");
-			$('#rbdListDisp').html(data);
+			$('#rprListDisp').html(data);
 		});
 	}
-</script></head><body>
-<div th:if="${#lists.size(${rprList })} > 0">
-	<h5 class="text-primary">comments</h5>
-<table class="table table-Dark">
-	<tr class="success"><td>작성자</td><td>내용</td><td></td></tr>
-<div th:each="rpr:${rprList }">
-	<div th:if="${rpr.del}=='y'">
+</script>
+</head>
+<body>
+<div th:if="${#lists.size(rprList)} > 0">
+	<h5 class="text-primary">답변</h5>
+<table class="table">
+	<tr class="Dark"><td>작성자</td><td>내용</td><td>작성일</td><td></td></tr>
+<th:block th:each="rpr:${rprList}">
+	<th:block th:if="${rpr.del} =='y' ">
 		<tr class="info"><td colspan="4">삭제된 댓글입니다</td></tr>
-	</div>
-	<div th:if="${rpr.del}=='y'">
-		<!-- 회원게시판에서는 회원의 이름/별명/아이디를 자동 입력하므로 작성자 칸은 불필요 -->
-		<tr><td>${rpr.id }<!-- 작성자 --></td>
-			<td id="td_${rpr.rpNo }"><pre>${rpr.rprContent }</pre></td>
-			<td>${rbd.updatedate }</td>
-		    <!-- 댓글작성자와 로그인 한 사람이 같은 지 체크(이름/아이디/별명)하고 같으면 수정/삭제 권한 부여
-			          회원게시판이 아니라서 게시글 작성자와 비교했음 -->
-			<div th:if="${rpr.id} == ${report.id}">
-				<td id="btn_${rbd.rno}"><input type="button" class="btn btn-warning btn-sm"
-					value="수정" onclick="rUpdate(${rbd.bno},${rbd.rno })">
+	</th:block>
+	<th:block th:if="${rpr.del} != 'y' ">
+		<tr><td>[[${rpr.id }]]</td>
+			<td id="td_${rpr.rrNo }"><pre>[[${rpr.rprContent }]]</pre></td>
+			<td>[[${rpr.regdate }]]</td>
+			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
+				<td id="btn_${rpr.rrNo}">
+					<input type="button" class="btn btn-warning btn-sm"
+					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
 					<input type="button" class="btn btn-danger btn-sm" 
-					value="삭제" onclick="rDelete(${rbd.bno},${rbd.rno })"></td>
-			</div>
-			<div test="${rbd.replier!=board.writer }"><td></td></div>
+					value="삭제" th:onclick="'rDelete('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
+				</td>
+			</th:block>
+			<th:block th:if="${rpr.id} != ${report.id }"><td></td></th:block>
 		</tr>
-			</div>
-		</div>
-	</table>
+	</th:block>
+</th:block>
+</table>
 </div>
 </body>
 </html>

@@ -13,7 +13,7 @@ drop table story;
 drop table storyreply;
 drop table faq;
 drop table ways;
-
+select * from reportreply;
 CREATE TABLE member (
 	id VARCHAR2(20) NOT NULL,
 	password VARCHAR2(100) NULL,
@@ -84,7 +84,9 @@ CREATE TABLE reportreply (
 	regdate	DATE	NULL,
 	del	CHAR(1)	NULL
 );
-
+delete from reportreply;
+ALTER TABLE reportreply MODIFY rrNo NUMBER;
+select*from REPORTREPLY;
 create table reservation(
 	rsNo NUMBER NOT NULL,
 	regdate DATE,
