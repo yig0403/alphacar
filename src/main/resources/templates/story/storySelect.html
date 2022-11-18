@@ -13,10 +13,10 @@
 	}
 	
 	$(function() {
-		$('#storyListDisp').load('/story/storyList.do?stNo='+'[[${story.stNo}]]');	
-		$('#storyInsert').click(function() {
+		$('#storyListDisp').load('/story/srList.do?stNo='+'[[${story.stNo}]]');	
+		$('#stInsert').click(function() {
 			var sendData = $('#frm1').serialize();
-			$.post('storyInsert.do', sendData, function(data) {
+			$.post('srInsert.do', sendData, function(data) {
 				alert('댓글이 입력 되었습니다');
 				$('#storyListDisp').html(data);
 			});
@@ -31,8 +31,7 @@
 				<tr><th>번호</th><td>[[${story.stNo }]]</td></tr>
 				<tr><th>작성자</th><td>[[${story.id }]]</td></tr>
 				<tr><th>작성일</th><td>[[${story.regdate }]]</td></tr>
-				<tr><th>조회수</th><td>[[${story.stReadcount }]]</td></tr>
-				<tr><th>본문</th><td>[[${story.stContent }]]</td></tr>				
+				<tr><th>조회수</th><td>[[${story.stReadcount }]]</td></tr>								
 				<tr th:if="${story.sfileName} != null "><th>사진</th><td>
 					<img alt="" th:src="@{/sUpload/}+${story.sfileName}" width="500"></td></tr>
 				<tr th:if="${member.id}=='admin' or ${member.id}==${story.id}">
@@ -41,19 +40,20 @@
 						<a th:href="@{storyUpdateForm.do(stNo=${story.stNo }, pageNum=${pageNum })}">수정</a>
 					</td>
 				</tr>
+				<tr><th>본문</th><td>[[${story.stContent }]]</td></tr>
 			</table>			
 		<h5 class="text-primary">comment</h5>
 			<form action="" name="frm1" id="frm1">
-				<input type="hidden" th:name="rpNo" th:value="${report.rpNo}">
+				<input type="hidden" th:name="stNo" th:value="${story.stNo}">
 				<input type="hidden" th:name="id" th:value="${member.id}">
 					<table>
 						<tr><th>작성자</th><td type="text" th:text="${member.id}"></td>
-						<th>댓글</th><td><textarea rows="3" cols="40" th:name="rprContent"></textarea></td>
-						<td><input type="button" value="댓글 입력" id="rprInsert" class="btn btn-sm btn-dark"></td></tr>
+						<th>댓글</th><td><textarea rows="3" cols="40" th:name="stContent"></textarea></td>
+						<td><input type="button" value="댓글 입력" id="stInsert" class="btn btn-sm btn-dark"></td></tr>
 					</table>			
 				</form>
-			<div id="rprListDisp"></div>
-		<div id="rpDisp"></div>
+			<div id="storyListDisp"></div>
+		<div id="storyDisp"></div>
 	</div>
 </body>
 <span th:insert="footer.html::footer"></span>
