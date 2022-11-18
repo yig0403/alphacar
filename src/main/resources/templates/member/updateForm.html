@@ -52,15 +52,16 @@
 							class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form"
 							style="padding: 15px;" source="custom" name="form"
 							redirect="true">
+							<input type="hidden" name="id" th:value="${member.id}">
 							<div class="u-form-group u-label-none u-form-group-4">
 								<label for="text-fe20" class="u-label">이름</label> <input
-									type="text" placeholder="이름" id="text-fe20" name="name"
+									type="text" placeholder="이름" id="text-fe20" name="name" th:value="${member.name}"
 									class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-4"
 									required="required">
 							</div>
 							<div class="u-form-group u-label-none u-form-group-5">
 								<label for="text-3f2d" class="u-label">주소</label> <input
-									type="text" placeholder="주소" id="text-3f2d" name="address"
+									type="text" placeholder="주소" id="text-3f2d" name="address" th:value="${member.address}"
 									class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-5"
 									required="required">
 							</div>
@@ -68,7 +69,7 @@
 								class="u-form-group u-form-phone u-label-none u-form-group-6">
 								<label for="text-ee6f" class="u-label">전화번호</label> <input
 									type="tel" placeholder="전화번호 (형식 : 010-0000-0000)"
-									id="text-ee6f" name="tel"
+									id="text-ee6f" name="tel" th:value="${member.tel}"
 									class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-6"
 									pattern="(010)-\d{3,4}-\d{4}" title="형식 010-0000-0000"
 									required="required">
@@ -76,7 +77,7 @@
 							<div
 								class="u-form-email u-form-group u-label-none u-form-group-7">
 								<label for="text-404a" class="u-label">이메일</label> <input
-									type="email" placeholder="이메일" id="text-404a" name="email"
+									type="email" placeholder="이메일" id="text-404a" name="email" th:value="${member.email}"
 									class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-7"
 									required="required">
 							</div>

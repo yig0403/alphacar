@@ -63,11 +63,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("updatePassword.do")
-	public String updatePassword(String password1, String password2, String password, member, Model model, HttpSession session) throws IOException {
+	public String updatePassword(Member member, Model model, HttpSession session) throws IOException {
 		int result = 0;
 		String encPass = bpe.encode(member.getPassword()); // 비밀번호 암호화
 		member.setPassword(encPass);
-		result = ms.update(member);
+		result = ms.updatePassword(member);
 		model.addAttribute("result", result);
 		return "/member/updatePassword";
 	}

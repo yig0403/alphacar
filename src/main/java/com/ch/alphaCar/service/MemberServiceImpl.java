@@ -34,4 +34,9 @@ public class MemberServiceImpl implements MemberService {
 	public int update(Member member) {
 		return md.update(member);
 	}
+
+	@Override
+	public int updatePassword(Member member) {
+		return md.updatePassword(member);
+	}
 }

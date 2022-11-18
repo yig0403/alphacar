@@ -25,7 +25,11 @@
 	</insert>
 	<update id="update" parameterType="member">
 		update member set name=#{name}, address=#{address},tel=#{tel},email=#{email}
-		where email=#{email}
+		where id=#{id}
+	</update>
+	<update id="updatePassword" parameterType="member">
+		update member set password=#{password}
+		where id=#{id}
 	</update>
 	<update id="delete" parameterType="string">
 		update member set del='y' where id=#{id}
