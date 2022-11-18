@@ -91,11 +91,11 @@ function preview(file) {
     
     <div class="u-form-group u-label-left u-form-group-2">
      <label for="text-d79b" class="u-label u-spacing-5 u-label-2">차량 이름</label>
-     <input type="text" name="carName" required="required" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+     <input type="text" name="carName" required="required" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:60px;">
      </div>
-	 
+
  <div>
-   <div class ="select select-wrapper">
+   <div class ="select select-wrapper" style="margin:20px 40px 20px 40px;">
 	  <label for="select">차량 등급</label>
 	    <select id="select" name="carRank" required="required">
 	              <option value="경차">경차</option>    
@@ -112,9 +112,9 @@ function preview(file) {
 	 </div>
     
     <div>
-     <div class ="select select-wrapper">
+     <div class ="select select-wrapper" style="margin:20px 40px 20px 40px;">
 	  <label for="select-1">제조사/차종</label>
-	    <select id="select-1" name="carKind" required="required">
+	    <select id="select-1" name="carKind" required="required" style="width:100px;">
 	       <option value="현대">현대</option>
                   <option value="기아">기아</option>
                   <option value="쉐보레">쉐보레</option>
@@ -132,7 +132,7 @@ function preview(file) {
 	 </div>
 	
 	<div>
-	 <div class ="select select-wrapper">
+	 <div class ="select select-wrapper" style="margin:20px 40px 20px 40px;">
 	  <label for="select-2">연료</label>
 	    <select id="select-2" name="carType" required="required">
 	       <option value="디젤">디젤</option>
@@ -145,32 +145,32 @@ function preview(file) {
           </div>
 	 </div>
 	 
-	 <div>
+	 <div style="margin-top:20px; margin-left:40px;">
      <label for="text">연식</label>
      <input type="text" name="carYear" required="required" class="form-control">
      </div>
      
-     <div>
+     <div style="margin-top:20px; margin-left:40px;">
      <label for="text">기본 요금</label>
      <input type="number" name="fee" required="required" class="form-control">
      </div>
      
-     <div>
+     <div style="margin-top:20px; margin-left:40px;">
      <label for="text">차량 색깔</label>
      <input type="text" name="carColor" required="required" class="form-control">
      </div>
      
-     <div>
+     <div style="margin-top:20px; margin-left:40px;">
      <label for="text">차량 위치한 지역</label>
      <input type="text" name="carRegion" required="required" class="form-control">
      </div>
      
-     <div>
+     <div style="margin-top:20px; margin-left:40px;">
      <label for="file">차량사진</label>
      <input type="file" id="thumbnails" name="file">
      </div>
      
-    <div align = "center">
+    <div style="margin-bottom:20px; margin-left:350px; width:50px;">
     <input type="submit" value="등록" class="btn btn-success" name="등록">
     </div>
   </div>
@@ -178,4 +178,5 @@ function preview(file) {
 </div></div></section>
 </div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

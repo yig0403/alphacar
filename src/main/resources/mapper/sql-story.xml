@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.StoryDao">
+	<resultMap type="story" id="storyResult">
+		<result property="stNo" column="stNo"/>
+		<result property="id" column="id"/>
+		<result property="stTitle" column="stTitle"/>
+		<result property="stContent" column="stContent"/>
+		<result property="stReadcount" column="stReadcount"/>
+		<result property="regdate" column="regdate"/>
+		<result property="sfileName" column="sfileName"/>
+		<result property="del" column="del"/>		
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from story
+	</select>
+	<select id="list" parameterType="story" resultMap="storyResult">
+		select * from (select a.*, rowNum rn from (
+			select * from story order by stNo desc)a)
+				where rn between #{startRow} and #{endRow} and del='n'
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(stNo),0) + 1 from story 
+	</select>
+	<select id="insert" parameterType="story">
+		insert into story values (#{stNo},#{id},#{stTitle},#{stContent},0,sysdate,
+			<if test="sfileName!=null and sfileName!=''">
+				#{sfileName},
+			</if>	
+			<if test="sfileName==null or sfileName==''">
+				null,
+			</if>	
+			'n' )
+	</select>
+	<update id="updaterpRead" parameterType="integer">
+		update story set stReadcount = stReadcount + 1 where stNo=#{stNo}
+	</update>
+	<select id="select" parameterType="integer" resultType="story">
+		select * from story where stNo=#{stNo}
+	</select>
+</mapper>

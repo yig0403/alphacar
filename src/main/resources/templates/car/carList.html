@@ -24,24 +24,22 @@
   <body class="u-body u-xl-mode" data-lang="en">
      <section class="u-align-center u-clearfix u-section-1" id="sec-2494">
       <div class="u-clearfix u-sheet u-block-1dee-2">
-           <h2 class="u-text u-text-default u-block-1dee-8">렌트 차량 목록</h2>
+           <h2 class="u-text u-text-default u-block-1dee-8">전체 차량 목록</h2>
    
            
 <div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-block-1dee-3">
      <div class="u-layout">  
-         <div class="u-layout-row">
               <div class="u-container-style u-layout-cell u-shape-rectangle u-size-16 u-block-1dee-4">
                     <div class="u-container-layout u-valign-top u-block-1dee-5">
                          <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-10">
-                              <form action="https://forms.nicepagesrv.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" data-services="d248e26cee165a19432f9646547b739b" name="carRank" style="padding: 10px;">
+                              <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
                                     <div class="u-form-group u-form-select u-block-1dee-9">
                                          <label for="carRank" class="u-label u-block-1dee-11">차량등급</label>
                                                <div class="u-form-select-wrapper">
-                                                    <select id="carRank" name="carRank" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-12">
-                                                           <option value="전체검색">전체검색</option>
+                                                    <select id="carRank" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-12">
+                                                           <option value="선택">선택</option>
                                                            <option value="경차">경차</option>
                                                            <option value="소형">소형</option>
-                                                           <option value="중형">중형</option>
                                                            <option value="준대형">준대형</option>
                                                            <option value="대형">대형</option>
                                                            <option value="SUV/RV">SUV/RV</option>
@@ -50,21 +48,21 @@
                                                       </select>
                                               </div>
                                      </div>
-                        <div class="u-align-center u-form-group u-form-submit u-block-1dee-13">
-                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-14">검색</a>
-                        <input type="submit" value="search" class="u-form-control-hidden">
+                                 <div class="u-align-center u-form-group u-form-submit u-block-1dee-13">
+                            <input type="hidden" name="pageNum" value="1"> 
+                            <input type="submit" value="검색" name="carRank" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-20">
                   </div>
         </form>
 </div>
 
 
 <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-15">
-    <form action="https://forms.nicepagesrv.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" data-services="d248e26cee165a19432f9646547b739b" name="carKind" style="padding: 10px;">
+    <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
         <div class="u-form-group u-form-select u-block-1dee-16">
             <label for="carKind" class="u-label u-block-1dee-17">제조사/차종</label>
                 <div class="u-form-select-wrapper">
-                    <select id="carKind" name="carKind" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-18">
-                         <option value="전체선택">전체선택</option>
+                    <select id="carKind" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-18">
+                         <option value="선택">선택</option>
                          <option value="현대">현대</option>
                          <option value="기아">기아</option>
                          <option value="쌍용">쌍용</option>
@@ -73,75 +71,90 @@
                </div>
            </div> 
             <div class="u-align-center u-form-group u-form-submit u-block-1dee-19">
-            <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-20">검색</a>
-            <input type="submit" value="search" class="u-form-control-hidden">
+              <input type="hidden" name="pageNum" value="1"> 
+            <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-20">
         </div>
     </form>
 </div>
 
 
 <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-21">
-    <form action="https://forms.nicepagesrv.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" data-services="d248e26cee165a19432f9646547b739b" name="carRegion" style="padding: 10px;">
+     <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
          <div class="u-form-group u-block-1dee-22">
              <label for="carRegion" class="u-label u-block-1dee-23">지역검색</label>
-                  <input type="text" placeholder="지역입력" id="carRegion" name="carRegion" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-24">
+                  <input type="text" placeholder="지역입력" id="keyword" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-24">
          </div>
                <div class="u-align-center u-form-group u-form-submit u-block-1dee-25">
-                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-26">검색</a>
-                      <input type="submit" value="search" class="u-form-control-hidden">
+                      <input type="hidden" name="pageNum" value="1"> 
+                      <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-26">
               </div>
          </form>
   </div>
 
 
 <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-27">
-    <form action="https://forms.nicepagesrv.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" data-services="d248e26cee165a19432f9646547b739b" name="carYear" style="padding: 10px;">
+          <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
         <div class="u-form-group u-form-select u-block-1dee-28">
-    <label for="select-1893" class="u-label u-block-1dee-29">연식</label>
+    <label for="carYear" class="u-label u-block-1dee-29">연식</label>
     <div class="u-form-select-wrapper">
-        <select id="select-1893" name="carYear" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-30">
-             <option value="2020~2022">2020~2022</option>
-             <option value="2015~2019">2015~2019</option>
-             <option value="2010~2014">2010~2014</option>
-             <option value="2005~2009">2005~2009</option>
+        <select id="carYear" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-30">
+             <option value="선택">선택</option>
+             <option value="2022">2022</option>
+             <option value="2021">2021</option>
+             <option value="2020">2020</option>
+             <option value="2019">2019</option>
+             <option value="2018">2018</option>
+             <option value="2017">2017</option>
+             <option value="2016">2016</option>
+             <option value="2015">2015</option>
+             <option value="2014">2014</option>
+             <option value="2013">2013</option>
+             <option value="2012">2012</option>
+             <option value="2011">2011</option>
+             <option value="2010">2010</option>
         </select>
     </div>
 </div>
         <div class="u-align-center u-form-group u-form-submit u-block-1dee-31">
-         <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-32">검색</a>
-        <input type="submit" value="search" class="u-form-control-hidden">
+           <input type="hidden" name="pageNum" value="1"> 
+        <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-32">
         </div> 
     </form>
 </div>
 
 
 <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-33">
-    <form action="https://forms.nicepagesrv.com/Form/Process" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" data-services="d248e26cee165a19432f9646547b739b" name="fee" style="padding: 10px;">
+    <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
         <div class="u-form-group u-form-select u-block-1dee-34">
             <label for="fee" class="u-label u-block-1dee-35">요금</label>
                  <div class="u-form-select-wrapper">
-                        <select id="fee" name="fee" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-36">
-                              <option value="전체검색">전체검색</option>
-                              <option value="1 ~ 3만원">1 ~ 3만원</option>
-                              <option value="4 ~ 6만원">4 ~ 6만원</option>
-                              <option value="7 ~ 10만원">7 ~ 10만원</option>
-                              <option value="21 ~ 30만원">21 ~ 30만원</option>
-                              <option value="31 ~ 40만원">31 ~ 40만원</option>
-                              <option value="41 ~ 70만원">41 ~ 70만원</option>
-                              <option value="71 ~ 100만원">71 ~ 100만원</option>
+                        <select id="fee" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-36">
+                              <option value="선택">선택</option>
+                              <option value="40000">40000원</option>
+                              <option value="50000">50000원</option>
+                              <option value="60000">60000원</option>
+                              <option value="70000">70000원</option>
+                              <option value="80000">80000원</option>
+                              <option value="90000">90000원</option>
+                              <option value="100000">100000원</option>
+                              <option value="110000">110000원</option>
+                              <option value="120000">120000원</option>
+                              <option value="130000">130000원</option>
+                              <option value="140000">140000원</option>
+                              <option value="150000">150000원</option>
                           </select>
                  </div>
           </div>
             <div class="u-align-center u-form-group u-form-submit u-block-1dee-37">
-            <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-38">검색</a>
-            <input type="submit" value="search" class="u-form-control-hidden">
+              <input type="hidden" name="pageNum" value="1">  
+            <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-38">
         </div>
     </form>
 </div>
         </div>
-   </div>
-      <div class="u-container-style u-layout-cell u-size-44 u-block-1dee-6" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
-         <div class="u-container-layout u-block-1dee-7">
+
+    <div class="u-layout-row">
+         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
              <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
                  <div class="u-container-layout u-block-1dee-53">
                      <img class="u-image u-image-round u-radius-10 u-block-1dee-54"  th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="318" data-image-height="200">
@@ -154,17 +167,17 @@
  				                <div>차량 등급 : [[${car.carRank}]]</div>
  				                <div>차량 위치 : [[${car.carRegion}]]</div> 
  				                <div>기본 요금 : [[${car.fee}]]원</div> 
-                                <a th:href="@{/reservation/reservationInsertFormCheck.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57">예약하기</a>
+                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57" style="margin-left:35px;">예약하기</a>
                               </div>
                          </div>
                       </div>
                    </div>
                 </div> 
-                
+              </div>
             </div>
           </div>    
         </div>
-     </div> 
+ 
     <div align="center">
 	<ul class="pagination">
 		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
@@ -191,27 +204,21 @@
 		</th:block>		
 	</ul>
 </div>
-    <div align="center">
-        <form action="carList.do" method="get" >
-	        <input type="hidden" name="pageNum" value="1">
-	        <select name="search">
-            <option value="[[${carName}]]">차량이름</option>
-		    <option value="[[${carKind}]]">제조사</option>
-		    <option value="[[${carRegion}]]">지역</option> 
-		    <c:forTokens var="sh" items="carName,carKind,carRegion,subcon" delims="," varStatus="i">
-			<th:if test="[[${sh==car.search }]]">
-				<option value="[[${sh }]]" selected="selected">전체검색</option>
-			</th:if>
-			<th:if test="${sh!=car.search }">
-				<option value="[[${sh }]]">검색어를 입력해주세요</option>
-			</th:if>			
-		    </c:forTokens>
-	</select>
-	<input type="text" name="keyword" placeholder="검색어를 입력해주세요">
-	<input type="submit" value="검색">
+
+ <div align="center" style="margin-bottom: 50px;">
+        <form th:action="@{carList.do}" method="get">
+          <select name="search">
+              <option value="${carName}">차 이름</option>
+              <option value="${carKind}">제조사</option>
+              <option value="${carRank}">등급</option>
+              <option value="${carRegion}">지역</option>
+          </select>
+	        <input type="hidden" name="pageNum" value="1"> 
+	        <input type="text" name="keyword" placeholder="검색어를 입력해주세요">
+	         <input type="submit" value="검색">
    </form>	
 </div>
-	        
+          
    </section>
 </body>
 <span th:insert="footer.html::footer"></span>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" align="center">
+		<h2>답변 수정</h2>
+		<form action="questionUpdate.do" method="post">
+			<input type="hidden" name="qNo" th:value="${question.qNo }">
+			<input type="hidden" name="id" th:value="${question.id }"> <input
+				type="hidden" name="pageNum" th:value="${pageNum }">
+			<table class="table table-hover">
+				<tr>
+					<th>문의번호</th>
+					<td>[[${question.qNo }]]
+				</tr>
+				<tr>
+					<th>문의번호</th>
+					<td>[[${question.id }]]
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td>[[${question.regdate }]]
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" name="qTitle" required="required"
+						th:value="${question.qTitle }"></td>
+				</tr>
+				<tr>
+					<th>문의내용</th>
+					<td><textarea rows="5" cols="40" name="qContent"
+							required="required" th:value="${question.qContent }">
+							</textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="수정"
+						class="btn btn-dark"></td>
+				</tr>
+			</table>
+			<a th:href="@{questionList.do(pageNum=${pageNum})}"
+				class="btn btn-dark">목록</a>
+		</form>
+	</div>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

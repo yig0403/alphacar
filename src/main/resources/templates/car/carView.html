@@ -19,29 +19,72 @@
 		reader.readAsDataURL(file);
 		// readAsDataURL: 컨텐츠의 특정 Blob이나 File에서 읽어노는 역할 수행
 	}
-	</script></head><body>
-<div class="container" align="center">
-	<h2 class="text-primary">차량 상세내용</h2>
-<table class="table table-hover">
-    <tr class="info">
-    <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{/carUpload/}+${car.filename}" data-image-width="400" data-image-height="300">
-	</tr>
-	<tr class="info"><td>차량번호</td><th>[[${car.carNo}]]</th></tr>
-	<tr class="info"><td>차량이름</td><th>[[${car.carName}]]</th></tr>
-	<tr class="info"><td>제조사</td><th>[[${car.carKind}]]</th></tr>
-	<tr class="info"><td>등급</td><th>[[${car.carRank}]]</th></tr>
-	<tr class="info"><td>위치</td><th>[[${car.carRegion}]]</th></tr>
-	<tr class="info"><td>기본요금(하루)</td><th>[[${car.fee}]]원</th></tr>
-
-	<tr  class="default"><td colspan="2" align="center">
-		<a th:href="@{carList.do(pageNum=${pageNum})}" class="btn btn-success">차량 목록</a>
-		<a th:href="@{carUpdateForm.do(carNo=${car.carNo},pageNum=${pageNum})}" 
-			class="btn btn-warning">수정</a>
-		<a th:href="@{carDeleteForm.do(carNo=${car.carNo},pageNum=${pageNum})}" 
-			class="btn btn-danger">삭제</a>
-		</td>
-</table>
-	<div id="carDisp"></div>
-</div>
+	</script></head>
+	<body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-section-1" id="sec-6367">
+      <div class="u-clearfix u-sheet u-sheet-1" align="center">
+        <h3 class="u-text u-text-default u-text-1">차량 상세내용</h3>
+        <div class="u-container-style u-group u-shape-rectangle u-group-1">
+          
+	 <div class="u-container-layout u-valign-bottom u-container-layout-1">
+	 <div class="u-layout-row">
+         <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{/carUpload/}+${car.filename}" style="width:520px; height:300px; margin-top: 80px;">
+            <div class="u-align-right u-table u-table-responsive u-table-1" style="width:500px; margin-left:50px;">
+               <table class="u-table-entity">
+                <colgroup>
+                  <col width="23.8%">
+                  <col width="76.2%">
+                </colgroup>
+                <tbody class="u-table-body">
+                  <tr style="height: 50px;">
+                    <td>차량번호</td>
+                    <td>[[${car.carNo}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>차량이름</td>
+                    <td>[[${car.carName}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>등급</td>
+                    <td>[[${car.carRank}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>제조사</td>
+                    <td>[[${car.carKind}]]</td>
+                  </tr>
+                  <tr style="height: 36px;">
+                    <td>연료</td>
+                    <td>[[${car.carType}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>연식</td>
+                    <td>[[${car.carYear}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>차량 색깔</td>
+                    <td>[[${car.carColor}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>지역</td>
+                    <td>[[${car.carRegion}]]</td>
+                  </tr>
+                  <tr style="height: 50px;">
+                    <td>기본 요금</td>
+                    <td>[[${car.fee}]]</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </div>
+            <div align="center" style="margin: 100px 0 100px "> 
+           <a th:href="@{carList.do(pageNum=${pageNum})}" class="btn btn-success" style="margin: 50px 0 50px 20px;"><font color = "black">차량 목록</font></a>
+	      <a th:href="@{carUpdateForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="btn btn-warning"style="margin: 50px 0 50px 20px;"><font color = "black">수정</font></a>
+		<a th:href="@{carDeleteForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="btn btn-danger" style="margin: 50px 0 50px 20px; "><font color = "black">삭제</font></a>     
+		</div>      
+       </div>
+      </div>
+      </div>
+   </section>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

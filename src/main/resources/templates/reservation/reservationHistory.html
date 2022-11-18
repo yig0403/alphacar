@@ -1,10 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/carList.css" media="screen">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+       <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>    
+    <meta property="og:title" content="carList">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+   <div class="container" align="center">
+	<h2 class="text-primary">렌트 이용내역</h2>
+      <table class="table table-striped">
+        <tr class="danger">
+           <th>이용 번호</th>
+           <th>차량번호</th>
+           <th>대여날짜</th>         
+           <th>반납날짜</th>
+           <th>예약일</th>
+           <th>삭제</th>
+           <th>반납</th>
+      </tr>
+      	<tr class="warning" th:if="${#lists.size(list)}==0"><td colspan="7">게시글이 없습니다</td></tr>
+	<tr th:if="${#lists.size(list)}>0" th:each="reservation:${list}"><td>[[${reservation.rsNo }]]</td>
+		<th colspan="7" class="warning" th:if="${reservation.del}=='y'">삭제된 글입니다</th>
+		<th:block th:if="${reservation.del}=='n'">
+		<td>[[${reservation.carNo }]]</td>
+		<td>[[${reservation.startDate }]]</td>
+		<td>[[${reservation.endDate }]]</td>
+		<td>[[${reservation.regDate }]]</td>
+		<td><a th:href="@{reservationDeleteForm.do(rsNo=${reservation.rsNo},pageNum=${pageNum})}" 
+			class="btn btn-danger">삭제</a></td>
+		<td>
+		<a th:if="${reservation.cancel}=='n'"
+		th:href="@{reservationReturnForm.do(rsNo=${reservation.rsNo},pageNum=${pageNum})}" 
+			class="btn btn-danger">반납</a>
+		<a th:if="${reservation.cancel}=='y'">반납완료</a>
+		<td>
+		
+		</th:block>
+		</tr>
+</table>
 
+  <div align="center">
+	<ul class="pagination">
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li><a th:href="@{reservationHistory.do(pageNum=1)}">
+				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
+			<li><a th:href="@{reservationHistory.do(pageNum=${pb.startPage-1 })}">
+				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active"><a th:href="@{carList.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li><a th:href="@{reservationHistory.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li><a th:href="@{reservationHistory.do(pageNum=${pb.endPage+1})}">
+				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
+			<li><a th:href="@{reservationHistory.do(pageNum=${pb.totalPage})}">
+				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
+		</th:block>		
+	</ul>
+</div>
+
+</div>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

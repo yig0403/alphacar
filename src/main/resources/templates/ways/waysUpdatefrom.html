@@ -9,7 +9,7 @@
 <body>
 <div class="container" align="center">
 	<h2>이용방법 수정</h2>
-<form action="/ways/waysUpdate.do"method="post">
+<form action="waysUpdate.do"method="post">
 	<input type="hidden" name="waysTitle" th:value="${ways.waysTitle}">
 <table class="table table-hover">
 	<tr><th>이용방법제목</th><td>[[${ways.waysTitle}]]</td></tr>
@@ -18,7 +18,7 @@
 	<tr><td colspan="2" align="center"><input type="submit" value="수정"
 		class="btn btn-dark"></td></tr>
 </table>
-<a href="/ways/ways.do" class="btn btn-dark">목록</a>
+<a href="ways.do" class="btn btn-dark">목록</a>
 </form>
 </div>
 </body>

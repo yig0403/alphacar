@@ -37,4 +37,17 @@ public class CarServiceImpl implements CarService {
 		return cd.delete(carNo);
 	}
 
+	public List<Car> listR(Car car) {
+		return cd.listR(car);
+	}
+
+
+	public int update1(String carNo) {
+		return cd.update1(carNo);
+	}
+
+	public int update10(String carNo) {
+		return cd.update10(carNo);
+	}
+
 }

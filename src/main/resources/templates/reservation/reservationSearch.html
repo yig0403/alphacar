@@ -1,0 +1,272 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <meta name="keywords" content="차량 예약 가능 검색">
+    <meta name="description" content="">
+    <title>reservation</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/css/reservationSearch.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="reservation">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+    <section class="u-clearfix u-section-1" id="sec-ca41">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-text u-text-default u-text-1">차량 예약 검색<br>
+        </h2>
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-palette-5-dark-2 u-size-20 u-layout-cell-1">
+                <div class="u-container-layout u-container-layout-1"><span class="u-file-icon u-icon u-text-white u-icon-1"><img src="carUpload/cal.png" alt=""></span>
+                  <h3 class="u-text u-text-2">언제?</h3>
+                  <div class="u-form u-gradient u-form-1">
+                    <form th:action="@{reservationList.do}" style="padding: 10px;">
+                      <div class="u-form-date u-form-group u-form-group-1">
+                        <label for="startDate" class="u-label u-label-1">대여 날짜</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="startDate" name="startDate" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                      </div>
+                      <div class="u-form-date u-form-group u-form-group-2">
+                        <label for="endDate" class="u-label u-label-2">반납 날짜</label>
+                        <input type="date" placeholder="MM/DD/YYYY" id="endDate" name="endDate" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="u-container-style u-layout-cell u-palette-5-base u-size-20 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2"><span class="u-icon u-text-white u-icon-2"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 54.757 54.757" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c2bc"></use></svg><svg class="u-svg-content" viewBox="0 0 54.757 54.757" x="0px" y="0px" id="svg-c2bc" style="enable-background:new 0 0 54.757 54.757;"><g><path d="M27.557,12c-3.859,0-7,3.141-7,7s3.141,7,7,7s7-3.141,7-7S31.416,12,27.557,12z M27.557,24c-2.757,0-5-2.243-5-5
+		s2.243-5,5-5s5,2.243,5,5S30.314,24,27.557,24z"></path><path d="M40.94,5.617C37.318,1.995,32.502,0,27.38,0c-5.123,0-9.938,1.995-13.56,5.617c-6.703,6.702-7.536,19.312-1.804,26.952
+		L27.38,54.757L42.721,32.6C48.476,24.929,47.643,12.319,40.94,5.617z M41.099,31.431L27.38,51.243L13.639,31.4
+		C8.44,24.468,9.185,13.08,15.235,7.031C18.479,3.787,22.792,2,27.38,2s8.901,1.787,12.146,5.031
+		C45.576,13.08,46.321,24.468,41.099,31.431z"></path>
+</g></svg></span>
+                  <h3 class="u-text u-text-3">어디서?</h3>
+                  <div class="u-form u-gradient u-form-2">
+                   <form th:action="@{reservationList.do}" style="padding: 10px;">
+                      <div class="u-form-group u-form-select u-label-top u-form-group-4">
+                        <label for="carRegion" class="u-label u-label-3">수도권</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="서울">서울</option>
+                            <option value="인천">인천</option>
+                            <option value="수원">수원</option>
+                            <option value="용인">용인</option>
+                            <option value="성남">성남</option>
+                            <option value="화성">화성</option>
+                            <option value="남양주">남양주</option>
+                            <option value="부천">부천</option>
+                            <option value="일산">일산</option>
+                            <option value="파주">파주</option>
+                            <option value="고양">고양</option>
+                            <option value="하남">하남</option>
+                            <option value="안산">안산</option>
+                            <option value="평택">평택</option>
+                            <option value="시흥">시흥</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-5">
+                        <label for="carRegion" class="u-label u-label-4">충청도</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="대전">대전</option>
+                            <option value="세종">세종</option>
+                            <option value="청주">청주</option>
+                            <option value="천안">천안</option>
+                            <option value="아산">아산</option>
+                            <option value="충주">충주</option>
+                            <option value="서산">서산</option>
+                            <option value="당진">당진</option>
+                            <option value="제천">제천</option>
+                            <option value="논산">논산</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-6">
+                        <label for="carRegion" class="u-label u-label-5">경상도</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="부산">부산</option>
+                            <option value="대구">대구</option>
+                            <option value="울산">울산</option>
+                            <option value="창원">창원</option>
+                            <option value="김해">김해</option>
+                            <option value="포항">포항</option>
+                            <option value="구미">구미</option>
+                            <option value="양산">양산</option>
+                            <option value="진주">진주</option>
+                            <option value="경산">경산</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-7">
+                        <label for="carRegion" class="u-label u-label-6">전라도</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="광주">광주</option>
+                            <option value="전주">전주</option>
+                            <option value="순천">순천</option>
+                            <option value="익산">익산</option>
+                            <option value="여수">여수</option>
+                            <option value="군산">군산</option>
+                            <option value="목포">목포</option>
+                            <option value="광양">광양</option>
+                          </select>
+                         </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-8">
+                        <label for="carRegion" class="u-label u-label-7">강원도</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="원주">원주</option>
+                            <option value="춘천">춘천</option>
+                            <option value="강릉">강릉</option>
+                            <option value="동해">동해</option>
+                            <option value="속초">속초</option>
+                            <option value="삼척">삼척</option>
+                            <option value="태백">태백</option>
+                          </select>
+                         </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              
+              <div class="u-container-style u-grey-5 u-layout-cell u-size-20 u-layout-cell-3">
+                <div class="u-container-layout u-container-layout-3"><span class="u-icon u-icon-3"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 60 60" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-da68"></use></svg><svg class="u-svg-content" viewBox="0 0 60 60" x="0px" y="0px" id="svg-da68" style="enable-background:new 0 0 60 60;"><g><path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30
+		S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z"></path><path d="M30,6c-0.552,0-1,0.447-1,1v23H14c-0.552,0-1,0.447-1,1s0.448,1,1,1h16c0.552,0,1-0.447,1-1V7C31,6.447,30.552,6,30,6z"></path>
+</g></svg></span>
+                  <h3 class="u-text u-text-4">시간?</h3>
+                  <h5 class="u-text u-text-5">대여 시간</h5>
+                  <div class="u-form u-gradient u-form-3">
+                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" name="form-1" style="padding: 10px;">
+                      <div class="u-form-group u-form-select u-form-group-10">
+                        <label for="startTime" class="u-label u-label-8"></label>
+                         <input type="time" id="startTime" name="startTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
+                         min="00:00:00" max="23:59:59">
+                      </div>
+                    </form>
+                  </div>
+                  
+                  <h5 class="u-text u-text-6">반납 시간</h5>
+                  <div class="u-form u-gradient u-form-4">
+                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-horizontal u-form-spacing-10 u-inner-form" name="form-1" style="padding: 10px;">
+                      <div class="u-form-group u-form-select u-form-group-13">
+                        <label for="endTime" class="u-label u-label-10"></label>
+                         <input type="time" id="endTime" name="endTime" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required"
+                         min="00:00:00" max="23:59:59">
+                      </div>
+                    </form>
+                  </div>
+                  
+                  
+                  <div class="u-form u-gradient u-form-5">
+                    <form action="https://forms.nicepagesrv.com/Form/Process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" name="form-2" style="padding: 10px;">
+                      <div class="u-form-group u-form-select u-form-group-16">
+                        <label for="carRank" class="u-label u-label-12">차량 등급</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="carRank" name="carRank" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="경차">경차</option>
+                            <option value="소형">소형</option>
+                            <option value="중형">중형</option>
+                            <option value="준대형">준대형</option>
+                            <option value="대형">대형</option>
+                            <option value="SUV/RV">SUV/RV</option>
+                            <option value="수입차">수입차</option>
+                            <option value="전기차">전기차</option>
+                          </select>
+                          </div>
+                      </div>
+                      
+                      <div class="u-form-group u-form-select u-form-group-17">
+                        <label for="carKind" class="u-label u-label-13">차종 / 제조사</label>
+                        <div class="u-form-select-wrapper">
+                          <select id="listSearch" name="carKind" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="선택안함">선택안함</option>
+                            <option value="현대">현대</option>
+                            <option value="기아">기아</option>
+                            <option value="쌍용">쌍용</option>
+                            <option value="쉐보레">쉐보레</option>
+                          </select>
+                         </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+                 <div class="u-align-center u-form-group u-form-submit">
+                 <input type="submit" value="submit" class="u-form-control-hidden" name="listSearch">
+                <a th:href="@{reservationList.do}"  class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-center u-clearfix u-section-2" id="sec-74bd">
+      <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1">
+        <h3 class="u-text u-text-default u-text-palette-5-dark-2 u-text-1">서비스 바로가기</h3>
+        <div class="u-form u-form-1">
+           <form th:action="@{carList.do}" method="get" name="form-3" style="padding: 10px;">
+            <div class="u-form-group u-form-group-1">
+              <label for="carList" class="u-label"></label>
+              <input type="text" placeholder="차량 검색" id="keyword" name="keyword" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+            </div>
+            <div class="u-align-center u-form-group u-form-submit">
+              <input type="submit" value="검색" th:href="@{carList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">
+            </div>
+          </form>
+        </div>
+        <span class="u-file-icon u-icon u-icon-1">
+        <img src="carUpload/2.png" alt="">
+        </span>
+        
+        <span class="u-file-icon u-icon u-icon-2">
+        <img src="carUpload/1.png" alt="">
+        </span>
+        
+        <span class="u-file-icon u-icon u-icon-3">
+        <img src="carUpload/3.png" alt="">
+        </span>
+        
+        <span class="u-file-icon u-icon u-icon-4">
+        <img src="carUpload/위치.png" alt="">
+        </span>
+	    
+        <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">전체목록 보기</a>
+        <a th:href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-3">예약확인 / 이용내역</a>
+        <a th:href="@{carListR.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-4">신차보기<br>
+        </a>
+        <a th:href="@{carRegionList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-5">지점위치보기<br>
+        </a>
+      </div>
+    </section>    
+  
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

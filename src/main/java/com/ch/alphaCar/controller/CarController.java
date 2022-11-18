@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Car;
+import com.ch.alphaCar.dto.Member;
 import com.ch.alphaCar.service.CarService;
 import com.ch.alphaCar.service.PagingBean;
 
@@ -22,10 +23,16 @@ import com.ch.alphaCar.service.PagingBean;
 public class CarController {
 	@Autowired
 	private CarService cs;
+	
+	@RequestMapping("carRegionList.do")
+	public String carRegionList() {
+		return "car/carRegionList";
+	}
     
 	@RequestMapping("carList.do")
 	public String list(Car car, String pageNum, Model model) {
-		int rowPerPage = 9; // 한 화면에 보여주는 갯수
+		System.out.println("CARNO="+car.getCarNo());
+		int rowPerPage = 12; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 		int total = cs.getTotal(car);		
@@ -36,13 +43,36 @@ public class CarController {
 		car.setEndRow(endRow);
 		List<Car> list = cs.list(car);
 		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
-		String[] title = {"차량사진","차량이름","등급","제조사"};
+		String[] title = {"차량이름","제조사","등급","지역"};
 		model.addAttribute("title",title);
 		model.addAttribute("car",car);
 		model.addAttribute("num", num);
 		model.addAttribute("list", list);
 		model.addAttribute("pb", pb);
 		return "/car/carList";
+	}
+	
+
+	@RequestMapping("carListR.do")
+	public String listR(Car car, String pageNum, Model model) {
+		int rowPerPage = 15; // 한 화면에 보여주는 갯수
+		if (pageNum == null || pageNum.equals("")) pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+		int total = cs.getTotal(car);		
+		int startRow = (currentPage - 1) * rowPerPage + 1;
+		int endRow = startRow + rowPerPage - 1;
+		int num = total - startRow + 1;
+		car.setStartRow(startRow);
+		car.setEndRow(endRow);
+		List<Car> list = cs.listR(car);
+		PagingBean pb = new PagingBean(currentPage, rowPerPage, total);
+		String[] title = {"차량등급","제조사","지역","연식","요금"};
+		model.addAttribute("title",title);
+		model.addAttribute("car",car);
+		model.addAttribute("num", num);
+		model.addAttribute("list", list);
+		model.addAttribute("pb", pb);
+		return "/car/carListR";
 	}
 	
 	@RequestMapping("carInsertForm.do")
@@ -134,6 +164,5 @@ public class CarController {
 		model.addAttribute("pageNum", pageNum);
 		return "/car/carDeleteForm";
 	}
-
 
 }

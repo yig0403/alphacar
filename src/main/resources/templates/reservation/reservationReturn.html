@@ -1,0 +1,23 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<span th:if="${result} > 0">
+	<script type="text/javascript">
+		alert("반납성공");
+		location.href="reservationHistory.do";
+	</script>
+</span>
+<span th:if="${result} == 0">
+	<script type="text/javascript">
+		alert("반납오류 ");
+		history.go(-1);
+	</script>
+</span>
+<span th:if="${result} == -1">
+	<script type="text/javascript">
+		alert("다시 시도해주세요");
+		history.go(-1);
+	</script>
+</span>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/carList.css" media="screen">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="carList">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+     <section class="u-align-center u-clearfix u-section-1" id="sec-2494" style="height:500px;">
+      <div class="u-clearfix u-sheet u-block-1dee-2">
+           <h3 class="u-text u-text-3">지점 위치보기</h3>
+                  <div class="u-form u-gradient u-form-2">
+                   <form th:action="@{reservationList.do}" style="padding: 10px;">
+                      <div class="u-form-group u-form-select u-label-top u-form-group-4" align="center">
+                        <div class="u-form-select-wrapper" align="center">수도권
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:200px;">
+                            <option value="선택">선택</option>
+                            <option value="서울">서울</option>
+                            <option value="인천">인천</option>
+                            <option value="수원">수원</option>
+                            <option value="용인">용인</option>
+                            <option value="성남">성남</option>
+                            <option value="화성">화성</option>
+                            <option value="남양주">남양주</option>
+                            <option value="부천">부천</option>
+                            <option value="일산">일산</option>
+                            <option value="파주">파주</option>
+                            <option value="고양">고양</option>
+                            <option value="하남">하남</option>
+                            <option value="안산">안산</option>
+                            <option value="평택">평택</option>
+                            <option value="시흥">시흥</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-5" align="center">
+                        <div class="u-form-select-wrapper" align="center">충청도
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:200px;">
+                            <option value="선택">선택</option>
+                            <option value="대전">대전</option>
+                            <option value="세종">세종</option>
+                            <option value="청주">청주</option>
+                            <option value="천안">천안</option>
+                            <option value="아산">아산</option>
+                            <option value="충주">충주</option>
+                            <option value="서산">서산</option>
+                            <option value="당진">당진</option>
+                            <option value="제천">제천</option>
+                            <option value="논산">논산</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-6" align="center">
+                        <div class="u-form-select-wrapper" align="center">경상도
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:200px;">
+                            <option value="선택">선택</option>
+                            <option value="부산">부산</option>
+                            <option value="대구">대구</option>
+                            <option value="울산">울산</option>
+                            <option value="창원">창원</option>
+                            <option value="김해">김해</option>
+                            <option value="포항">포항</option>
+                            <option value="구미">구미</option>
+                            <option value="양산">양산</option>
+                            <option value="진주">진주</option>
+                            <option value="경산">경산</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-7" align="center">
+                        <div class="u-form-select-wrapper" align="center">전라도
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:200px;">
+                            <option value="선택">선택</option>
+                            <option value="광주">광주</option>
+                            <option value="전주">전주</option>
+                            <option value="순천">순천</option>
+                            <option value="익산">익산</option>
+                            <option value="여수">여수</option>
+                            <option value="군산">군산</option>
+                            <option value="목포">목포</option>
+                            <option value="광양">광양</option>
+                          </select>
+                         </div>
+                      </div>
+                      <div class="u-form-group u-form-select u-label-top u-form-group-8" align="center">
+                        <div class="u-form-select-wrapper" align="center">강원도
+                          <select id="carRegion" name="carRegion" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" style="width:200px;">
+                            <option value="선택">선택</option>
+                            <option value="원주">원주</option>
+                            <option value="춘천">춘천</option>
+                            <option value="강릉">강릉</option>
+                            <option value="동해">동해</option>
+                            <option value="속초">속초</option>
+                            <option value="삼척">삼척</option>
+                            <option value="태백">태백</option>
+                          </select>
+                         </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+</section>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

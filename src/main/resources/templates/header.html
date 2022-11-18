@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <header
 	class="u-align-center-xs u-clearfix u-grey-90 u-header u-sticky u-block-9656-1"
 	custom-posts-hash="[]" data-style="header-search-menu-button"
@@ -81,7 +83,7 @@
 					style="font-size: 1rem" data-block="2">
 					<li class="u-nav-item"><a
 						class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-						href="/차량-검색_754328325.html" style="padding: 10px 20px;">차량 검색</a>
+						th:href="@{reservationSearch.do}" style="padding: 10px 20px;">차량 예약</a>
 					<div class="u-nav-popup u-block-control u-block-9656-19" style=""
 							data-block="3">
 							<ul
@@ -89,10 +91,10 @@
 								style="font-size: 1rem" data-block="4">
 								<li class="u-nav-item"><a
 									class="u-button-style u-nav-link u-white"
-									href="/지역-검색_10578024.html">지역 검색</a></li>
+									th:href="@{reservationSearch.do}">예약하기</a></li>
 								<li class="u-nav-item"><a
 									class="u-button-style u-nav-link u-white"
-									th:href="@{carList.do(pageNum=1)}">차량 목록</a></li>
+									th:href="@{carList.do}">차량 목록</a></li>
 							</ul>
 						</div></li>
 					<li class="u-nav-item"><a
@@ -179,19 +181,19 @@
 							style="font-size: 1.875rem; font-weight: 700; margin-top: 46.6667px; margin-left: auto; margin-right: auto; margin-bottom: 0px"
 							data-block="15" data-block-type="Menu,SideNavMenuItems">
 							<li class="u-nav-item"><a class="u-button-style u-nav-link"
-								href="/차량-검색_754328325.html"
-								style="padding-top: 22px; padding-bottom: 22px;">차량 검색</a>
+								th:href="@{reservationSearch.do}"
+								style="padding-top: 22px; padding-bottom: 22px;">차량 예약</a>
 							<div class="u-nav-popup u-block-control u-block-9656-29" style=""
 									data-block="16">
 									<ul
 										class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-block-control u-block-9656-30"
 										style="font-size: 1rem" data-block="17">
 										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link" href="/지역-검색_10578024.html"
-											style="">지역 검색</a></li>
+											class="u-button-style u-nav-link" th:href="@{reservationSearch.do}"
+											style="">예약하기</a></li>
 										<li class="u-nav-item"><a
 											class="u-button-style u-nav-link"
-											href="/차량-목록_1005018161.html" style="">차량 목록</a></li>
+											th:href="@{carList.do}" style="">차량 목록</a></li>
 									</ul>
 								</div></li>
 							<li class="u-nav-item"><a
@@ -225,7 +227,7 @@
 										class="u-nav u-unstyled u-h-spacing-20 u-v-spacing-10 u-block-control u-block-9656-57"
 										style="font-size: 1rem;" data-block="1175">
 										<li class="u-nav-item"><a
-											class="u-nav-link u-button-style" href="/notice/noticeList.do"
+											class="u-nav-link u-button-style" th:href="@{noticeList.do}"
 											data-page-id="10578024">공지목록</a></li>
 									</ul>
 								</div></li>
@@ -251,17 +253,17 @@
 										class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10 u-block-control u-block-9656-38"
 										style="font-size: 1rem" data-block="25">
 										<li class="u-nav-item"><a
-											class="u-button-style u-nav-link" href="/ways/ways.do"
+											class="u-button-style u-nav-link" th:href="@{ways.do}"
 											style="">이용방법</a></li>
 										<li class="u-nav-item"><a
 											class="u-button-style u-nav-link"
-											href="/faq/faq.do" style="">자주묻는 질문</a></li>
+											th:href="@{faq.do}" style="">자주묻는 질문</a></li>
 										<li class="u-nav-item"><a
 											class="u-button-style u-nav-link"
-											href="/1대1-문의_1005018161.html" style="">1대1 문의</a></li>
+											th:href="@{questionList.do}" style="">1대1 문의</a></li>
 										<li class="u-nav-item"><a
 											class="u-button-style u-nav-link"
-											href="/신고센터_1005018161.html" style="">신고센터</a></li>
+											th:href="@{reportList.do}" style="">신고센터</a></li>
 									</ul>
 								</div></li>
 						</ul>

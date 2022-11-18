@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function rDelete(rpNo,rrNo) {
+		var sendData = '?rpNo='+rpNo+'&rrNo='+rrNo;
+		$.post('rDelete.do', sendData, function(data) {
+			alert('댓글이 삭제 되었습니다');
+			$('#rprListDisp').html(data);
+		});
+	}
+	function rUpdate(rpNo,rrNo) {			
+		/*  input에 있는 데이터를 읽어서 textarea로 넣어야 수정할 수 있음
+			input, textarea, select등 form안에 있는 데이터 jquery에서 val()
+			td, span, div처럼 일반 테스트 데이터를 읽을 때는 jquery에서 text() */
+		var txt = $('#'+rrNo).text();
+		/* 읽은 데이터를 textarea에 넣기 */
+		$('#'+rrNo).html("<textarea rows='3' class='form-control' id='rt'>"+
+				txt+"</textarea>");	
+		/* 클릿한 버튼을 확인과 취소로 변경  */
+		$('.'+rrNo).html("<input type='button' onclick='up("+rpNo+","+rrNo+
+				")' class='btn btn-sm btn-success' value='확인'> "+
+			"<input type='button' onclick='lst("+rpNo+")' class='btn btn-sm btn-info' "+
+			" value='취소'>");
+	}
+	function lst(rpNo) {
+		$('#rprListDisp').load('/report/rprList.do?rpNo='+rpNo);
+	}
+	function up(rpNo,rrNo) {
+		var sendData = "rprContent="+$('#rt').val();
+		$.post('rUpdate.do?rrNo='+rrNo, sendData, function(data) {
+			alert("수정 되었습니다");
+			$('#rprListDisp').html(data);
+		});
+	}
+</script>
+</head>
+<body>
+<div th:if="${#lists.size(rprList)} > 0">
+	<h5 class="text-primary">답변</h5>
+<table class="table">
+	<tr class="Dark"><td>작성자</td><td>내용</td><td>작성일</td><td></td></tr>
+<th:block th:each="rpr:${rprList}">
+	<th:block th:if="${rpr.del} =='y' ">
+		<tr class="info"><td colspan="4">삭제된 댓글입니다</td></tr>
+	</th:block>
+	<th:block th:if="${rpr.del} != 'y' ">
+		<tr><td>[[${rpr.id }]]</td>
+			<td><pre><span th:id="${rpr.rrNo }">[[${rpr.rprContent }]]</span></pre></td>
+			<td>[[${rpr.regdate }]]</td>
+			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
+				<td><span th:class="${rpr.rrNo}">
+					<input type="button" class="btn btn-warning btn-sm"
+					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
+					<input type="button" class="btn btn-danger btn-sm" 
+					value="삭제" th:onclick="'rDelete('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
+					</span>
+				</td>
+			</th:block>
+			<th:block th:if="${rpr.id} != ${report.id }"><td></td></th:block>
+		</tr>
+	</th:block>
+</th:block>
+</table>
+</div>
+</body>
+</html>

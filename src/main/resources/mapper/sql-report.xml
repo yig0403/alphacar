@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.ReportDao">
+	<resultMap type="report" id="reportResult">
+		<result property="rpNo" column="rpNo"/>
+		<result property="id" column="id"/>
+		<result property="rpTitle" column="rpTitle"/>
+		<result property="rpContent" column="rpContent"/>
+		<result property="rpRead" column="rpRead"/>
+		<result property="del" column="del"/>
+		<result property="regdate" column="regdate"/>
+		<result property="rpfileName" column="rpfileName"/>		
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from report
+	</select>
+	<select id="list" parameterType="report" resultMap="reportResult">
+		select * from (select a.*, rowNum rn from (
+			select * from report order by rpNo desc)a)
+				where rn between #{startRow} and #{endRow} and del='n'
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(rpNo),0) + 1 from report 
+	</select>
+	<select id="insert" parameterType="report">
+		insert into report values (#{rpNo},#{id},#{rpTitle},#{rpContent}, 0,
+					'n', sysdate,
+			<if test="rpfileName!=null and rpfileName!=''">
+				#{rpfileName},
+			</if>	
+			<if test="rpfileName==null or rpfileName==''">
+				null,
+			</if>	
+			#{rType} )
+	</select>
+	<select id="select" parameterType="integer" resultType="report">
+		select * from report where rpNo=#{rpNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update report set del='y' where rpNo=#{rpNo}
+	</update>
+	<update id="update" parameterType="report">
+		update report set rpTitle=#{rpTitle}, rpContent=#{rpContent} where rpNo=#{rpNo}
+	</update>
+	<update id="updaterpRead" parameterType="integer">
+		update report set rpRead = rpRead + 1 where rpNo=#{rpNo}
+	</update>
+</mapper>

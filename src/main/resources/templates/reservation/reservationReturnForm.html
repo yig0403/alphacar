@@ -1,0 +1,16 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
+<title>Insert title here</title></head><body>
+<div class="container" align="center">
+	<h2 class="text-primary">차량 반납하시겠습니까?</h2>
+<form action="reservationReturn.do" method="post">
+	<input type="hidden" name="rsNo" th:value="${rsNo}">
+	<input type="hidden" name="pageNum" th:value="${pageNum }">
+	<input type="submit" value="예" class="btn btn-danger">
+	<input type="button" value="아니오" class="btn btn-danger" onclick="location.href='reservationHistory.do'">
+</form>
+
+
+</div>
+</body>
+</html>

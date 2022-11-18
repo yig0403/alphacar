@@ -1,14 +1,14 @@
-<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
-<span th:insert="header.html::header"></span><head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <meta name="keywords" content="On Top of the World, financial success">
-    <meta name="description" content="">
-    <title>메인페이지</title>
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
+<title>Insert title here</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
-<link rel="stylesheet" href="/css/carInsert.css" media="screen">
+    <link rel="stylesheet" href="/css/carInsert.css" media="screen">
     <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 <script type="application/ld+json">{
@@ -17,128 +17,238 @@
 		"name": ""
 }</script>
     <meta name="theme-color" content="#ffd600">
-    <meta property="og:title" content="차량등록">
+    <meta property="og:title" content="예약등록">
     <meta property="og:type" content="website">
-<script type="text/javascript">
+    <style>
+/*datepicer 버튼 롤오버 시 손가락 모양 표시*/
+.ui-datepicker-trigger{cursor: pointer;}
+/*datepicer input 롤오버 시 손가락 모양 표시*/
+.hasDatepicker{cursor: pointer;}
+</style>
 
-// 그림 보여주기
-function preview(file) {
-	var reader = new FileReader();
-	reader.onload = (function(f) {
-		return function(e) {
-			var div = '<div class="thumb"><div class="close">X</div><img src="'+
-				e.target.result+'"/></div>';
-			$('#thumbnails').append(div);
-		};
-	})(file);
-	reader.readAsDataURL(file);
-	// readAsDataURL: 컨텐츠의 특정 Blob이나 File에서 읽어노는 역할 수행
-}
+<style>
+	#container {
+		width: 1000px;
+		height: 800px;
+		border: 10px solid #c7ecee;
+		border-radius: 10px;
+		background-color: #F5F4F1;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	#h_info {
+		width: 350px;
+		height: 400px;
+		padding-top: 20px;
+		float: left;
+	}
+
+	#h_photo {
+		margin-left: 30px;
+		margin-bottom: 20px;
+	}
+	
+	
+	#h_address {
+		width: 350px;
+		background-color: #F5F4F1;
+		font-size: 18px;
+	}
+	
+	#date {
+		width: 300px;
+		padding-top: 20px;
+		float: left;
+		
+	}
+	
+	#r_info {
+		width: 300px;
+		padding-top: 20px;
+		float: left;
+	}
+	
+	#u_info {
+		clear: both;
+	}
+	
+	h4,h5 {
+		text-align: center;
+	}
+	
+	h5 {
+		color: #468F01;
+	}
+	
+	#button {
+		margin-top: 70px;
+		width: 700px;
+		margin-left: 180px;
+		
+	}
+	input {
+		border: 0px;
+		text-align: center;
+		border-radius: 10px;
+		height: 50px;
+	}
+	
+	#submit {
+		font-size: 24px;
+		width: 300px;
+		float: left;
+		border-radius: 10px 0 0 10px ;
+		margin-top: 5px;
+	}
+	
+	#reset {
+		font-size: 24px;
+		text-decoration: none;
+		width: 300px;
+		background-color: white;
+		border: 1px solid #ddd;
+		border-radius: 0 10px 10px 0;
+		color: black;
+	}
+    </style>
+    
+    <script>
+   $(document).ready(function() {
+	
+    $(function() {
+        //모든 datepicker에 대한 공통 옵션 설정
+        $.datepicker.setDefaults({
+            dateFormat: 'yy-mm-dd' //Input Display Format 변경
+            ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+            ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+            ,changeYear: true //콤보박스에서 년 선택 가능
+            ,changeMonth: true //콤보박스에서 월 선택 가능                
+            ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+            ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+            ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+            ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+            ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+            ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+            ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+            ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+            ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+            ,minDate: "-1M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+            ,maxDate: "+1M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+        });
+        //input을 datepicker로 선언
+        $("#datepicker").datepicker();                    
+        $("#datepicker2").datepicker();
+        
+        //From의 초기값을 오늘 날짜로 설정
+        $('#datepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+        //To의 초기값을 내일로 설정
+        $('#datepicker2').datepicker('setDate', '+1D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
+    });
+    
+    
+    $('#datepicker2').change(function() {
+    	
+   		call();
+    	
+    });
+    
+    
+    function call()
+    {
+        var sdd = document.getElementById("datepicker").value;
+        var edd = document.getElementById("datepicker2").value;
+        var ar1 = sdd.split('-');
+        var ar2 = edd.split('-');
+        var dat1 = new Date(ar1[0], ar1[1], ar1[2]);
+        var dat2 = new Date(ar2[0], ar2[1], ar2[2]);
+        
+  		// 날짜 차이 알아 내기
+        var diff = dat2 - dat1;
+        var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+        var currMonth = currDay * 30;// 월 만듬
+        var currYear = currMonth * 12; // 년 만듬
+        var ddif = parseInt(diff/currDay);
+        var mdif = parseInt(diff/currMonth);
+        var ydif = parseInt(diff/currYear);
+        
+        var totalP = parseInt(diff/currDay) * 2000;
+        $('#r_price').val(totalP);
+        
+/*         
+        document.write("* 날짜 두개 : " + sdd + ", " + edd + "<br/>");
+        document.write("* 일수 차이 : " + parseInt(diff/currDay) + " 일<br/>");
+        document.write("* 월수 차이 : " + parseInt(diff/currMonth) + " 월<br/>");
+        document.write("* 년수 차이 : " + parseInt(diff/currYear) + " 년<br/><br/>"); */
+     
+    }
+        
+    
+});
+   </script>
+   
+   <script type="text/javascript">
+	$(function() {
+		$('#carDisp').load("carList.do", "pageNum=[[${pageNum}]]");
+	});
+	
+	// 그림 보여주기
+	function preview(file) {
+		var reader = new FileReader();
+		reader.onload = (function(f) {
+			return function(e) {
+				var div = '<div class="thumb"><div class="close">X</div><img src="'+
+					e.target.result+'"/></div>';
+				$('#thumbnails').append(div);
+			};
+		})(file);
+		reader.readAsDataURL(file);
+		// readAsDataURL: 컨텐츠의 특정 Blob이나 File에서 읽어노는 역할 수행
+	}
+	
 </script>
+    
+    
 </head>
  <body class="u-body u-xl-mode" data-lang="en">
-  <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-    <section class="u-clearfix u-section-1" id="sec-e2ad">
-        <div class="u-clearfix u-sheet u-sheet-1">
-           <h2 class="u-text u-text-default u-text-1">차량 등록하기</h2>
-              <div class="u-align-center u-form u-form-1">
-	 <form action="carInsert.do" method="post" enctype="multipart/form-data" name="frm">
-	<div class="u-align-left u-form u-form-1">
-	<div class="u-form-group u-label-left u-form-group-1">
-	 <label for="text-48d0" class="u-label u-spacing-5 u-label-1">차량 번호</label>
-	 <input type="text" name="carNo" required="required" autofocus="autofocus"
-    class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" >
-    <input type="button" class="btn btn-warning btn-sm" onclick="carNoChk()" value="중복체크">
-    <div id ="carNoChk1" class="err"></div>
-    </div>
-    
-    <div class="u-form-group u-label-left u-form-group-2">
-     <label for="text-d79b" class="u-label u-spacing-5 u-label-2">차량 이름</label>
-     <input type="text" name="carName" required="required" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
-     </div>
-	 
- <div>
-   <div class ="select select-wrapper">
-	  <label for="select">차량 등급</label>
-	    <select id="select" name="carRank" required="required">
-	              <option value="경차">경차</option>    
-                  <option value="소형">소형</option>
-                  <option value="중형">중형</option>
-                  <option value="준대형">준대형</option>
-                  <option value="대형">대형</option>
-                  <option value="SUV/RV">SUV/RV</option>
-                  <option value="대형">대형</option>
-                  <option value="수입차">수입차</option>
-                  <option value="전기차">전기차</option>
-                </select>
-          </div>
-	 </div>
-    
-    <div>
-     <div class ="select select-wrapper">
-	  <label for="select-1">제조사/차종</label>
-	    <select id="select-1" name="carKind" required="required">
-	       <option value="현대">현대</option>
-                  <option value="기아">기아</option>
-                  <option value="쉐보레">쉐보레</option>
-                  <option value="쌍용">쌍용</option>
-                  <option value="르노">르노</option>
-                  <option value="테슬라">테슬라</option>
-                  <option value="포르쉐">포르쉐</option>
-                  <option value="페라리">페라리</option>
-                  <option value="아우디">아우디</option>
-                  <option value="BMW">BMW</option>
-                  <option value="벤츠">벤츠</option>
-                  <option value="마이바흐">마이바흐</option>
-                </select>
-          </div>
-	 </div>
-	
-	<div>
-	 <div class ="select select-wrapper">
-	  <label for="select-2">연료</label>
-	    <select id="select-2" name="carType" required="required">
-	       <option value="디젤">디젤</option>
-                  <option value="가솔린">가솔린</option>
-                  <option value="LPG">LPG</option>
-                  <option value="하이브리드">하이브리드</option>
-                  <option value="전기">전기</option>
-                  <option value="수소">수소</option>
-                </select>
-          </div>
-	 </div>
-	 
-	 <div>
-     <label for="text">연식</label>
-     <input type="text" name="carYear" required="required" class="form-control">
-     </div>
-     
-     <div>
-     <label for="text">기본 요금</label>
-     <input type="number" name="fee" required="required" class="form-control">
-     </div>
-     
-     <div>
-     <label for="text">차량 색깔</label>
-     <input type="text" name="carColor" required="required" class="form-control">
-     </div>
-     
-     <div>
-     <label for="text">차량 위치한 지역</label>
-     <input type="text" name="carRegion" required="required" class="form-control">
-     </div>
-     
-     <div>
-     <label for="file">차량사진</label>
-     <input type="file" id="thumbnails" name="file">
-     </div>
-     
-    <div align = "center">
-    <input type="submit" value="등록" class="btn btn-success" name="등록">
-    </div>
-  </div>
-</form>
-</div></div></section>
-</div>
+	  <section id="about" class="home-section color-dark bg-white">
+	    <div class="container" id="container" align="center">
+	    	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
+	    	   <form th:action="@{reservation.do}" method="post">    
+	    	<div id="h_info">
+	    			<h4>차량 정보</h4>
+	    			  <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{carUpload/}+${car.filename}" style="width:150px; height:150px;">
+	    			<div>
+	    			<input type="text" name="carNo" required="required" th:value="${car.carNo }" readonly>
+	    			<div>
+	    			[[${car.CarName}]]
+	    			</div>
+	    		</div>
+	    		</div>
+         <div id="date">
+	    			<h4>대여날짜</h4>
+	    			<h5><input type="date" id="datepicker" name="startDate"></h5>
+	    			<h4>반납날짜</h4>
+	    			<h5><input type="date" id="datepicker2" name="endDate"></h5>
+	    		</div>
+          
+          <div id="r_info">
+	    			<h4>차량 위치</h4>
+	    			<div>[[${car.carRegion}]]</div>
+	    			<h4>기본 요금</h4>
+	    			<div>[[${car.fee}]]원</div>
+	    			<h4>총 요금</h4>
+	    			<h5><input type = "number" name="amount" id="amount"></h5>
+	    		</div>
+	      
+	      <div id="u_info" align="center">   
+               <div align = "center">
+                  <input type="submit" value="예약하시겠습니까" class="btn btn-success u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2" name="예약">
+                     <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">취소</a>
+              </div>
+         </div>
+        </form>
+        </div>
+   </section>
 </body>
+<span th:insert="footer.html::footer"></span>
 </html>

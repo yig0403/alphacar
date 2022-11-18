@@ -1,0 +1,220 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="header.html::header"></span><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/css/carList.css" media="screen">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta property="og:title" content="carList">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode" data-lang="en">
+     <section class="u-align-center u-clearfix u-section-1" id="sec-2494">
+      <div class="u-clearfix u-sheet u-block-1dee-2">
+           <h2 class="u-text u-text-default u-block-1dee-8">전체 차량 목록</h2>
+   
+           
+<div class="u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-block-1dee-3">
+     <div class="u-layout">  
+              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-16 u-block-1dee-4">
+                    <div class="u-container-layout u-valign-top u-block-1dee-5">
+                         <div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-10">
+                              <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
+                                    <div class="u-form-group u-form-select u-block-1dee-9">
+                                         <label for="carRank" class="u-label u-block-1dee-11">차량등급</label>
+                                               <div class="u-form-select-wrapper">
+                                                    <select id="carRank" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-12">
+                                                           <option value="선택">선택</option>
+                                                           <option value="경차">경차</option>
+                                                           <option value="소형">소형</option>
+                                                           <option value="준대형">준대형</option>
+                                                           <option value="대형">대형</option>
+                                                           <option value="SUV/RV">SUV/RV</option>
+                                                           <option value="수입차">수입차</option>
+                                                           <option value="전기차">전기차</option>                                                           
+                                                      </select>
+                                              </div>
+                                     </div>
+                                 <div class="u-align-center u-form-group u-form-submit u-block-1dee-13">
+                            <input type="hidden" name="pageNum" value="1"> 
+                            <input type="submit" value="검색" name="carRank" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-20">
+                  </div>
+        </form>
+</div>
+
+
+<div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-15">
+    <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
+        <div class="u-form-group u-form-select u-block-1dee-16">
+            <label for="carKind" class="u-label u-block-1dee-17">제조사/차종</label>
+                <div class="u-form-select-wrapper">
+                    <select id="carKind" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-18">
+                         <option value="선택">선택</option>
+                         <option value="현대">현대</option>
+                         <option value="기아">기아</option>
+                         <option value="쌍용">쌍용</option>
+                         <option value="쉐보레">쉐보레</option>
+                   </select>
+               </div>
+           </div> 
+            <div class="u-align-center u-form-group u-form-submit u-block-1dee-19">
+              <input type="hidden" name="pageNum" value="1"> 
+            <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-20">
+        </div>
+    </form>
+</div>
+
+
+<div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-21">
+     <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
+         <div class="u-form-group u-block-1dee-22">
+             <label for="carRegion" class="u-label u-block-1dee-23">지역검색</label>
+                  <input type="text" placeholder="지역입력" id="keyword" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-24">
+         </div>
+               <div class="u-align-center u-form-group u-form-submit u-block-1dee-25">
+                      <input type="hidden" name="pageNum" value="1"> 
+                      <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-26">
+              </div>
+         </form>
+  </div>
+
+
+<div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-27">
+          <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
+        <div class="u-form-group u-form-select u-block-1dee-28">
+    <label for="carYear" class="u-label u-block-1dee-29">연식</label>
+    <div class="u-form-select-wrapper">
+        <select id="carYear" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-30">
+             <option value="선택">선택</option>
+             <option value="2022">2022</option>
+             <option value="2021">2021</option>
+             <option value="2020">2020</option>
+             <option value="2019">2019</option>
+             <option value="2018">2018</option>
+             <option value="2017">2017</option>
+             <option value="2016">2016</option>
+             <option value="2015">2015</option>
+             <option value="2014">2014</option>
+             <option value="2013">2013</option>
+             <option value="2012">2012</option>
+             <option value="2011">2011</option>
+             <option value="2010">2010</option>
+        </select>
+    </div>
+</div>
+        <div class="u-align-center u-form-group u-form-submit u-block-1dee-31">
+           <input type="hidden" name="pageNum" value="1"> 
+        <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-32">
+        </div> 
+    </form>
+</div>
+
+
+<div class="u-border-2 u-border-grey-75 u-form u-palette-5-base u-block-1dee-33">
+    <form th:action="@{carList.do}"  method="get" style="padding: 10px;">
+        <div class="u-form-group u-form-select u-block-1dee-34">
+            <label for="fee" class="u-label u-block-1dee-35">요금</label>
+                 <div class="u-form-select-wrapper">
+                        <select id="fee" name="keyword" class="u-border-1 u-border-black u-input u-input-rectangle u-block-1dee-36">
+                              <option value="선택">선택</option>
+                              <option value="1 ~ 3ㄴ">1 ~ 3만원</option>
+                              <option value="4 ~ 6만원">4 ~ 6만원</option>
+                              <option value="7 ~ 10만원">7 ~ 10만원</option>
+                              <option value="21 ~ 30만원">21 ~ 30만원</option>
+                              <option value="31 ~ 40만원">31 ~ 40만원</option>
+                              <option value="41 ~ 70만원">41 ~ 70만원</option>
+                              <option value="71 ~ 100만원">71 ~ 100만원</option>
+                          </select>
+                 </div>
+          </div>
+            <div class="u-align-center u-form-group u-form-submit u-block-1dee-37">
+              <input type="hidden" name="pageNum" value="1">  
+            <input type="submit" value="검색" class="u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-dark-1 u-white u-block-1dee-38">
+        </div>
+    </form>
+</div>
+        </div>
+
+    <div class="u-layout-row">
+         <div class="u-container-layout u-block-1dee-7" th:if="${#lists.size(list)} > 0" th:each="car:${list}">
+             <div class="u-border-3 u-border-palette-5-base u-container-style u-group u-block-1dee-52" >
+                 <div class="u-container-layout u-block-1dee-53">
+                     <img class="u-image u-image-round u-radius-10 u-block-1dee-54"  th:src="@{/carUpload/}+${car.filename}" alt="" data-image-width="318" data-image-height="200">
+                         <h6 class="u-text u-text-default u-block-1dee-55">
+                            <a class="u-product-title-link" th:href="@{carView.do(carNo=${car.carNo},pageNum=${pageNum})}">[[${car.carNo}]]</a>
+                         </h6>
+                                <div class="u-text u-block-1dee-56">
+                                <div>차량 이름 : [[${car.carName}]]</div>
+ 				                <div>차량 회사 : [[${car.carKind}]]</div>
+ 				                <div>차량 등급 : [[${car.carRank}]]</div>
+ 				                <div>차량 위치 : [[${car.carRegion}]]</div> 
+ 				                <div>기본 요금 : [[${car.fee}]]원</div> 
+                                <a th:href="@{reservationInsertForm.do(carNo=${car.carNo},pageNum=${pageNum})}" class="u-border-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-4-light-2 u-radius-6 u-block-1dee-57" style="margin-left:35px;">예약하기</a>
+                              </div>
+                         </div>
+                      </div>
+                   </div>
+                </div> 
+              </div>
+            </div>
+          </div>    
+        </div>
+ 
+    <div align="center">
+	<ul class="pagination">
+		<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->	
+		<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+			<li><a th:href="@{carList.do(pageNum=1)}">
+				<span class="glyphicon glyphicon-fast-backward"></span></a></li>
+			<li><a th:href="@{carList.do(pageNum=${pb.startPage-1 })}">
+				<span class="glyphicon glyphicon-triangle-left"></span></a></li>
+		</th:block>
+		<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+			<th:block th:if="${pb.currentPage == i }">
+				<li class="active"><a th:href="@{carList.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>
+			<th:block th:if="${pb.currentPage != i }">
+				<li><a th:href="@{carList.do(pageNum=${i})}">[[${i}]]</a></li>
+			</th:block>		
+		</th:block>
+		<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+		<th:block th:if="${pb.endPage < pb.totalPage}">
+			<li><a th:href="@{carList.do(pageNum=${pb.endPage+1})}">
+				<span class="glyphicon glyphicon-triangle-right"></span></a></li>
+			<li><a th:href="@{carList.do(pageNum=${pb.totalPage})}">
+				<span class="glyphicon glyphicon-fast-forward"></span></a></li>
+		</th:block>		
+	</ul>
+</div>
+
+ <div align="center" style="margin-bottom: 50px;">
+        <form th:action="@{carList.do}" method="get">
+          <select name="search">
+              <option value="${carName}">차 이름</option>
+              <option value="${carKind}">제조사</option>
+              <option value="${carRank}">등급</option>
+              <option value="${carRegion}">지역</option>
+          </select>
+	        <input type="hidden" name="pageNum" value="1"> 
+	        <input type="text" name="keyword" placeholder="검색어를 입력해주세요">
+	         <input type="submit" value="검색">
+   </form>	
+</div>
+          
+   </section>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

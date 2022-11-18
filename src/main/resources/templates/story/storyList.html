@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header.html::header"></span>
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function idChk(index,stNo, pageNum) {
+		id = $('#'+index).text();
+		if (id == '[[${member.id}]]' || '[[${member.id}]]' == 'admin') {
+			location.href = "storySelect.do?stNo="+stNo + "&pageNum=" + pageNum;
+		}
+		else 
+			alert ("작성자나 관리자만 확인가능합니다");
+	}
+</script>
+</head>
+<body>
+	<div class="container" align="center">
+		<h3 class="primary">스토리</h3>
+		<table class="table" >
+			<tr class="Dark">
+				<th>번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>조회수</th>
+				<th>작성일</th>
+			</tr>
+			<tr class="warning" th:if="${#lists.size(list)}==0">
+				<td colspan="5">글이 없습니다</td>
+			</tr>
+			<tr th:if="${#lists.size(list)}>0" th:each="st, stat:${list}"><td>[[${st.stNo }]]</td>
+				<td>				
+					<button class="btn btn-Link" 
+						th:onclick="'idChk('+${stat.index}+','+${st.stNo}+','+${pb.currentPage}+')'">
+							[[${st.stTitle}]]
+					</button>					
+				</td>
+				<td th:text="${st.id}" th:id="${stat.index}"></td>
+				<td>[[${st.stReadcount}]]</td>								
+				<td>[[${st.regdate}]]</td>
+			</tr>
+		</table>
+		<div align="center">
+			<ul class="pagination">
+				<!-- 시작페이지가 pagePerBlock(10)보다 크면 앞에 보여줄 것이 있다 -->
+				<th:block th:if="${pb.startPage > pb.pagePerBlock}">
+					<li><a th:href="@{questionList.do(pageNum=1)}"> <span
+							class="glyphicon glyphicon-fast-backward"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.startPage-1 })}">
+							<span class="glyphicon glyphicon-triangle-left"></span>
+					</a></li>
+				</th:block>
+				<th:block th:each="i:${#numbers.sequence(pb.startPage,pb.endPage) }">
+					<th:block th:if="${pb.currentPage == i }">
+						<li class="active"><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+					<th:block th:if="${pb.currentPage != i }">
+						<li><a th:href="@{questionList.do(pageNum=${i})}">[[${i}]]</a></li>
+					</th:block>
+				</th:block>
+				<!-- endPage보다 totalPage가 크면 보여줄 것이 뒤에 남아 있다 -->
+				<th:block th:if="${pb.endPage < pb.totalPage}">
+					<li><a th:href="@{questionList.do(pageNum=${pb.endPage+1})}"> <span
+							class="glyphicon glyphicon-triangle-right"></span></a></li>
+					<li><a th:href="@{questionList.do(pageNum=${pb.totalPage})}"> <span
+							class="glyphicon glyphicon-fast-forward"></span></a></li>
+				</th:block>
+			</ul>
+			<div align="center"><a href="storyInsertForm.do?stNo=0&pageNum=1"
+				class="btn btn-warning">스토리 작성하기</a></div>
+		</div>
+	</div>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

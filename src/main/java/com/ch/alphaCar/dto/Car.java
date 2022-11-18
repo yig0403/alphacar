@@ -1,5 +1,7 @@
 package com.ch.alphaCar.dto;
 
+import java.sql.Date;
+
 import org.apache.ibatis.type.Alias;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,4 +32,5 @@ public class Car {
 	private String keyword;
 	// 업로드
 	private MultipartFile file;
+
 }

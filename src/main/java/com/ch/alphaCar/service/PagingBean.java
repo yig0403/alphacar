@@ -20,6 +20,7 @@ public class PagingBean {
 		startPage = currentPage - (currentPage - 1) % pagePerBlock;
 		endPage = startPage + pagePerBlock - 1;
 		if (endPage > totalPage)
-			endPage = totalPage;
+			if (totalPage == 0) endPage = 1;
+			else endPage = totalPage;
 	}
 }

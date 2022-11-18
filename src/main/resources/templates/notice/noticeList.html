@@ -15,7 +15,7 @@
 		<tr th:if="${#lists.size(noticeList)} > 0" th:each="notice:${noticeList}">
 			<td>[[${notice.noNo}]]</td>
 			<td>
-				<a th:href="@{/notice/noticeSelect.do(noNo=${notice.noNo})}">
+				<a th:href="@{noticeSelect.do(noNo=${notice.noNo})}">
 				[[${notice.noTitle}]]
 				</a>
 			</td>
