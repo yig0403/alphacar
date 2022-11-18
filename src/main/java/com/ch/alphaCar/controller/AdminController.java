@@ -14,14 +14,14 @@ public class AdminController {
 	@Autowired
 	private WaysService ws;
 	
-	@RequestMapping("/admin/adminMain.do")
+	@RequestMapping("adminMain.do")
 	public String adminMain() {
-		return "admin/adminMain";
+		return "/admin/adminMain";
 	}
 	
-	@RequestMapping("/admin/serviceCenter.do")
+	@RequestMapping("serviceCenter.do")
 	public String serviceCenter() {
-		return "sc/serviceCenter";
+		return "/sc/serviceCenter";
 	}
 	
 }

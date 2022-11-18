@@ -42,6 +42,7 @@ create table car (
 	carYear VARCHAR2(30) NOT NULL,
 	fee NUMBER NOT NULL,
 	carColor VARCHAR2(30) NOT NULL,
+	carRegion VARCHAR2(50) NOT NULL, 
 	del CHAR(1) default 'n',
 	filename VARCHAR2(50) NOT NULL, 
 	carRes CHAR(1) default 'n',

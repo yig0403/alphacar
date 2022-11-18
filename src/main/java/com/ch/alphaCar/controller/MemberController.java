@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ch.alphaCar.dto.Member;
-import com.ch.alphaCar.service.MailSendService;
 import com.ch.alphaCar.service.MemberService;
 
 @Controller
