@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 @Data
 @Alias("story")
-public class Stroy {
+public class Story {
 	private int stNo;
 	private String id;
 	private String stTitle;
