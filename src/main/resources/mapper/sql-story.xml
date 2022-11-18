@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.StoryDao">
+	<resultMap type="story" id="storyResult">
+		<result property="stNo" column="stNo"/>
+		<result property="id" column="id"/>
+		<result property="stTitle" column="stTitle"/>
+		<result property="stContent" column="stContent"/>
+		<result property="stReadcount" column="stReadcount"/>
+		<result property="regdate" column="regdate"/>
+		<result property="sfileName" column="sfileName"/>
+		<result property="del" column="del"/>		
+		<collection property="member" resultMap="memberResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	
+</mapper>

@@ -14,7 +14,9 @@ public interface ReportReplyService {
 
 	void delete(Integer rrNo);
 
-	void update(Integer rrNo);
+	void update(ReportReply rpr);
+
+
 
 	
 
