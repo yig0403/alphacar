@@ -88,7 +88,10 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("reservationInsertForm.do")
-	public String carInsertForm() {
+	public String carInsertForm(String carNo, String pageNum, Model model) {
+		Car car = cs.select(carNo);
+		model.addAttribute("car", car);
+		model.addAttribute("pageNum", pageNum);
 		return "/reservation/reservationInsertForm";
 	}
 	
@@ -109,8 +112,8 @@ public class ReservationController {
 		if (reservation2 == null) {
 			 if(todate.before(startDate) && todate.before(endDate) && endDate.after(startDate)) {	 
 						 result = rs.insert(reservation);
-						 cs.update1(reservation.getCarNo());  
-				  }	 
+			        			  cs.update1(reservation.getCarNo());  			
+		    }
 		} else result = -1;  // 이미 있으니 입력하지마
 		
 		model.addAttribute("result", result);
@@ -139,12 +142,12 @@ public class ReservationController {
 
 	
 	@RequestMapping("reservationReturn.do")
-	public String reservationReturn(Reservation reservation,String pageNum ,Model model) {
+	public String reservationReturn(String carNo, int rsNo, Reservation reservation,String pageNum ,Model model) {
 		int result = 0;
 		Reservation reservation2 = rs.select(reservation.getRsNo());
 		if( reservation2 != null) {
 			result = rs.update1(reservation.getRsNo());
-			 
+			    
 		}else result = -1;
 		model.addAttribute("result", result);
 		model.addAttribute("pageNum,", pageNum);
@@ -152,7 +155,7 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("reservationReturnForm.do")
-	public String reservationReturnForm(String carNo, int rsNo, String pageNum,  Model model) {
+	public String reservationReturnForm(int rsNo, String pageNum,  Model model) {
 		model.addAttribute("rsNo", rsNo);
 		model.addAttribute("pageNum", pageNum);
 		return "/reservation/reservationReturnForm";

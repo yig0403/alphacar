@@ -51,7 +51,7 @@
 		<tr><td>[[${rpr.id }]]</td>
 			<td id="td_${rpr.rrNo }"><pre>[[${rpr.rprContent }]]</pre></td>
 			<td>[[${rpr.regdate }]]</td>
-			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
+			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'k1'">
 				<td id="btn_${rpr.rrNo}">
 					<input type="button" class="btn btn-warning btn-sm"
 					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">

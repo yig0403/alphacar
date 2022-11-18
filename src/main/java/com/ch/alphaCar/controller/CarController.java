@@ -31,6 +31,7 @@ public class CarController {
     
 	@RequestMapping("carList.do")
 	public String list(Car car, String pageNum, Model model) {
+		System.out.println("CARNO="+car.getCarNo());
 		int rowPerPage = 12; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);

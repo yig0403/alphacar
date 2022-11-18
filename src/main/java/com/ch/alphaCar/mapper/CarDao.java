@@ -25,4 +25,6 @@ public interface CarDao {
 
 	int update1(String carNo);
 
+	int update10(String carNo);
+
 }

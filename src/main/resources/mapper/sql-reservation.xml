@@ -38,8 +38,5 @@
 		update reservation set cancel='y' where rsNo=#{rsNo}
 	</update>
 	
-	<update id="update2" parameterType="car">
-	 update car set carRes='n' where carNo=#{carNo}
-	</update>
 
 </mapper>

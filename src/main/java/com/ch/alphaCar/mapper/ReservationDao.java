@@ -26,6 +26,4 @@ public interface ReservationDao {
 
 	int update1(int rsNo);
 
-	int update2(String carNo);
-
 }

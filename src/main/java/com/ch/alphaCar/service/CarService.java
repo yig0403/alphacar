@@ -22,4 +22,6 @@ public interface CarService {
 
 	int update1(String carNo);
 
+	int update10(String carNo);
+
 }

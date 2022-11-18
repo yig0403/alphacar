@@ -76,4 +76,8 @@
 	 update car set carRes='y' where carNo=#{carNo}
 	</update>
 	
+	<update id="update10" parameterType="car">
+	 update car set carRes='n' where carNo=#{carNo}
+	</update>
+	
 </mapper>

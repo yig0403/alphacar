@@ -21,6 +21,4 @@ public interface ReservationService {
 
 	int update1(int rsNo);
 
-	int update2(String carNo);
-
 }

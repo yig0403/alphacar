@@ -47,8 +47,5 @@ public class ReservationServiceImpl implements ReservationService{
 		return rd.update1(rsNo);
 	}
 
-	public int update2(String carNo) {
-		return rd.update2(carNo);
-	}
 	
 }

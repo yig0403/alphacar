@@ -8,8 +8,6 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <!--  kakao api -->
-    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
     <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
@@ -44,9 +42,7 @@
 		padding-top: 20px;
 		float: left;
 	}
-	
-	
-	
+
 	#h_photo {
 		margin-left: 30px;
 		margin-bottom: 20px;
@@ -216,16 +212,17 @@
  <body class="u-body u-xl-mode" data-lang="en">
 	  <section id="about" class="home-section color-dark bg-white">
 	    <div class="container" id="container" align="center">
-	      <a id="kakaopay-btn" style="cursor: pointer; width: 120px; height: 51px; display: inline-block; margin-bottom: -20px; margin-right: 30px; background-image: url(/kym/img/payment_medium.png);"></a>
 	    	<h1 style="padding: 15px; border-bottom: 1px solid #CCCCCC;"> 예약 상세 내용 </h1>
-	    	   <form th:action="@{reservation.do}" method="post">
+	    	   <form th:action="@{reservation.do}" method="post">    
 	    	<div id="h_info">
 	    			<h4>차량 정보</h4>
-	    			<img alt="" src="@{/carUpload/}+${car.filename}" style="width:300px; height:200px;">
+	    			  <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{carUpload/}+${car.filename}" style="width:150px; height:150px;">
 	    			<div>
-	    			<input type="text" name="carNo" id="carNo">
-	    			<div>${car.carName}</div>
+	    			<input type="text" name="carNo" required="required" th:value="${car.carNo }" readonly>
+	    			<div>
+	    			[[${car.CarName}]]
 	    			</div>
+	    		</div>
 	    		</div>
          <div id="date">
 	    			<h4>대여날짜</h4>
@@ -236,8 +233,10 @@
           
           <div id="r_info">
 	    			<h4>차량 위치</h4>
-	    			<div>${car.carRegion}</div>
+	    			<div>[[${car.carRegion}]]</div>
 	    			<h4>기본 요금</h4>
+	    			<div>[[${car.fee}]]원</div>
+	    			<h4>총 요금</h4>
 	    			<h5><input type = "number" name="amount" id="amount"></h5>
 	    		</div>
 	      
@@ -248,7 +247,7 @@
               </div>
          </div>
         </form>
-       </div>
+        </div>
    </section>
 </body>
 <span th:insert="footer.html::footer"></span>
