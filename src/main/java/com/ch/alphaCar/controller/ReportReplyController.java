@@ -60,13 +60,12 @@ public class ReportReplyController {
 		return "redirect:/report/rprList.do?rpNo="+rpNo;
 	}
 	@RequestMapping("rUpdate.do")
-	private String rUpdate(Integer rrNo, Model model ) {		
-		ReportReply rpr = rrs.select2(rrNo);
-		Integer rpNo = rpr.getRpNo();
-		model.addAttribute("rpNo",rpNo);
-		rrs.update(rrNo);
-		
-		return "redirect:/report/rprList.do?rpNo="+rpNo;
+	private String rUpdate(Model model, ReportReply rpr) {	
+		ReportReply rpr2 = rrs.select2(rpr.getRrNo());
+		Integer rpNo2 = rpr2.getRpNo();		
+		model.addAttribute("rpNo",rpNo2);				
+		rrs.update(rpr);
+		return "redirect:/report/rprList.do?rpNo="+rpNo2;
 	}
 	
 }
