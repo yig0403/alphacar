@@ -27,8 +27,9 @@ public class ReportReplyServiceImpl implements ReportReplyService {
 	public void delete(Integer rrNo) {
 		rrd.delete(rrNo);
 	}
-	public void update(Integer rrNo) {
-		rrd.update(rrNo);
+	public void update(ReportReply rpr) {
+		rrd.update(rpr);
 	}
+	
 	
 }

@@ -12,26 +12,26 @@
 			$('#rprListDisp').html(data);
 		});
 	}
-	function rUpdate(rpNo,rrNo) {
+	function rUpdate(rpNo,rrNo) {			
 		/*  input에 있는 데이터를 읽어서 textarea로 넣어야 수정할 수 있음
 			input, textarea, select등 form안에 있는 데이터 jquery에서 val()
 			td, span, div처럼 일반 테스트 데이터를 읽을 때는 jquery에서 text() */
-		var txt = $('#td_'+rrNo).text();
+		var txt = $('#'+rrNo).text();
 		/* 읽은 데이터를 textarea에 넣기 */
-		$('#td_'+rrNo).html("<textarea rows='3' class='form-control' id='rt'>"+
-				txt+"</textarea>");
+		$('#'+rrNo).html("<textarea rows='3' class='form-control' id='rt'>"+
+				txt+"</textarea>");	
 		/* 클릿한 버튼을 확인과 취소로 변경  */
-		$('#btn_'+rrNo).html("<input type='button' onclick='up("+rpNo+","+rrNo+
-				")' class='btn btn-sm btn-danger' value='확인'> "+
+		$('.'+rrNo).html("<input type='button' onclick='up("+rpNo+","+rrNo+
+				")' class='btn btn-sm btn-success' value='확인'> "+
 			"<input type='button' onclick='lst("+rpNo+")' class='btn btn-sm btn-info' "+
 			" value='취소'>");
 	}
 	function lst(rpNo) {
-		$('#rprListDisp').load('/report/replyList.do?rpNo='+rpNo);
+		$('#rprListDisp').load('/report/rprList.do?rpNo='+rpNo);
 	}
 	function up(rpNo,rrNo) {
-		var sendData = "rprContent="+$('#rt').val()+"&rpNo="+rpNo+"&rrNo="+rrNo;
-		$.post('rUpdate.do', sendData, function(data) {
+		var sendData = "rprContent="+$('#rt').val();
+		$.post('rUpdate.do?rrNo='+rrNo, sendData, function(data) {
 			alert("수정 되었습니다");
 			$('#rprListDisp').html(data);
 		});
@@ -49,14 +49,15 @@
 	</th:block>
 	<th:block th:if="${rpr.del} != 'y' ">
 		<tr><td>[[${rpr.id }]]</td>
-			<td id="td_${rpr.rrNo }"><pre>[[${rpr.rprContent }]]</pre></td>
+			<td><pre><span th:id="${rpr.rrNo }">[[${rpr.rprContent }]]</span></pre></td>
 			<td>[[${rpr.regdate }]]</td>
 			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
-				<td id="btn_${rpr.rrNo}">
+				<td><span th:class="${rpr.rrNo}">
 					<input type="button" class="btn btn-warning btn-sm"
 					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
 					<input type="button" class="btn btn-danger btn-sm" 
 					value="삭제" th:onclick="'rDelete('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
+					</span>
 				</td>
 			</th:block>
 			<th:block th:if="${rpr.id} != ${report.id }"><td></td></th:block>

@@ -37,7 +37,7 @@
 	<update id="delete" parameterType="integer">
 		update reportreply set del='y' where rrNo=#{rrNo}
 	</update>
-	<update id="update" parameterType="integer">
+	<update id="update" parameterType="rpr">
 		update reportreply set rprContent=#{rprContent} where rrNo=#{rrNo}
 	</update>
 </mapper>

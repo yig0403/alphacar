@@ -137,12 +137,8 @@ CREATE TABLE story (
 	stTitle	VARCHAR2(100)	NULL,
 	stContent	VARCHAR2(1000)	NULL,
 	stReadcount	NUMBER	NULL,
-	stRef	NUMBER	NULL,
-	stRe_level	NUMBER	NULL,
-	stRe_step	NUMBER	NULL,
 	regdate	DATE	NULL,
 	sfileName	VARCHAR2(50)	NULL,
-	stLike	NUMBER	NULL,
 	del	CHAR(1)	NULL
 );
 
