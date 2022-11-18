@@ -1,0 +1,61 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="/header3.html::header"></span>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>myPage</title>
+    <link rel="stylesheet" href="/css/nicepage.css" media="screen">
+	<link rel="stylesheet" href="/css/myPage.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.20.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "PROJECT",
+		"logo": "images/logo.png?rand=0c46",
+		"sameAs": [
+				"https://ko-kr.facebook.com/",
+				"https://twitter.com/?lang=ko",
+				"https://www.instagram.com/"
+		]
+}</script>
+    <meta name="theme-color" content="#ffd600">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="myPage">
+    <meta name="twitter:description" content="PROJECT">
+    <meta property="og:title" content="myPage">
+    <meta property="og:type" content="website">
+  </head>
+  <script type="text/javascript">
+	function del() {
+		var cf = confirm("정말로 삭제하시겠습니까?");
+		if (cf) location.href = "delete.do";
+		else alert("탈퇴가 취소 되었습니다");
+	}
+  </script>
+<body class="u-body u-xl-mode" data-lang="en">
+	<section class="u-align-center u-clearfix u-container-align-center u-grey-10 u-section-1" id="sec-70db">
+      <div class="u-align-center u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-container-style u-group u-white u-group-1">
+          <div class="u-container-layout u-container-layout-1">
+            <h1 class="u-text u-text-default u-text-1">마이페이지</h1>
+            <a href="updateForm.do" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-1">개인정보 수정</a>
+            <a href="updatePasswordForm.do" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-2">비밀번호 변경</a>
+            <a onclick="del()" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-3">탈퇴</a>
+            <a href="story.do" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-4">차량 리뷰 / 스토리</a>
+            <a href="inquiry.do" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-5">문의 내역</a>
+            <a href="usageHistory.do" class="u-align-center u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-button-style u-radius-10 u-btn-6">이용 내역</a>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

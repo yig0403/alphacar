@@ -31,7 +31,7 @@ public class ReservationController {
 	private MemberService ms;
 	
 	@RequestMapping("reservationHistory")
-	public String reservationHistory(Reservation reservation, String PageNum, Model model, HttpSession session) {
+	public String reservationHistory(Reservation reservation, String pageNum, Model model, HttpSession session) {
 		int rowPerPage = 10; // 한 화면에 보여주는 갯수
 		if (pageNum == null || pageNum.equals("")) pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);

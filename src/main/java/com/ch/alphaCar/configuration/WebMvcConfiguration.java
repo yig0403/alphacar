@@ -20,7 +20,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 		public void addInterceptors(InterceptorRegistry registory) {
 			registory.addInterceptor(new SessionChk())
 				.excludePathPatterns("/**/joinForm.do","/**/join.do","/**/idChk.do",
-					"/**/loginForm.do","/**/login.do","/**/joinForm2.do","/**/join2.do","/**/main.do")
+					"/**/loginForm.do","/**/login.do","/**/searchForm.do","/**/main.do")
 				.addPathPatterns("/**/*.do");
 		}
 	

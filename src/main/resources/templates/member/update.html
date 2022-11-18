@@ -1,21 +1,15 @@
 <!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<head><meta charset="UTF-8">
+<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
 <title>Insert title here</title></head><body>
 <span th:if="${result} > 0">
 	<script type="text/javascript">
-		alert("입력 완료");
-		location.href="loginForm.do";
+		alert("수정 완료");
+		location.href="myPage.do";
 	</script>
 </span>
 <span th:if="${result} == 0">
 	<script type="text/javascript">
-		alert("입력 실패");
-		history.go(-1);
-	</script>
-</span>
-<span th:if="${result} == -1">
-	<script type="text/javascript">
-		alert("아이디가 이미 존재합니다");
+		alert("수정 실패");
 		history.go(-1);
 	</script>
 </span>

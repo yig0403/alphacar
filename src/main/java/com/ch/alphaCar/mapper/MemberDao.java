@@ -11,4 +11,10 @@ public interface MemberDao {
 
 	int insert(Member member);
 
+	Member selectEmail(String email);
+
+	int delete(String id);
+
+	int update(Member member);
+
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
+<span th:insert="/header.html::header"></span>
+<head>
+    <title>searchForm</title>
+	<link rel="stylesheet" href="/css/searchForm.css" media="screen">   
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function emailChkf() {
+			var regExp = /^[0-9a-zA]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			
+			if(!form2.email.value) {
+				alert("이메일 주소를 입력해주세요");
+				form2.email.focus();
+				return false;
+			}
+			else if(form2.email.value!=""){
+				if(!regExp.test(form2.email.value)){
+					alert("이메일 형식으로 입력해주세요");
+					form2.email.focus();
+					return false;
+				}else {
+					
+					$.ajaxSetup({type:"post",
+						url:'emailChk.do',
+						dataType:'text',
+						success: function(msg) {
+							if(msg == ""){
+								alert("인증번호가 전송되었습니다");
+							}else alert(msg);
+						}
+					});
+					$.ajax({
+						data: "email="+form2.email.value});
+					}
+			};
+		}
+	</script>
+</head>
+<body class="u-body u-xl-mode" data-lang="en">
+	<section class="u-align-center u-clearfix u-container-align-center u-grey-10 u-section-1" id="sec-70db">
+      <div class="u-align-center u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-group u-white u-group-1">
+          <div class="u-container-layout u-container-layout-1"><span class="u-align-center u-file-icon u-icon u-icon-1"><img th:src="@{upload/logo.png}" alt=""></span>
+            <h3 class="u-align-center u-text u-text-default u-text-1">로그인에 문제가 있나요?</h3>
+            <p class="u-align-center u-text u-text-default u-text-2"> 이메일 주소를 입력하시면<br>인증번호를 보내드립니다.
+            </p>
+            <div class="u-form u-form-1">
+              <form action="sendMail.do" class="u-clearfix u-form-custom-backend u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="custom" name="form2" redirect="true">
+                <div class="u-form-email u-form-group u-label-none u-form-group-1">
+                  <label for="email-3b0a" class="u-label">Email</label>
+                  <input type="email" placeholder="이메일" id="email" name="email" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-1" required="required" style="width: 425px; float:left">
+                  <input type="button" class="u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-btn-submit u-button-style u-radius-10 u-text-white u-btn-3" onclick="emailChkf()" value="인증" id ="emailChk-button">
+                  <div id="email" class="err"></div>
+                </div>
+                <div class="u-form-group u-label-none u-form-group-4">
+								<label for="text-fe20" class="u-label">인증</label> <input
+									type="text" placeholder="인증" id="emailChk-input" name="emailChk"
+									class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-palette-5-light-3 u-radius-10 u-input-4"
+									required="required">
+							</div>
+                <div class="u-align-left u-form-group u-form-submit u-label-none">
+                  <input type="button" value="submit" class="u-form-control-hidden" onclick="emailConfirm()" id="emailConfirm-button">
+                  <a href="#" class="u-black u-border-1 u-border-grey-30 u-btn u-btn-round u-btn-submit u-button-style u-radius-10 u-text-white u-btn-1">인증번호 보내기<br>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="u-container-style u-group u-white u-group-2">
+          <div class="u-container-layout u-container-layout-2">
+            <a href="#" class="u-align-center u-border-active-palette-2-base u-border-hover-palette-1-base u-border-none u-btn u-button-style u-none u-text-palette-2-light-1 u-btn-2">비밀번호 재설정하기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

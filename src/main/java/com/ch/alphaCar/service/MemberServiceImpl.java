@@ -19,4 +19,19 @@ public class MemberServiceImpl implements MemberService {
 	public int insert(Member member) {
 		return md.insert(member);
 	}
+
+	@Override
+	public Member selectEmail(String email) {
+		return md.selectEmail(email);
+	}
+
+	@Override
+	public int delete(String id) {
+		return md.delete(id);
+	}
+
+	@Override
+	public int update(Member member) {
+		return md.update(member);
+	}
 }

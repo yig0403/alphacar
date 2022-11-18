@@ -16,11 +16,11 @@ public class Member {
 	private String address;
 	private String tel;
 	private String email;
-	private String birth;
+	private Date birth;
 	private String gender;
 	private String del;
 	private Date regdate;
-	private String mfileName;
+	private String fileName;
 	private String ad;
 	// upload용
 	private MultipartFile file; 

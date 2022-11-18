@@ -11,7 +11,7 @@ public class Reservation {
  private String year;
  private String month;
  private String day;
- private String year;
+// private String year;
  
  private String startDate;        //렌트날짜 
  private String endDate;          //반납날짜

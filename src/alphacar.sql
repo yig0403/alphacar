@@ -21,8 +21,8 @@ CREATE TABLE member (
 	address VARCHAR2(40) NULL,
 	tel VARCHAR2(20) NULL,
 	email VARCHAR2(30) NULL,
-	birth VARCHAR2(30) NULL,
-	gender CHAR(1) NULL,
+	birth Date NULL,
+	gender CHAR(6) NULL,
 	del CHAR(1) NULL,
 	regdate DATE NULL,
 	mfileName	VARCHAR2(50) NULL,
@@ -30,6 +30,7 @@ CREATE TABLE member (
 );
 alter table member modify (ad default 'n');
 alter table member modify (del default 'n');
+select * from member;
 
 CREATE TABLE car (
 	carNo	VARCHAR2(10)	NOT NULL,

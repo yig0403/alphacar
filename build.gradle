@@ -28,6 +28,7 @@ dependencies {
 	implementation 'commons-fileupload:commons-fileupload:1.4'
 	
 	implementation group: 'org.springframework.security', name: 'spring-security-crypto', version: '4.2.4.RELEASE'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 		
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
