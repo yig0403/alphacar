@@ -1,5 +1,5 @@
 <!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org" style="font-size: 16px;" lang="en">
-<span th:insert="header.html::header"></span><head>
+<span th:insert="header3.html::header"></span><head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <meta name="keywords" content="">
@@ -221,7 +221,7 @@
               </div>
                  <div class="u-align-center u-form-group u-form-submit">
                  <input type="submit" value="submit" class="u-form-control-hidden" name="listSearch">
-                <a th:href="@{reservationList.do}"  class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5">검색</a>
+                <a th:href="@{reservationList.do}"  class="u-border-none u-btn u-btn-submit u-button-style u-gradient u-hover-palette-1-dark-1 u-none u-btn-5" style="background-color:grey">검색</a>
             </div>
             </div>
           </div>
@@ -238,7 +238,7 @@
               <input type="text" placeholder="차량 검색" id="keyword" name="keyword" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
             </div>
             <div class="u-align-center u-form-group u-form-submit">
-              <input type="submit" value="검색" th:href="@{carList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-btn-1">
+              <input type="submit" value="검색" th:href="@{carList.do}" class="u-border-none u-btn u-btn-submit u-button-style u-btn-1" style="background-color:grey">
             </div>
           </form>
         </div>
@@ -258,11 +258,11 @@
         <img src="carUpload/위치.png" alt="">
         </span>
 	    
-        <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">전체목록 보기</a>
-        <a th:href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-3">예약확인 / 이용내역</a>
-        <a th:href="@{carListR.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-4">신차보기<br>
+        <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-2" style="background-color:grey">전체목록 보기</a>
+        <a th:href="@{reservationHistory.do}" class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-3" style="background-color:grey">예약확인 / 이용내역</a>
+        <a th:href="@{carListR.do}" class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-4" style="background-color:grey">신차보기<br>
         </a>
-        <a th:href="@{carRegionList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-5">지점위치보기<br>
+        <a th:href="@{carRegionList.do}" class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-5" style="background-color:grey">지점위치보기<br>
         </a>
       </div>
     </section>    

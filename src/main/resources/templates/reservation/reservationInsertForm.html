@@ -1,5 +1,5 @@
 <!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org">
-<span th:insert="header.html::header"></span><head><meta charset="UTF-8">
+<span th:insert="header3.html::header"></span><head><meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="/css/nicepage.css" media="screen">
     <link rel="stylesheet" href="/css/carInsert.css" media="screen">
@@ -69,6 +69,7 @@
 	}
 	
 	#u_info {
+	    padding-top: 100px;
 		clear: both;
 	}
 	
@@ -218,9 +219,11 @@
 	    			<h4>차량 정보</h4>
 	    			  <img alt="" class="u-image u-image-default u-product-control u-image-1" th:src="@{carUpload/}+${car.filename}" style="width:150px; height:150px;">
 	    			<div>
+	    			<h4>차량 번호</h4>
 	    			<input type="text" name="carNo" required="required" th:value="${car.carNo }" readonly>
 	    			<div>
-	    			[[${car.CarName}]]
+	    			<h4>차량이름</h4>
+	    			<h5>[[${car.CarName}]]</h5>
 	    			</div>
 	    		</div>
 	    		</div>
@@ -233,20 +236,21 @@
           
           <div id="r_info">
 	    			<h4>차량 위치</h4>
-	    			<div>[[${car.carRegion}]]</div>
+	    			<div><h5>[[${car.carRegion}]]</h5></div>
 	    			<h4>기본 요금</h4>
-	    			<div>[[${car.fee}]]원</div>
+	    			<div><h4>[[${car.fee}]]원</h4></div>
 	    			<h4>총 요금</h4>
 	    			<h5><input type = "number" name="amount" id="amount"></h5>
 	    		</div>
 	      
 	      <div id="u_info" align="center">   
                <div align = "center">
-                  <input type="submit" value="예약하시겠습니까" class="btn btn-success u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2" name="예약">
-                     <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-custom-color-1 u-hover-palette-1-dark-1 u-btn-2">취소</a>
+                  <input type="submit" value="예약하시겠습니까" class="btn btn-success u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-2" style="background-color:grey" name="예약">
+                     <a th:href="@{carList.do}" class="u-border-none u-btn u-button-style u-hover-palette-1-dark-1 u-btn-2" style="background-color:grey">취소</a>
               </div>
          </div>
         </form>
+
         </div>
    </section>
 </body>
