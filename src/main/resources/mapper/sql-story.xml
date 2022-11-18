@@ -18,4 +18,31 @@
 		<result property="id" column="id"/>	
 	</resultMap>
 	
+	<select id="getTotal" resultType="int">
+		select count(*) from story
+	</select>
+	<select id="list" parameterType="story" resultMap="storyResult">
+		select * from (select a.*, rowNum rn from (
+			select * from story order by stNo desc)a)
+				where rn between #{startRow} and #{endRow} and del='n'
+	</select>
+	<select id="getMaxNum" resultType="int">
+		select nvl(max(stNo),0) + 1 from story 
+	</select>
+	<select id="insert" parameterType="story">
+		insert into story values (#{stNo},#{id},#{stTitle},#{stContent},0,sysdate,
+			<if test="sfileName!=null and sfileName!=''">
+				#{sfileName},
+			</if>	
+			<if test="sfileName==null or sfileName==''">
+				null,
+			</if>	
+			'n' )
+	</select>
+	<update id="updaterpRead" parameterType="integer">
+		update story set stReadcount = stReadcount + 1 where stNo=#{stNo}
+	</update>
+	<select id="select" parameterType="integer" resultType="story">
+		select * from story where stNo=#{stNo}
+	</select>
 </mapper>
