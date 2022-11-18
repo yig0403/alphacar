@@ -18,4 +18,8 @@ public interface StoryService {
 
 	Story select(Integer stNo);
 
+	int delete(Integer stNo);
+
+	int update(Story story);
+
 }

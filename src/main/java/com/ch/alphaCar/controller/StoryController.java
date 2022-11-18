@@ -97,4 +97,26 @@ public class StoryController {
 		model.addAttribute("pageNum", pageNum);
 		return "/story/storySelect";
 	}
+	@RequestMapping("storyDelete.do")
+	private String storyDelete(Model model, Integer stNo) {
+		Story story = ss.select(stNo);
+		int result = ss.delete(stNo);
+		model.addAttribute("result", result);
+		model.addAttribute("story", story);
+		return "/story/storyDelete";
+	}
+	@RequestMapping("storyUpdateForm.do")
+	private String storyUpdateForm(Integer stNo, String pageNum, Model model) {
+		Story story = ss.select(stNo);		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("story", story);
+		return "/story/storyUpdateForm";
+	}
+	@RequestMapping("storyUpdate.do")
+	private String storyUpdate(Story story, String pageNum, Model model) {
+		int result = ss.update(story);
+		model.addAttribute("result",result);
+		model.addAttribute("pageNum",pageNum);		
+		return "/story/storyUpdate";
+	}
 }

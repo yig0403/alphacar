@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function sDelete(stNo,strNo) {
+		var sendData = '?stNo='+stNo+'&strNo='+strNo;
+		$.post('sDelete.do', sendData, function(data) {
+			alert('댓글이 삭제 되었습니다');
+			$('#storyListDisp').html(data);
+		});
+	}
+	function sUpdate(stNo,strNo) {			
+		/*  input에 있는 데이터를 읽어서 textarea로 넣어야 수정할 수 있음
+			input, textarea, select등 form안에 있는 데이터 jquery에서 val()
+			td, span, div처럼 일반 테스트 데이터를 읽을 때는 jquery에서 text() */
+		var txt = $('#'+strNo).text();
+		/* 읽은 데이터를 textarea에 넣기 */
+		$('#'+strNo).html("<textarea rows='3' class='form-control' id='rt'>"+
+				txt+"</textarea>");	
+		/* 클릿한 버튼을 확인과 취소로 변경  */
+		$('.'+strNo).html("<input type='button' onclick='up("+stNo+","+strNo+
+				")' class='btn btn-sm btn-success' value='확인'> "+
+			"<input type='button' onclick='lst("+stNo+")' class='btn btn-sm btn-info' "+
+			" value='취소'>");
+	}
+	function lst(stNo) {
+		$('#storyListDisp').load('/story/strList.do?stNo='+stNo);
+	}
+	function up(stNo,strNo) {
+		var sendData = "strContent="+$('#rt').val();
+		$.post('sUpdate.do?strNo='+strNo, sendData, function(data) {
+			alert("수정 되었습니다");
+			$('#storyListDisp').html(data);
+		});
+	}
+</script>
+</head>
+<body>
+<div th:if="${#lists.size(strList)} > 0">
+	<h5 class="text-primary">comments</h5>
+<table class="table">
+	<tr class="Dark"><td>id</td><td>본문</td><td>작성일</td><td></td></tr>
+<th:block th:each="str:${strList}">
+	<th:block th:if="${str.del} =='y' ">
+		<tr class="info"><td colspan="4">삭제된 댓글입니다</td></tr>
+	</th:block>
+	<th:block th:if="${str.del} != 'y' ">
+		<tr><td>[[${str.id }]]</td>
+			<td><pre><span th:id="${str.strNo }">[[${str.strContent }]]</span></pre></td>
+			<td>[[${str.regdate }]]</td>
+			<th:block th:if="${str.id} == ${story.id} or ${member.id} == 'admin'">
+				<td><span th:class="${str.strNo}">
+					<input type="button" class="btn btn-warning btn-sm"
+					value="수정" th:onclick="'sUpdate('+${str.stNo}+','+${str.strNo }+')'">
+					<input type="button" class="btn btn-danger btn-sm" 
+					value="삭제" th:onclick="'sDelete('+${str.stNo}+','+${str.strNo }+')'">
+					</span>
+				</td>
+			</th:block>
+			<th:block th:if="${str.id} != ${story.id }"><td></td></th:block>
+		</tr>
+	</th:block>
+</th:block>
+</table>
+</div>
+</body>
+</html>

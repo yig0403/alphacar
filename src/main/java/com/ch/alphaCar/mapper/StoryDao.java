@@ -20,5 +20,9 @@ public interface StoryDao {
 	void updaterpRead(Integer stNo);
 
 	Story select(Integer stNo);
+
+	int delete(Integer stNo);
+
+	int update(Story story);
 	
 }
