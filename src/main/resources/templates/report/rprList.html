@@ -51,13 +51,8 @@
 		<tr><td>[[${rpr.id }]]</td>
 			<td><pre><span th:id="${rpr.rrNo }">[[${rpr.rprContent }]]</span></pre></td>
 			<td>[[${rpr.regdate }]]</td>
-<<<<<<< HEAD
-			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'k1'">
-				<td id="btn_${rpr.rrNo}">
-=======
 			<th:block th:if="${rpr.id} == ${report.id} or ${member.id} == 'admin'">
 				<td><span th:class="${rpr.rrNo}">
->>>>>>> main
 					<input type="button" class="btn btn-warning btn-sm"
 					value="수정" th:onclick="'rUpdate('+${rpr.rpNo}+','+${rpr.rrNo }+')'">
 					<input type="button" class="btn btn-danger btn-sm" 
