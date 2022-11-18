@@ -31,4 +31,10 @@ public class StoryServiceImpl implements StoryService {
 	public Story select(Integer stNo) {
 		return sd.select(stNo);
 	}
+	public int delete(Integer stNo) {
+		return sd.delete(stNo);
+	}
+	public int update(Story story) {
+		return sd.update(story);
+	}
 }

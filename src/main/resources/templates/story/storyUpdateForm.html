@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<span th:insert="header2.html::header"></span>
+<span th:insert="header.html::header"></span>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container" align="center">
+		<h2>수정</h2>
+		<form action="storyUpdate.do" method="post">
+			<input type="hidden" name="stNo" th:value="${story.stNo }"> <input
+				type="hidden" name="id" th:value="${story.id }"> <input
+				type="hidden" name="pageNum" th:value="${pageNum }">
+			<table class="table table-hover">
+				<tr>
+					<th>번호</th>
+					<td>[[${story.stNo }]]
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>[[${story.id }]]
+				</tr>
+				<tr>
+					<th>작성일</th>
+					<td>[[${story.regdate }]]
+				</tr>
+				<tr>
+					<th>제목</th>
+					<td><input type="text" name="stTitle" required="required"
+						th:value="${story.stTitle }"></td>
+				</tr>
+				<tr>
+					<th>본문</th>
+					<td><textarea rows="5" cols="100" name="stContent"
+							required="required" th:value="${story.stContent }">
+							</textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="수정"
+						class="btn btn-dark"></td>
+				</tr>
+			</table>
+			<a th:href="@{storySelect.do(stNo=${story.stNo})}"
+				class="btn btn-dark">수정취소</a>
+		</form>
+	</div>
+</body>
+<span th:insert="footer.html::footer"></span>
+</html>

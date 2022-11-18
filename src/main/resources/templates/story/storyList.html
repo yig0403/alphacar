@@ -8,11 +8,7 @@
 <script type="text/javascript">
 	function idChk(index,stNo, pageNum) {
 		id = $('#'+index).text();
-		if (id == '[[${member.id}]]' || '[[${member.id}]]' == 'admin') {
-			location.href = "storySelect.do?stNo="+stNo + "&pageNum=" + pageNum;
-		}
-		else 
-			alert ("작성자나 관리자만 확인가능합니다");
+			location.href = "storySelect.do?stNo="+stNo + "&pageNum=" + pageNum;		
 	}
 </script>
 </head>

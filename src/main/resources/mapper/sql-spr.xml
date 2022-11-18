@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.alphaCar.mapper.StoryReplyDao">
+	<resultMap type="str" id="storyreplyResult">
+		<result property="strNo" column="strNo"/>
+		<result property="stNo" column="stNo"/>
+		<result property="id" column="id"/>
+		<result property="strContent" column="strContent"/>
+		<result property="regdate" column="regdate"/>
+		<result property="del" column="del"/>
+		<collection property="member" resultMap="memberResult"></collection>
+		<collection property="story" resultMap="storyResult"></collection>
+	</resultMap>
+	<!-- member table join -->	
+	<resultMap type="member" id="memberResult">
+		<result property="id" column="id"/>	
+	</resultMap>
+	<!-- story table join -->	
+	<resultMap type="story" id="storyResult">
+		<result property="stNo" column="stNo"/>	
+	</resultMap>
+	
+	<insert id="insert" parameterType="str">
+		<selectKey keyProperty="strNo" order="BEFORE" resultType="int">
+			select nvl(max(strNo),0) + 1 strNo from storyreply
+		</selectKey>
+		insert into storyreply values(#{strNo},#{stNo},#{id},#{strContent},
+			sysdate,'n')
+	</insert>
+	<select id="list" parameterType="integer" resultType="str">
+		select * from storyreply where stNo=#{stNo} order by strNo
+	</select>
+	<select id="select2" parameterType="integer" resultType="str">
+		select * from storyreply where strNo=#{strNo}
+	</select>
+	<update id="delete" parameterType="integer">
+		update storyreply set del='y' where strNo=#{strNo}
+	</update>
+	<update id="update" parameterType="str">
+		update storyreply set strContent=#{strContent} where strNo=#{strNo}
+	</update>
+</mapper>

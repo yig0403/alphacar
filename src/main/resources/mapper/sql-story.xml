@@ -45,4 +45,10 @@
 	<select id="select" parameterType="integer" resultType="story">
 		select * from story where stNo=#{stNo}
 	</select>
+	<update id="delete" parameterType="integer">
+		update story set del='y' where stNo=#{stNo}
+	</update>
+	<update id="update" parameterType="story">
+		update story set stTitle=#{stTitle}, stContent=#{stContent} where stNo=#{stNo}
+	</update>
 </mapper>
