@@ -1,4 +1,4 @@
-중앙정보인재개발원의 스프링 프로젝트 'AlphaCarRent' 입니다.
+중앙정보인재개발원의 SpringBoot 프로젝트 'AlphaCarRent' 입니다.
 
 제작인원 : 3 인
 
